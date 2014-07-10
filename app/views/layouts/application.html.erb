@@ -1,14 +1,39 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>ServicesKpis</title>
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
-
-<%= yield %>
-
-</body>
+  <head>
+    <%= stylesheet_link_tag "application", media: "all",
+                                           "data-turbolinks-track" => true %>
+    <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+    <%= csrf_meta_tags %>
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="navbar navbar-inverse navbar-static-top">
+      <div class="navbar-inner">
+        <%= link_to "ServeTrac", "/services/home", class: "top-bar-name"%>
+          <ul class="nav pull-right">
+            <li><%= link_to "Home", "/services/home"%></li>
+            <li><%= link_to "Help", "#"%></li>
+            <li><%= link_to "Sign In", "#"%></li>
+          </ul>
+      </div>
+    </div>
+    <div class="row-fluid">
+      <div class="span2">
+        <div class="navbar navbar-inverse navbar-static-left left-nav">
+      <div class="navbar-inner">
+            <p><%= link_to "New Report Card", "/services/new_report_card"%></p>
+            <p><%= link_to "Help", "#"%></p>
+            <p><%= link_to "Sign In", "#"%></p>
+          </ul>
+      </div>
+    </div>
+  </div>
+    <div class="span10">
+      <%= yield %>
+    </div>
+  </div>
+  </body>
 </html>
