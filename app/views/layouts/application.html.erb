@@ -5,32 +5,16 @@
                                            "data-turbolinks-track" => true %>
     <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
     <%= csrf_meta_tags %>
-    <!--[if lt IE 9]>
-    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
+    <%= render 'layouts/shim' %>
   </head>
   <body>
-    <div class="navbar navbar-inverse navbar-static-top">
-      <div class="navbar-inner">
-        <%= link_to "ServeTrac", "/home", class: "top-bar-name"%>
-          <ul class="nav pull-right">
-            <li><%= link_to "Home", "/home"%></li>
-            <li><%= link_to "Home", "/sign_up"%></li>
-            <li><%= link_to "Help", "#"%></li>
-            <li><%= link_to "Sign In", "#"%></li>
-          </ul>
-      </div>
-    </div>
+    
+    <%= render 'layouts/top_bar' %>
+
     <div class="row-fluid">
-      <div class="span2">
-        <div class="navbar navbar-inverse navbar-static-left left-nav">
-      <div class="navbar-inner">
-            <p><%= link_to "New Report Card", "/new_report_card"%></p>
-            <p><%= link_to "Help", "#"%></p>
-            <p><%= link_to "Sign In", "#"%></p>
-          </ul>
-      </div>
-    </div>
+      
+    <%= render 'layouts/side_bar' %>
+
   </div>
     <div class="span10">
       <%= yield %>

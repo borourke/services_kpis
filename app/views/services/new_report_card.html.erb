@@ -1,5 +1,6 @@
 <div class="center hero-unit">
-  <h1>New Project Report Card</h1>
+
+  <h1>New Report Card</h1>
 
   <h2>
     Please fill out the form below.
@@ -7,36 +8,14 @@
 
 </div>
 
-<form class="form-horizontal">
-  <div class="control-group">
-    <label class="control-label" for="project_name">Project Name</label>
-    <div class="controls">
-      <input type="text" id="project_name" placeholder="Twenty20 Image Medata Round 1 - 20k">
-    </div>
-  </div>
-  <div class="control-group">
-    <label class="control-label" for="services_member">Lead Services Member</label>
-    <div class="controls">
-      <input type="text" id="services_member" placeholder="Bryan O'Rourke">
-    </div>
-  </div>
-  <div class="control-group">
-    <label class="control-label" for="team">Services Team</label>
-    <div class="controls" id="team">
-		<select>
-		  <option>Business Data</option>
-		  <option>Content Generation</option>
-		  <option>SEO</option>
-		</select>
-    </div>
-  </div>
-  <div class="control-group">
-    <label class="control-label" for="pn">Project Number</label>
-  <div class="controls">
-      <input type="text" id="pn" placeholder="PN447">
-    </div>
-</div>
-  </div>
-</form>
+<div class="row-fluid">
 
-<%= link_to image_tag("crowdflower_logo.jpg", alt: "CrowdFlower"), 'http://crowdflower.com/' %>
+	<div class="span6">
+		<%= render '/services/report_card_form_left' %>
+	</div>
+
+	<div class="span6">
+		<%= render '/services/report_card_form_right' %>
+	</div>
+
+</div>
