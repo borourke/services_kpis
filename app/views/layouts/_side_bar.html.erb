@@ -1,9 +1,18 @@
-<div class="span2">
-    <div class="navbar navbar-inverse navbar-static-left left-nav">
-  <div class="navbar-inner">
-        <p><%= link_to "New Report Card", "/new_report_card"%></p>
-        <p><%= link_to "Sign Up", "/sign_up"%></p>
-        <p><%= link_to "Sign In", "/sign_in"%></p>
-      </ul>
-  </div>
+<div class="sidebar">
+    <div class="navbar navbar-static-left left-nav">
+    	<div class="pull-left">
+	      <div class="dropdown">
+	        <a id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="/page.html">
+	          <button type="button" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-align-justify"></span> <span class="caret"></span></button>
+	        </a>
+
+	        <ul class="dropdown-menu pull-left" role="menu" aria-labelledby="dropdownMenu2">
+			  <li role="presentation" class="dropdown-header"><%= link_to "New Report Card", "/new_report_card"%></li>
+			  <li role="presentation" class="dropdown-header"><%= link_to "Sign In", "/sign_in"%></li>
+			  <li role="presentation" class="dropdown-header"><%= link_to "Sign Up", "/sign_up"%></li>
+
+			</ul>
+	      </div>
+	   </div>
+	</div>
 </div>

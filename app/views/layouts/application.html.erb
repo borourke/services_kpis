@@ -9,15 +9,14 @@
   </head>
   <body>
     
-    <%= render 'layouts/top_bar' %>
+  
 
     <div class="row-fluid">
-      
-    <%= render 'layouts/side_bar' %>
+      <%= render 'layouts/top_bar' %>
 
-  </div>
-    <div class="span10">
-      <%= yield %>
+    <%= render 'layouts/side_bar' %>
+      <%= yield %> 
+
     </div>
   </div>
   </body>
