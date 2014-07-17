@@ -52,27 +52,34 @@ textarea {
 }
 .words{
   display: inline-block;
-  vertical-align: middle;
-  line-height: 200px;
+  position: absolute;
+  color:#333333;
+  text-align:left;
+  margin-left:10em;
+  margin-top:10em;
 }
 .banner {
    z-index: -100;
    top:2.75em;
    position:relative;
-   height: 20em;
+   height: 100%;
    text-align:center;
    line-height: 100px;
 }
-.bg {
-  background: url("/assets/images/banner.jpg") no-repeat center center !important;
-  position: fixed;
-  width: 100%;
-  height: 350px; /*same height as jumbotron */
-  top:0;
-  left:0;
-  z-index: -1;
+.hero-unit {
+  background-image: image-url('banner.jpg');
+  background-size: 1000px;
+  background-repeat: no-repeat;
+  background-position: center left;
+   top: 0;
+   left: 0;
+   bottom: 0;
+   right: 0;
+   position: absolute;
+   z-index: -1;
 }
-.jumbotron {
-  background-color:transparent !important;
+.indent {
+  margin-top:1em;
+  margin-left:3em;
 }
 
