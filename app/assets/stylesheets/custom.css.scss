@@ -37,13 +37,28 @@ textarea {
   width:100%;
 }
 .left-nav {
-	height: 100px !important;
+	height: 100px;
 }
 
-.sidebar {
+#dLabel {
   position:fixed;
   margin-left: 2em;
   margin-top:  4em;
+}
+
+.dropdown-menu {
+  margin-top:6.5em;
+  margin-left:2em;
+}
+.submenu .menu li div, .submenu .menu li ul{
+display:block;
+}
+.dropdown-menu li:hover .sub-menu {
+    visibility: visible;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
 }
 
 .full {
