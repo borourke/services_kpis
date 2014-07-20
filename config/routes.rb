@@ -1,9 +1,11 @@
 ServicesKpis::Application.routes.draw do
+  resources :users
   root  'services#home'
   match '/new_report_card',    to: 'services#new_report_card',    via: 'get'
   match '/sign_in',    to: 'services#sign_in',    via: 'get'
-  match '/sign_up',    to: 'services#sign_up',    via: 'get'
+  match '/sign_up',    to: 'users#sign_up',    via: 'get'
   match '/home',    to: 'services#home',    via: 'get'
+  match '/users', to: 'users#users', via: 'get'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

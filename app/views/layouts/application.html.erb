@@ -8,7 +8,9 @@
     <%= render 'layouts/shim' %>
   </head>
   <body>
-    
+    <% flash.each do |key, value| %>
+        <div class="alert alert-<%= key %>"><%= value %></div>
+      <% end %>
   
 
     <div class="row-fluid">
@@ -16,7 +18,7 @@
     <div class="full">
     <%= render 'layouts/side_bar' %>
       <%= yield %> 
-    <%= render 'layouts/bottom_bar' %> 
+    <%= render 'layouts/bottom_bar' %>
     </div>
   </div>
   </body>
