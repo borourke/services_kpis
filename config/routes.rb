@@ -1,8 +1,10 @@
 ServicesKpis::Application.routes.draw do
   resources :users
+  resources :sessions, only: [:sign_in, :create, :destroy]
   root  'services#home'
   match '/new_report_card',    to: 'services#new_report_card',    via: 'get'
-  match '/sign_in',    to: 'services#sign_in',    via: 'get'
+  match '/sign_in',    to: 'sessions#new',    via: 'get'
+  match '/sign_out', to: 'sessions#destroy', via: 'delete'
   match '/sign_up',    to: 'users#sign_up',    via: 'get'
   match '/home',    to: 'services#home',    via: 'get'
   match '/users', to: 'users#users', via: 'get'

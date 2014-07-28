@@ -6,6 +6,14 @@ html {
   overflow-y: scroll;
 }
 
+.top {
+  margin-top:-4em;
+}
+
+.bottom {
+  margin-bottom:5em;
+}
+
 body {
   padding-top: 0px;
 }
@@ -49,16 +57,20 @@ textarea {
 .dropdown-menu {
   margin-top:6.5em;
   margin-left:2em;
+  position: absolute;
 }
 .submenu .menu li div, .submenu .menu li ul{
 display:block;
+position: absolute;
 }
 .dropdown-menu li:hover .sub-menu {
     visibility: visible;
+    position: absolute;
 }
 
 .dropdown:hover .dropdown-menu {
     display: block;
+    position: absolute;
 }
 
 .full {
@@ -147,3 +159,21 @@ input {
   @extend .error;
 }
 
+/* Users index */
+
+.right-padding{
+  padding-right:10em;
+}
+
+.users {
+  list-style: none;
+  margin: 0;
+  li {
+    overflow: auto;
+    padding: 10px 0;
+    border-top: 1px solid $grayLighter;
+    &:last-child {
+      border-bottom: 1px solid $grayLighter;
+    }
+  }
+}
