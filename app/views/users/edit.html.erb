@@ -1,6 +1,15 @@
-<%= form_for(@user) do |f| %>
+<div class="well center span10 offset1 top">
+  <h1>ServeTrac | <%= @user.name %></h1>
+</div>
+
+<div class="well span10 offset1 bottom" bottom>
+<h1 class="center">Update your profile</h1>
+
+<div class="row-fluid">
+  <div class="span6 offset3">
+    <%= form_for(@user) do |f| %>
       <%= render 'shared/error_messages' %>
-      
+
       <%= f.label :name %>
       <%= f.text_field :name %>
 
@@ -16,6 +25,11 @@
       <%= f.label :password_confirmation, "Password Confirmation" %>
       <%= f.password_field :password_confirmation %>
 
-      <%= f.submit "Create my account", class: "btn btn-large btn-primary" %>
+      <%= f.submit "Save changes", class: "btn btn-medium btn-primary" %>
+    <% end %>
 
-<% end %>
+    <%= gravatar_for @user %>
+    <a href="http://gravatar.com/emails">change</a>
+  </div>
+</div>
+</div>

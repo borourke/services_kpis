@@ -1,0 +1,16 @@
+<div class=" well center span10 offset1 top">
+  <h1>ServeTrac | Sign Up</h1>
+</div>
+
+<div class=" well center span10 offset1 bottom">
+<h1>All users</h1>
+
+<ul class="users span5 offset3">
+  <% @users.each do |user| %>
+    <li>
+      <span class="pull-left"><%= gravatar_for user, size: 52%></span>
+      <h4><%= link_to user.name, user, :class => "center"%></h4>
+    </li>
+  <% end %>
+</ul>
+</div>
