@@ -4,6 +4,12 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @tasks_grid = initialize_grid(ReportCard, conditions: {:user_id => params[:id]})
+    @tasks_grid2 = initialize_grid(Project)
+    #@report_cards = ReportCard.find_by user_id: params[:id]
+    #@project_ids = @report_cards.project_id
+    #@projects = Project.find(@project_ids)
+    #@projects_grid = initialize_grid(Project)
   end
 
   def index

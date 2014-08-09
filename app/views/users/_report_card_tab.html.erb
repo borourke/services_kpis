@@ -1,0 +1,31 @@
+<div class="span10 bottom well well_background">
+					<%= 
+    					grid(@tasks_grid, show_filters: :always) do |g|
+				 
+    					   g.column name: 'Project Name', model: 'Project', attribute: 'project_name' do |p|
+    					     p.project.project_name if p.project
+    					   end
+				 
+    					   g.column name: 'Type', attribute: 'type' do |p|
+    					     p.type
+    					   end
+				 
+    					   g.column name: 'Services Member', model: 'User', attribute: 'name' do |p|
+    					     p.user.name if p.user
+    					   end
+				 
+    					   g.column name: 'Report Card', attribute: 'report_card' do |p|
+    					   	 p.report_card
+    					   end
+
+                           g.column name: 'Total Points', attribute: 'report_card' do |p|
+                             if not(p.report_card.nil?)
+                                p.report_card.split(',').length
+                             else
+                                0
+                             end
+                           end
+					
+    					end
+ 					%>
+</div>

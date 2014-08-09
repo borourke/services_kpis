@@ -11,6 +11,8 @@ ServicesKpis::Application.routes.draw do
   match '/home',    to: 'services#home',    via: 'get'
   match '/users', to: 'users#users', via: 'get'
   match '/new_report_card',    to: 'report_cards#new_report_card',    via: 'get'
+  match '/report_cards', to: 'report_cards#show', via: 'get'
+  match '/all_report_cards', to: 'report_cards#show', via: 'get'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

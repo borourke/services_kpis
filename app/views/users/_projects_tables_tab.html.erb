@@ -1,0 +1,35 @@
+<div class="span10 bottom well well_background">
+	<%= grid(@tasks_grid2, show_filters: :always) do |g|
+	
+    	   g.column name: 'Project Name', attribute: 'project_name' do |p|
+    	     p.project_name
+    	   
+    	   g.column name: 'Delivery Date', attribute: 'delivery_date' do |p|
+    	     p.delivery_date
+    	   end
+
+    	   g.column name: 'Total Hours', attribute: 'hours' do |p|
+    	     p.hours
+    	   end
+
+    	   g.column name: 'Spoilage', attribute: 'spoilage' do |p|
+    	     p.spoilage
+    	   end
+
+    	   g.column name: 'PN', attribute: 'project_number' do |p|
+    	     p.project_number
+    	   end
+
+    	   g.column name: 'SLA Accuracy', attribute: 'sla_accuracy' do |p|
+    	     p.sla_accuracy
+    	   end
+
+    	   g.column name: 'Actual Accuracy', attribute: 'accuracy' do |p|
+    	     p.accuracy
+    	   end
+
+    	   g.column name: 'PN', attribute: 'project_number' do |p|
+    	     p.project_number
+    	   end
+    	end %>
+</div>

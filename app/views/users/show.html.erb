@@ -4,13 +4,64 @@
 
 <div class="well span10 offset1 bottom">
 	<div class="offset2 span10" style="margin-top:2em; margin-bottom:2em;">
-		<div class="well well_background span10 center"><h4><u><strong>Name:</strong></u></h4>
-		<%= @user.name %>
-		<h4><u><strong>Email:</strong></u></h4><%= @user.email %>
-		<h4><u><strong>Team:</strong></u></h4><%= @user.team %>
-	<br>
-	<br>
-		<%= link_to "Edit Account Information", edit_user_path(current_user), :class => "btn btn-primary btn-medium"%>
+
+		<ul class="nav nav-tabs" id="myTab">
+			<li class="active"><a href="#info" data-toggle="tab">Profile Info</a></li>
+  			<li><a href="#report_cards" data-toggle="tab">Report Cards</a></li>
+  			<li><a href="#projects" data-toggle="tab">Projects</a></li>
+		</ul>
+
+		<div class="tab-content">
+			<div class="tab-pane active" id="info">
+				<%= render 'profile_tab' %>
+			</div>
+
+			<div class="tab-pane" id="report_cards">
+				<%= render 'report_card_tab' %>
+			</div>
+
+			<div class="tab-pane" id="projects">
+                <div class="row-fluid">
+                <div class="span10 bottom well well_background">
+			<%= grid(@tasks_grid2, show_filters: :always) do |g|
+				 
+    					   g.column name: 'Project Name', attribute: 'project_name' do |p|
+    					     p.project_name
+    					   end
+
+    					   g.column name: 'Delivery Date', attribute: 'delivery_date' do |p|
+    	     				 p.delivery_date
+    	   				   end
+
+
+    	   				   g.column name: 'Total Hours', attribute: 'hours' do |p|
+    	     p.hours
+    	   end
+
+    	   g.column name: 'Spoilage', attribute: 'spoilage' do |p|
+    	     p.spoilage
+    	   end
+
+    	   g.column name: 'PN', attribute: 'project_number' do |p|
+    	     p.project_number
+    	   end
+
+    	   g.column name: 'SLA Accuracy', attribute: 'sla_accuracy' do |p|
+    	     p.sla_accuracy
+    	   end
+
+    	   g.column name: 'Actual Accuracy', attribute: 'accuracy' do |p|
+    	     p.accuracy
+    	   end
+
+    	   g.column name: 'PN', attribute: 'project_number' do |p|
+    	     p.project_number
+    	   end
+					
+    					end
+ 					%>
+                </div>
+            </div>
+		</div>
 	</div>
-</div>
 </div>

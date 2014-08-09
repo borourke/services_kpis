@@ -10,6 +10,7 @@ gem 'simple_form'
 gem 'bootstrap-datepicker-rails'
 gem 'jquery-rails'
 gem 'datetimepicker-rails', '>= 3.0.0', :git => 'git://github.com/zpaulovics/datetimepicker-rails.git', :branch => 'master', :submodules => true
+gem "wice_grid", '3.4.2'
 
 group :development, :test do
   gem 'sqlite3', '1.3.8'
