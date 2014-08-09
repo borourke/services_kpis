@@ -3,10 +3,16 @@
     <%= link_to "ServeTrac", "/home", class: "top-bar-name"%>
     <div class="pull-right">
       <ul class="nav">
-        <li><%= link_to "Sign Up", "/sign_up"%></li>
-        <li><%= link_to "Home", "/home"%></li>
-        <li><%= link_to "Help", "#"%></li>
-        <li><%= link_to "Sign In", "/sign_in"%></li>
+        <% if signed_in? %>
+          <li><%= link_to "Home", "/home"%></li>
+          <li><%= link_to "Help", "#"%></li>
+          <li><%= link_to "Sign Out", "/sign_out"%></li>
+        <% else %>
+          <li><%= link_to "Sign Up", "/sign_up"%></li>
+          <li><%= link_to "Home", "/home"%></li>
+          <li><%= link_to "Help", "#"%></li>
+          <li><%= link_to "Sign In", "/sign_in"%></li>
+        <% end %>
       </ul>
 	</div>
   </div>

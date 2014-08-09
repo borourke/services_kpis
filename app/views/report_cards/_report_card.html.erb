@@ -1,0 +1,7 @@
+<fieldset>
+<legend class="center">New Report Card Scoring</legend>
+<%= simple_form_for(@report_card, html: {class: 'form-horizontal span6 offset2 center' }) do |f| %>
+  <%= f.input :services_member, collection: Project.all.collect { |x| [x.project_name, x.id] }, include_blank: false %>
+  <%= f.button :submit, class: "btn-info pull-right" %>
+<% end %>
+</fieldset>

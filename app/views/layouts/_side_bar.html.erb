@@ -8,6 +8,7 @@
 
 	        <ul class="dropdown-menu pull-left" data-vertical-offset="10" role="menu" aria-labelledby="dropdownMenu2">
 	        <% if signed_in? %>
+			  <li role="presentation" class="dropdown-header"><%= link_to "New Project", new_project_path%></li>
 			  <li role="presentation" class="dropdown-header"><%= link_to "New Report Card", new_report_card_path%></li>
 			  <li role="presentation" class="dropdown-header"><%= link_to "Profile", current_user %></li>
 			  <li role="presentation" class="dropdown-header"><%= link_to "Settings", edit_user_path(current_user) %></li>

@@ -1,13 +1,16 @@
 ServicesKpis::Application.routes.draw do
   resources :users
   resources :sessions, only: [:sign_in, :create, :destroy]
+  resources :projects, only: [:create, :destroy]
+  resources :report_cards, only: [:create, :destroy]
   root  'services#home'
-  match '/new_report_card',    to: 'services#new_report_card',    via: 'get'
+  match '/new_project',    to: 'projects#new_project',    via: 'get'
   match '/sign_in',    to: 'sessions#new',    via: 'get'
   match '/sign_out', to: 'sessions#destroy', via: 'delete'
   match '/sign_up',    to: 'users#sign_up',    via: 'get'
   match '/home',    to: 'services#home',    via: 'get'
   match '/users', to: 'users#users', via: 'get'
+  match '/new_report_card',    to: 'report_cards#new_report_card',    via: 'get'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

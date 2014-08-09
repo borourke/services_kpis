@@ -11,6 +11,9 @@
  *= require bootstrap.min
  *= require_self
  *= require_tree .
+ *= require bootstrap-datetimepicker
+ or
+ *= require bootstrap-datetimepicker.min
  */
 
 @font-face {

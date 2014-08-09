@@ -1,0 +1,16 @@
+<fieldset>
+<legend class="center">Project Information</legend>
+<%= simple_form_for(@project, html: {class: 'form-horizontal span6 offset2 center' }) do |f| %>
+  <%= f.input :project_name %>
+  <%= f.input :project_type, collection: ["New Project", "Repeat Project"], default: "New Project" %>
+  <%= f.input :team, collection: ["Business Data", "Content Generation", "SEO"], default: "Business Data" %>
+  <%= f.input :delivery_date, as: :date %>
+  <%= f.input :hours %>
+  <%= f.input :spoilage %>
+  <%= f.input :project_number %>
+  <%= f.input :sla_accuracy, label: "SLA Accuracy" %>
+  <%= f.input :accuracy %>
+  <%= f.input :user_id, :as => :hidden, :input_html => { :value => 1 } %>
+  <%= f.button :submit, class: "btn-info pull-right" %>
+<% end %>
+</fieldset>

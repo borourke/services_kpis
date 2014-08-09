@@ -3,11 +3,14 @@
 </div>
 
 <div class="well span10 offset1 bottom">
-	 <p class="text-center">Below is your account information.</p>
-	<div class="offset3 span10" style="margin-top:2em; margin-bottom:2em;">
-		<h4>Name: <%= @user.name %></h4>
-		<h3>Email:</h3><%= @user.email %>
-		<h3>Team:</h3><%= @user.team %>
+	<div class="offset2 span10" style="margin-top:2em; margin-bottom:2em;">
+		<div class="well well_background span10 center"><h4><u><strong>Name:</strong></u></h4>
+		<%= @user.name %>
+		<h4><u><strong>Email:</strong></u></h4><%= @user.email %>
+		<h4><u><strong>Team:</strong></u></h4><%= @user.team %>
+	<br>
+	<br>
 		<%= link_to "Edit Account Information", edit_user_path(current_user), :class => "btn btn-primary btn-medium"%>
 	</div>
+</div>
 </div>
