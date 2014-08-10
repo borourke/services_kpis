@@ -3,7 +3,7 @@
 <%= simple_form_for(@project, html: {class: 'form-horizontal span6 offset2 center' }) do |f| %>
   <%= f.input :project_name %>
   <%= f.input :team, collection: ["Business Data", "Content Generation", "SEO"], default: "Business Data" %>
-  <%= f.input :delivery_date, as: :date %>
+  <%= f.input :delivery_date, as: :string, :input_html => { :class => 'date_picker' } %>
   <%= f.input :hours %>
   <%= f.input :spoilage %>
   <%= f.input :project_number %>

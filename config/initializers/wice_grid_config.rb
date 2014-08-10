@@ -91,7 +91,7 @@ if defined?(Wice::Defaults)
   # The default style of the date and datetime helper
   # * <tt>:calendar</tt> - JS calendar
   # * <tt>:standard</tt> - standard Rails date and datetime helpers
-  Wice::Defaults::HELPER_STYLE = :calendar
+  Wice::Defaults::HELPER_STYLE = :standard
 
   # Format of the datetime displayed.
   # If you change the format, make sure to check if +DATETIME_PARSER+ can still parse this string.

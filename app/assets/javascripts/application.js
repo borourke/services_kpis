@@ -18,4 +18,5 @@
 //= require bootstrap-datepicker
 //= require wice_grid
 
+$("input.date_picker").datepicker();
 

@@ -1,0 +1,11 @@
+<div class="well center span10 offset1 top">
+  <h1><%= gravatar_for @user %> Report Card Charts | <%= @user.name %></h1>
+</div>
+
+<div class="span10 offset1 well charts">
+<%= bar_chart @final_hash, library: {title: "Report Card Breakdown by Category", titleTextStyle: {fontSize: 30}, vAxis: {title: "Category", textStyle: {fontSize: 20}}, height: 700, hAxis: {title: "Count of Occurrences"}}, colors: ["#345768"]%>
+</div>
+
+<div class="span10 offset1 well charts bottom">
+	<%= column_chart @final_array, library: {title: "Report Card Breakdown by Project", titleTextStyle: {fontSize: 30}, vAxis: {title: "Points Total", textStyle: {fontSize: 20}}, hAxis: {title: "Project Name"}, height: 700}, colors: ["#345768"]%>
+</div>

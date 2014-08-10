@@ -1,4 +1,7 @@
 <div class="span10 bottom well well_background">
+    <%= button_to "Visualize Using Charts", report_card_charts_path, :method => "get", :class => "btn-info btn pull-right" %>
+    <br>
+    <br>
 					<%= 
     					grid(@tasks_grid, show_filters: :always) do |g|
 				 
