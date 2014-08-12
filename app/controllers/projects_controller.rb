@@ -5,7 +5,7 @@ class ProjectsController < ApplicationController
     	if signed_in?
 		   @project = Project.new
     	else
-    	  render root_path
+    	  render '/new_report_card'
     	end
 	end
 

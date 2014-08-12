@@ -23,6 +23,9 @@
 			<div class="tab-pane" id="projects">
                 <div class="row-fluid">
                 <div class="span10 bottom well well_background">
+                    <%= button_to "Visualize Using Charts", project_charts_path, :method => "get", :class => "btn-info btn pull-right" %>
+    <br>
+    <br>
 			<%= grid(@tasks_grid2, show_filters: :always) do |g|
 				 
     					   g.column name: 'Project Name', attribute: 'project_name' do |p|
