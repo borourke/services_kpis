@@ -15,7 +15,4 @@
 //= require bootstrap.min
 //= require turbolinks
 //= require_tree .
-//= require bootstrap-datepicker
-//= require wice_grid
-//= require new_project
 
