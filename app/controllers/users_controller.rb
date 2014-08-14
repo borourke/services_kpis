@@ -12,28 +12,8 @@ class UsersController < ApplicationController
   end
 
   def project_charts
-    @user = User.find(current_user.id)
-    @report_cards = ReportCard.where user_id: current_user.id
-    projects_array = @report_cards.collect { |x| x.project_id }
-    projects_array.reject! { |x| x[0].nil? }
-
-    #Calculate spoilage for each project
-    @final_spoilage_array = []
-    projects_array.each do |p|
-      project = Project.find(p)
-      @final_spoilage_array << [project.project_name, project.spoilage]
-    end
-
-    #Store sla accuracy and actual accuracy for multiple column charts
-    @final_sla_accuracy = []
-    @final_accuracy = []
-    @final_difference = []
-    projects_array.each do |p|
-      project = Project.find(p)
-      @final_sla_accuracy << [project.project_name, project.sla_accuracy]
-      @final_accuracy << [project.project_name, project.accuracy]
-      @final_difference << [project.project_name, project.accuracy - project.sla_accuracy]
-    end
+    @user = User.find(params[:id])
+    @project_chart_arrays = @user.project_chart_arrays
   end
 
   def report_card_charts
@@ -105,6 +85,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
+      sign_in @user      
       flash.now[:success] = "Welcome to the Sample App!"
       redirect_to @user
     else

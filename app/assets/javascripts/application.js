@@ -17,6 +17,5 @@
 //= require_tree .
 //= require bootstrap-datepicker
 //= require wice_grid
-
-$("input.date_picker").datepicker();
+//= require new_project
 

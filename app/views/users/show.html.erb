@@ -23,7 +23,7 @@
 			<div class="tab-pane" id="projects">
                 <div class="row-fluid">
                 <div class="span10 bottom well well_background">
-                    <%= button_to "Visualize Using Charts", project_charts_path, :method => "get", :class => "btn-info btn pull-right" %>
+                    <%= button_to "Visualize Using Charts", project_charts_path(@user), :method => "get", :class => "btn-info btn pull-right" %>
     <br>
     <br>
 			<%= grid(@tasks_grid2, show_filters: :always) do |g|
