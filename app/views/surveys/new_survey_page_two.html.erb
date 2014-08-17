@@ -1,0 +1,15 @@
+<div class="well center span10 offset1 top">
+  <h1>Servtrac | <%= @user.name %></h1>
+</div>
+
+<div class="well span10 offset1 bottom" bottom>
+  <h1 class="center">Create A New Survey Continued...</h1>
+  <div class="row-fluid">
+    <div class="span6 offset3">
+      <hr>
+      <h4>4. Go to your new survey job</h4>
+      <p>User ID: <%= debug params %>
+      <p>Job ID: <%= link_to "#{@job_id}", "https://crowdflower.com/jobs/#{@job_id}", :target => "_blank" %></p>
+    </div>
+  </div>
+</div>

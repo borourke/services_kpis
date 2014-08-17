@@ -14,5 +14,13 @@
 //= require jquery_ujs
 //= require bootstrap.min
 //= require turbolinks
+//= require_self
+//= require bootstrap-datepicker
 //= require_tree .
-
+//= require wice_grid.js
+//= require codemirror
+//= require codemirror/modes/xml
+//= require codemirror/modes/htmlmixed
+//= require codemirror/modes/javascript
+//= require codemirror/modes/ruby
+//= require codemirror/modes/haml

@@ -22,7 +22,7 @@
 
 			<div class="tab-pane" id="projects">
                 <div class="row-fluid">
-                <div class="span10 bottom well well_background">
+                <div class="span10 offset1 bottom well well_background">
                     <%= button_to "Visualize Using Charts", project_charts_path(@user), :method => "get", :class => "btn-info btn pull-right" %>
     <br>
     <br>
@@ -32,7 +32,7 @@
     					     p.project_name
     					   end
 
-    					   g.column name: 'Delivery Date', attribute: 'delivery_date' do |p|
+    					   g.column name: 'Delivery Date', attribute: 'delivery_date', helper_style: :standard do |p|
     	     				 p.delivery_date
     	   				   end
 
@@ -55,10 +55,6 @@
 
     	   g.column name: 'Actual Accuracy', attribute: 'accuracy' do |p|
     	     p.accuracy
-    	   end
-
-    	   g.column name: 'PN', attribute: 'project_number' do |p|
-    	     p.project_number
     	   end
 					
     					end

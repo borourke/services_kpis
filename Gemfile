@@ -13,6 +13,8 @@ gem 'datetimepicker-rails', '>= 3.0.0', :git => 'git://github.com/zpaulovics/dat
 gem "wice_grid", '3.4.2'
 gem 'chartkick', '~> 1.3.2'
 gem 'pg', '0.15.1'
+gem 'codemirror-rails'
+gem 'crowdflower'
 
 group :development, :test do
   gem 'sqlite3', '1.3.8'

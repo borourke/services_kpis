@@ -1,0 +1,33 @@
+<div class="well center span10 offset1 top">
+  <h1>Servtrac | <%= @user.name %></h1>
+</div>
+
+<div class="well span10 offset1 bottom" bottom>
+  <h1 class="center">Create A New Survey Continued...</h1>
+  <div class="row-fluid">
+  <div class="span6 offset3">
+    <hr>
+    <%= simple_form_for(@survey) do |f| %>
+      <h4>1. Fill out project information</h4>
+      <%= f.input :title, label: "Job Title", placeholder: 'Holiday Shopping Survey' %>
+      <%= f.input :job_owner, label: "Job Owner", placeholder: 'borourke@crowdflower.com' %>
+      <%= f.input :project_number, label: "Project Number", placeholder: 'PN447' %>
+      <%= f.input :respondants, label: "Respondants", placeholder: '3000' %>
+      <%= f.input :payment_cents, label: "Payment In Cents", placeholder: '15' %>
+      <%= f.hidden_field :user_id, :value => params[:id] %>
+      <hr>
+
+      <h4>2. Fill out CML for prescreen survey</h4>
+
+      <%= f.input :prescreen, as: :text, label: "Prescreen CML", :input_html => { class: "text_area" }%>
+
+      <h4>3. Fill out CML for actual survey</h4>
+
+      <%= f.input :survey, as: :text, label: "Survey CML", :input_html => { class: "text_area" }%>
+
+      <%= f.button :submit, "Create New Survey", class: "btn-primary pull-right" %>
+    <% end %>
+
+  </div>
+</div>
+</div>

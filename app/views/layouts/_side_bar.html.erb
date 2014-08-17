@@ -12,8 +12,11 @@
 			  <li role="presentation" class="dropdown-header"><%= link_to "Visualize Report Cards", report_card_charts_path %></li>
 			  <li role="presentation" class="dropdown-header"><%= link_to "Visualize Projects", project_charts_path(current_user.id) %></li>
 			  <li role="presentation" class="dropdown-header"><%= link_to "Settings", edit_user_path(current_user) %></li>
+        <li role="presentation" class="dropdown-header divider"></li>
+        <li role="presentation" class="dropdown-header"><%= link_to "New Survey", new_survey_path(:id => current_user) %></li>
 
               <% if admin? %>
+              <li role="presentation" class="dropdown-header divider"></li>
               	<li role="presentation" class="dropdown-header"><%= link_to "New Project", '/new_project'%></li>
 			 	<li role="presentation" class="dropdown-header"><%= link_to "New Report Card", '/new_report_card' %></li>
 			  	<li role="presentation" class="dropdown-header"><%= link_to "All Report Cards", all_report_cards_path %></li>
