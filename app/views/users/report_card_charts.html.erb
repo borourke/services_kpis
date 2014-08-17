@@ -3,9 +3,9 @@
 </div>
 <p><%= @final_hash %> </p>
 <div class="span10 offset1 well charts2">
-	<%= column_chart @final_array, library: {title: "Report Card Breakdown by Project", titleTextStyle: {fontSize: 20}, vAxis: {title: "Points Total", textStyle: {fontSize: 20}}, hAxis: {title: "Project Name"}, height: 300}, colors: ["#345768"]%>
+	<%= column_chart @report_cards_array[:count], library: {title: "Report Card Breakdown by Project", titleTextStyle: {fontSize: 20}, vAxis: {title: "Points Total", textStyle: {fontSize: 20}}, hAxis: {title: "Project Name"}, height: 300}, colors: ["#345768"]%>
 </div>
 
 <div class="span10 offset1 well charts bottom">
-<%= bar_chart @final_hash, library: {tooltip: {textStyle: {color: "#345768"}},title: "Report Card Breakdown by Category", titleTextStyle: {fontSize: 20}, vAxis: {title: "Category", textStyle: {fontSize: 20}}, height: 700, hAxis: {title: "Count of Occurrences"}}, colors: ["#345768"]%>
+<%= bar_chart @report_cards_array[:breakdown], library: {tooltip: {textStyle: {color: "#345768"}},title: "Report Card Breakdown by Category", titleTextStyle: {fontSize: 20}, vAxis: {title: "Category", textStyle: {fontSize: 20}}, height: 700, hAxis: {title: "Count of Occurrences"}}, colors: ["#345768"]%>
 </div>
