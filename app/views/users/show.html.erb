@@ -28,32 +28,32 @@
     <br>
 			<%= grid(@tasks_grid2, show_filters: :always) do |g|
 				 
-    					   g.column name: 'Project Name', attribute: 'project_name' do |p|
+    					   g.column name: 'Project Name', attribute: 'project_name', auto_reload: true do |p|
     					     p.project_name
     					   end
 
-    					   g.column name: 'Delivery Date', attribute: 'delivery_date', helper_style: :standard do |p|
+    					   g.column name: 'Delivery Date', attribute: 'delivery_date', helper_style: :date do |p|
     	     				 p.delivery_date
     	   				   end
 
 
-    	   				   g.column name: 'Total Hours', attribute: 'hours' do |p|
+    	   				   g.column name: 'Total Hours', attribute: 'hours', auto_reload: true do |p|
     	     p.hours
     	   end
 
-    	   g.column name: 'Spoilage', attribute: 'spoilage' do |p|
+    	   g.column name: 'Spoilage', attribute: 'spoilage', auto_reload: true do |p|
     	     p.spoilage
     	   end
 
-    	   g.column name: 'PN', attribute: 'project_number' do |p|
+    	   g.column name: 'PN', attribute: 'project_number', auto_reload: true do |p|
     	     p.project_number
     	   end
 
-    	   g.column name: 'SLA Accuracy', attribute: 'sla_accuracy' do |p|
+    	   g.column name: 'SLA Accuracy', attribute: 'sla_accuracy', auto_reload: true do |p|
     	     p.sla_accuracy
     	   end
 
-    	   g.column name: 'Actual Accuracy', attribute: 'accuracy' do |p|
+    	   g.column name: 'Actual Accuracy', attribute: 'accuracy', auto_reload: true do |p|
     	     p.accuracy
     	   end
 					
