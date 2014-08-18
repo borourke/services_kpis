@@ -4,6 +4,7 @@ ServicesKpis::Application.routes.draw do
   resources :projects
   resources :report_cards
   resources :surveys
+  resources :teams
   root  'services#home'
   match '/new_project',    to: 'projects#new_project',    via: 'get'
   match '/sign_in',    to: 'sessions#new',    via: 'get'
@@ -16,6 +17,7 @@ ServicesKpis::Application.routes.draw do
   match '/all_report_cards', to: 'report_cards#show', via: 'get'
   match '/report_card_charts', to: 'users#report_card_charts', via: 'get'
   match '/project_charts/:id', to: 'users#project_charts', via: 'get', as: 'project_charts'
+  match '/team_charts', to: 'teams#team_charts', via: 'get'
   match '/new_survey_page_two', to: 'surveys#new_survey_page_two', via: 'get', as: :new_survey_page_two
   get "surveys/new"
   get "surveys/create"
