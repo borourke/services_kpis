@@ -15,8 +15,8 @@ ServicesKpis::Application.routes.draw do
   match '/new_report_card',    to: 'report_cards#new_report_card',    via: 'get'
   match '/report_cards', to: 'report_cards#show', via: 'get'
   match '/all_report_cards', to: 'report_cards#show', via: 'get'
-  match '/report_card_charts', to: 'users#report_card_charts', via: 'get'
-  match '/project_charts/:id', to: 'users#project_charts', via: 'get', as: 'project_charts'
+  match '/my_report_cards', to: 'users#my_report_cards', via: 'get'
+  match '/my_projects/:id', to: 'users#my_projects', via: 'get', as: 'my_projects'
   match '/team_charts', to: 'teams#team_charts', via: 'get'
   match '/new_survey_page_two', to: 'surveys#new_survey_page_two', via: 'get', as: :new_survey_page_two
   get "surveys/new"

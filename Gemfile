@@ -14,6 +14,7 @@ gem 'chartkick', '~> 1.3.2'
 gem 'pg', '0.15.1'
 gem 'codemirror-rails'
 gem 'crowdflower'
+gem 'jquery-ui-rails'
 
 group :development, :test do
   gem 'sqlite3', '1.3.8'

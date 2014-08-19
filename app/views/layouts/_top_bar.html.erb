@@ -4,13 +4,34 @@
     <div class="pull-right">
       <ul class="nav">
         <% if signed_in? %>
-          <li><%= link_to "Home", "/home"%></li>
-          <li><%= link_to "Help", "#"%></li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              Admin
+              <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+              <li role="presentation" class="dropdown-header"><%= link_to "New Project", '/new_project'%></li>
+              <li role="presentation" class="dropdown-header"><%= link_to "New Report Card", '/new_report_card' %></li>
+              <li role="presentation" class="dropdown-header"><%= link_to "Team Charts", team_charts_path(:id => current_user) %></li>
+              <li role="presentation" class="dropdown-header"><%= link_to "All Report Cards", all_report_cards_path %></li>
+              <li role="presentation" class="dropdown-header"><%= link_to "All Users", users_path %></li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              My KPIs
+              <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+              <li role="presentation" class="dropdown-header"><%= link_to "My Profile", current_user %></li>
+              <li role="presentation" class="dropdown-header"><%= link_to "My Report Cards", my_report_cards_path %></li>
+              <li role="presentation" class="dropdown-header"><%= link_to "My Projects", my_projects_path(current_user.id) %></li>
+              <li role="presentation" class="dropdown-header"><%= link_to "Profile Settings", edit_user_path(current_user) %></li>
+            </ul>
+          </li>
           <li><%= link_to "Sign Out", sign_out_path, method: :delete %></li>
         <% else %>
           <li><%= link_to "Sign Up", sign_up_path %></li>
-          <li><%= link_to "Home", "/home"%></li>
-          <li><%= link_to "Help", "#"%></li>
           <li><%= link_to "Sign In", sign_in_path %></li>
         <% end %>
       </ul>

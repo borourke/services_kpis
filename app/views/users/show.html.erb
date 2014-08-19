@@ -2,66 +2,13 @@
   <h1><%= gravatar_for @user %> ServeTrac | <%= @user.name %></h1>
 </div>
 
+<div class="row-fluid">
 <div class="well span10 offset1 bottom">
 	<div style="margin-top:2em; margin-bottom:2em;">
 
-		<ul class="nav nav-tabs" id="myTab">
-			<li class="active"><a href="#info" data-toggle="tab">Profile Info</a></li>
-  			<li><a href="#report_cards" data-toggle="tab">Report Cards</a></li>
-  			<li><a href="#projects" data-toggle="tab">Projects</a></li>
-		</ul>
-
-		<div class="tab-content">
-			<div class="tab-pane active" id="info">
 				<%= render 'profile_tab' %>
-			</div>
 
-			<div class="tab-pane" id="report_cards">
-				<%= render 'report_card_tab' %>
-			</div>
-
-			<div class="tab-pane" id="projects">
-                <div class="row-fluid">
-                <div class="span10 offset1 bottom well well_background">
-                    <%= button_to "Visualize Using Charts", project_charts_path(@user), :method => "get", :class => "btn-info btn pull-right" %>
-    <br>
-    <br>
-			<%= grid(@tasks_grid2, show_filters: :always) do |g|
-				 
-    					   g.column name: 'Project Name', attribute: 'project_name', auto_reload: true do |p|
-    					     p.project_name
-    					   end
-
-    					   g.column name: 'Delivery Date', attribute: 'delivery_date', helper_style: :date do |p|
-    	     				 p.delivery_date
-    	   				   end
-
-
-    	   				   g.column name: 'Total Hours', attribute: 'hours', auto_reload: true do |p|
-    	     p.hours
-    	   end
-
-    	   g.column name: 'Spoilage', attribute: 'spoilage', auto_reload: true do |p|
-    	     p.spoilage
-    	   end
-
-    	   g.column name: 'PN', attribute: 'project_number', auto_reload: true do |p|
-    	     p.project_number
-    	   end
-
-    	   g.column name: 'SLA Accuracy', attribute: 'sla_accuracy', auto_reload: true do |p|
-    	     p.sla_accuracy
-    	   end
-
-    	   g.column name: 'Actual Accuracy', attribute: 'accuracy', auto_reload: true do |p|
-    	     p.accuracy
-    	   end
-					
-    					end
- 					%>
-                </div>
-            </div>
-		</div>
-
+			
 	</div>
+</div>
 </div>

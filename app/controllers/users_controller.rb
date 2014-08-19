@@ -4,21 +4,23 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @tasks_grid = initialize_grid(ReportCard, conditions: {:user_id => params[:id]})
+    @tasks_grid = initialize_grid(ReportCard, conditions: {:user_id => params[:id]}, :include => [:project])
     @report_cards = ReportCard.where user_id: params[:id]
     @project_ids = @report_cards.collect { |x| x.project_id }
     @projects = Project.find(@project_ids)
+    
+  end
+
+  def my_projects
+    @user = User.find(params[:id])
+    @project_chart_arrays = @user.project_chart_arrays
     @tasks_grid2 = initialize_grid(Project)
   end
 
-  def project_charts
-    @user = User.find(params[:id])
-    @project_chart_arrays = @user.project_chart_arrays
-  end
-
-  def report_card_charts
+  def my_report_cards
     @user = User.find(current_user.id)
     @report_cards_array = @user.report_card_chart_arrays
+    @tasks_grid = initialize_grid(ReportCard)
   end
 
   def index

@@ -9,9 +9,9 @@ class ReportCardsController < ApplicationController
     	end
 	end
 
-	def show
+    def show
         @tasks_grid = initialize_grid(ReportCard)
-	end
+    end
 
 	def create
 		@report_card = ReportCard.new(report_card_params)

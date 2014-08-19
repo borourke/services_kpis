@@ -22,7 +22,8 @@ html {
 }
 
 .top {
-  margin-top:-4em;
+  margin-top: 5em;
+  margin-left: 1200em;
 }
 
 .well_background {
@@ -73,12 +74,6 @@ textarea {
   margin-top:  4em;
 }
 
-.dropdown-menu {
-  margin-top:6.5em;
-  margin-left:2em;
-  position: absolute;
-}
-
 .submenu .menu li div, .submenu .menu li ul{
 display:block;
 position: absolute;
@@ -87,11 +82,13 @@ position: absolute;
 .dropdown-menu li:hover .sub-menu {
     visibility: visible;
     position: absolute;
+    margin-top: -1px !important;
 }
 
 .dropdown:hover .dropdown-menu {
     display: block;
     position: absolute;
+    margin-top: -1px !important
 }
 
 .full {

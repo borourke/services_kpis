@@ -2,7 +2,8 @@
   <h1>All Report Cards</h1> 
 </div>
 
-<div class="span10 offset1 bottom">
+<div class="row-fluid">
+<div class="span10 offset1 bottom well">
 <%= 
     grid(@tasks_grid, show_filters: :always) do |g|
        g.column name: 'Project ID', attribute: 'id' do |p|
@@ -22,9 +23,10 @@
        end
 
        g.column name: 'Report Card', attribute: 'report_card' do |p|
-       	 p.report_card
+         p.report_card
        end
 
     end
  %>
+</div>
 </div>
