@@ -22,9 +22,7 @@ class ReportCardsController < ApplicationController
     private
 
 		def report_card_params
-            report = params[:report_card][:report_card].reject { |x| x.empty? }
-            params[:report_card][:report_card] = report.join(", ")
-      		params.require(:report_card).permit(:project_id, :type, :user_id, :report_card)
+      		params.require(:report_card).permit(:project_id, :type, :user_id, :cml_clean, :cml_commented, :instructions, :tags, :code_clean, :code_utilized, :code_advanced, :delivery_timely, :delivery_docs, :communication, :accuracy, :spoilage, :complex_solution, :best_in_class, :job_score, :delivery_score, :technical_score, :overall_score)
     	end
 
 end

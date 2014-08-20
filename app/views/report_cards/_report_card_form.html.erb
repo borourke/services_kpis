@@ -1,10 +1,30 @@
 <fieldset>
-<legend class="center">New Report Card Scoring</legend>
 <%= simple_form_for(@report_card, html: {class: 'form-horizontal span6 offset2' }) do |f| %>
-  <%= f.input :project_id, as: :string, collection: Project.all.collect { |x| [x.project_name, x.id] }, include_blank: false, label: "Project Name" %>
+<legend class="center offset1">Report Card Info</legend>
+  <%= f.input :project_id, collection: Project.all.collect { |x| [x.project_name, x.id] }, include_blank: false, label: "Project Name" %>
   <%= f.input :type, collection: ["New Project", "Repeat Project"], default: "New Project", label: "Project Type" %>
   <%= f.input :user_id, collection: User.all, include_blank: false, label: "Services Member" %>
-  	<%= f.input :report_card, as: :check_boxes, collection: [["CML - clear and coherent structure", "CML1"], ["CML - commented clearly", "CML2"], ["Tags - at least 5 in job", "Tags1"], ["Code - clean and re-usable", "Code1"], ["Code - scripted solution utilized if more efficient", "Code2"], ["Code - advanced scripting utilized", "Code3"], ["Instructions - clear and concise", "Instructions1"], ["Delivery - on or before agreed upon deadline", "Delivery1"], ["Delivery - all client docs completed", "Delivery2"], ["Communication - clear, professional AS and Sales communication", "Com1"], ["Accuracy - at or above client expectations", "Accuracy1"], ["Spoilage - low spoilage, high yield", "Spoilage1"], ["Project - complex, innovative problem solving", "Project1"], ["Bronze - best in class", "Bronze1"], ["Silver - best in class", "Silver1"], ["Gold - Best in class", "Gold1"]]%>
+  <legend class="center offset1">Job Scoring</legend>
+  <%= f.input :cml_clean, label: "CML - Clean", as: :radio_buttons, collection:[["Yes", "yes"], ["No", "no"], ["Not Applicable", "na"]], item_wrapper_class: 'inline' %>
+  <%= f.input :cml_commented, label: "CML - Commented", as: :radio_buttons, collection:[["Yes", "yes"], ["No", "no"], ["Not Applicable", "na"]], item_wrapper_class: 'inline' %>
+  <%= f.input :instructions, label: "Instructions - Excellent", as: :radio_buttons, collection:[["Yes", "yes"], ["No", "no"], ["Not Applicable", "na"]], item_wrapper_class: 'inline' %>
+  <%= f.input :tags, label: "Tags - Five", as: :radio_buttons, collection:[["Yes", "yes"], ["No", "no"], ["Not Applicable", "na"]], item_wrapper_class: 'inline' %>
+  <legend class="center offset1">Technical Scoring</legend>
+  <%= f.input :code_clean, label: "Code - Clean", as: :radio_buttons, collection:[["Yes", "yes"], ["No", "no"], ["Not Applicable", "na"]], item_wrapper_class: 'inline' %>
+  <%= f.input :code_utilized, label: "Code - Utilized", as: :radio_buttons, collection:[["Yes", "yes"], ["No", "no"], ["Not Applicable", "na"]], item_wrapper_class: 'inline' %>
+  <%= f.input :code_advanced, label: "Code - Advanced", as: :radio_buttons, collection:[["Yes", "yes"], ["No", "no"], ["Not Applicable", "na"]], item_wrapper_class: 'inline' %>
+  <%= f.input :complex_solution, label: "Project - Complex Problem Solving", as: :radio_buttons, collection:[["Yes", "yes"], ["No", "no"], ["Not Applicable", "na"]], item_wrapper_class: 'inline' %>
+  <legend class="center offset1">Delivery Scoring</legend>
+  <%= f.input :delivery_timely, label: "Delivery - Timely", as: :radio_buttons, collection:[["Yes", "yes"], ["No", "no"], ["Not Applicable", "na"]], item_wrapper_class: 'inline' %>
+  <%= f.input :delivery_docs, label: "Delivery - Documents", as: :radio_buttons, collection:[["Yes", "yes"], ["No", "no"], ["Not Applicable", "na"]], item_wrapper_class: 'inline' %>
+  <%= f.input :communication, label: "Communication - Excellent", as: :radio_buttons, collection:[["Yes", "yes"], ["No", "no"], ["Not Applicable", "na"]], item_wrapper_class: 'inline' %>
+  <%= f.input :accuracy, label: "Accuracy - High", as: :radio_buttons, collection:[["Yes", "yes"], ["No", "no"], ["Not Applicable", "na"]], item_wrapper_class: 'inline' %>
+  <%= f.input :spoilage, label: "Spoilage - Low", as: :radio_buttons, collection:[["Yes", "yes"], ["No", "no"], ["Not Applicable", "na"]], item_wrapper_class: 'inline' %>
+   <legend class="center offset1">Overall Scoring</legend>
+  <%= f.input :best_in_class, label: "Best In Class", as: :radio_buttons, collection:[["Gold", "gold"], ["Silver", "silver"], ["Bronze", "bronze"], ["No", "no"], ["Not Applicable", "na"]], item_wrapper_class: 'inline' %>
   <%= f.button :submit, class: "btn-primary pull-right" %>
 <% end %>
+
+<p><a class="tip" data-toggle="tooltip" title="My tooltip">Hi</a></p>
+
 </fieldset>

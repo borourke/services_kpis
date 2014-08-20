@@ -46,7 +46,7 @@ private
     count_array = []
     report_cards.each_with_object(count_array) do |report_card, memo|
       project_name = Project.find(report_card.project_id).project_name
-      count = report_card.report_card.split(", ").length
+      count = 10
       memo << [project_name, count]
     end
   end
@@ -54,9 +54,6 @@ private
   def create_breakdown_report_card_hash(report_cards)
     breakdown_hash = Hash.new(0)
     report_cards.each_with_object(breakdown_hash) do |report_card, memo|
-      report_card.report_card.split(", ").each do |category|
-        breakdown_hash[category] += 1
-      end
     end
     breakdown_hash.sort_by {|category, count| count}
   end

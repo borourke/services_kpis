@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140817042913) do
+ActiveRecord::Schema.define(version: 20140820064159) do
 
   create_table "clients", force: true do |t|
     t.string   "name"
@@ -36,13 +36,14 @@ ActiveRecord::Schema.define(version: 20140817042913) do
   end
 
   create_table "report_cards", force: true do |t|
+    t.string   "job_score"
+    t.string   "technical_score"
+    t.string   "delivery_score"
+    t.string   "best_in_class"
+    t.integer  "project_id"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "report_card"
-    t.integer  "project_id"
-    t.integer  "client_id"
-    t.string   "type"
-    t.integer  "user_id"
   end
 
   create_table "surveys", force: true do |t|
