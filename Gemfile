@@ -11,10 +11,11 @@ gem 'bootstrap-datepicker-rails'
 gem 'jquery-rails'
 gem "wice_grid", '3.4.2'
 gem 'chartkick', '~> 1.3.2'
-gem 'pg', '0.15.1'
+gem 'pg'
 gem 'codemirror-rails'
 gem 'crowdflower'
 gem 'jquery-ui-rails'
+gem 'rails4-autocomplete'
 
 group :development, :test do
   gem 'sqlite3', '1.3.8'
@@ -38,4 +39,5 @@ end
 
 group :production do
   gem 'rails_12factor', '0.0.2'
+  gem 'pg'
 end
