@@ -1,3 +1,5 @@
-$(document).ready(function() {
-  $(".date_picker").datepicker();
+$(document).on("ready page:change", function() {
+  $(".date_picker").datepicker({"format": "yyyy-mm-dd"});
+  $('#projects').dataTable();
+  $(".tip").tooltip();
 });

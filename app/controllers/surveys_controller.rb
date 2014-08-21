@@ -11,7 +11,7 @@ class SurveysController < ApplicationController
     @survey = Survey.new(survey_params)
     if @survey.save
       flash.now[:success] = "Survey Successfully Created!"
-      redirect_to :controller => 'surveys', :action => 'new_survey_page_two', :id => params[:survey][:user_id], :job_id => job_id
+      redirect_to :controller => 'surveys', :action => 'new_survey_page_two', :id => survey_params[:user_id], :job_id => job_id
     else
       render 'new'
     end
@@ -40,7 +40,7 @@ class SurveysController < ApplicationController
   private
 
     def survey_params
-      params.require(:survey).permit(:title, :respondants, :prescreen_cml, :survey_cml, :job_owner, :project_number, :payment_cents)
+      params.require(:survey).permit(:title, :respondants, :prescreen, :survey, :job_owner, :project_number, :payment_cents, :user_id)
     end
 
 end

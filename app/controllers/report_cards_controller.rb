@@ -1,5 +1,6 @@
 class ReportCardsController < ApplicationController
 	before_action :signed_in_user
+  autocomplete :user, :name
 
 	def new_report_card
 	   @report_card = ReportCard.new

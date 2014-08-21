@@ -3,6 +3,9 @@ ServicesKpis::Application.routes.draw do
   resources :sessions, only: [:sign_in, :create, :destroy]
   resources :projects
   resources :report_cards
+  resources :report_cards do
+    get :autocomplete_user_name, :on => :collection
+  end
   resources :surveys
   resources :teams
   root  'services#home'

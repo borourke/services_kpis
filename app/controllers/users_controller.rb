@@ -13,6 +13,11 @@ class UsersController < ApplicationController
 
   def my_projects
     @user = User.find(params[:id])
+    report_cards = ReportCard.where(user_id: @user.id)
+    @projects = []
+    report_cards.each do |x|
+      @projects << Project.find(x.project_id)
+    end
     @project_chart_arrays = @user.project_chart_arrays
     @tasks_grid2 = initialize_grid(Project)
   end

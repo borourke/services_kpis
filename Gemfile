@@ -16,6 +16,7 @@ gem 'codemirror-rails'
 gem 'crowdflower'
 gem 'jquery-ui-rails'
 gem 'rails4-autocomplete'
+gem 'jquery-datatables-rails', '~> 2.2.1'
 
 group :development, :test do
   gem 'sqlite3', '1.3.8'

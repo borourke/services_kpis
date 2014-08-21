@@ -18,15 +18,7 @@
 //= require turbolinks
 //= require_self
 //= require bootstrap-datepicker
-$(document).ready(function(){
-  $('#tip').tooltip('show');
-});
-//= require_tree .
 //= require wice_grid.js
-//= require codemirror
-//= require codemirror/modes/xml
-//= require codemirror/modes/htmlmixed
-//= require codemirror/modes/javascript
-//= require codemirror/modes/ruby
-//= require codemirror/modes/haml
-
+//= require dataTables/jquery.dataTables
+//= require dataTables/bootstrap/2/jquery.dataTables.bootstrap
+//= require_tree .
