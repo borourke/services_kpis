@@ -8,7 +8,6 @@ class UsersController < ApplicationController
     @report_cards = ReportCard.where user_id: params[:id]
     @project_ids = @report_cards.collect { |x| x.project_id }
     @projects = Project.find(@project_ids)
-    
   end
 
   def my_projects
@@ -24,6 +23,27 @@ class UsersController < ApplicationController
 
   def my_report_cards
     @user = User.find(current_user.id)
+    report_cards = ReportCard.where(user_id: @user.id)
+    @tables = []
+    report_cards.each do |report_card|
+      dummy_hash = {}
+      project = Project.find(report_card.project_id)
+      dummy_hash["project_name"] = project.project_name
+      job_score = [report_card.cml_clean, report_card.cml_commented, report_card.instructions, report_card.tags].compact
+      job_score.reject! {|x| ((x=="na") || (x=="no"))}
+      job_score = job_score.join(", ")
+      dummy_hash["job_score"] = job_score
+      technical_score = [report_card.code_clean, report_card.code_utilized, report_card.code_advanced, report_card.complex_solution].compact
+      technical_score.reject! {|x| ((x=="na") || (x=="no"))}
+      technical_score = technical_score.join(", ")
+      dummy_hash["technical_score"] = technical_score
+      delivery_score = [report_card.delivery_timely, report_card.delivery_docs, report_card.communication, report_card.accuracy, report_card.spoilage].compact
+      delivery_score.reject! {|x| ((x=="na") || (x=="no"))}
+      delivery_score = delivery_score.join(", ")
+      dummy_hash["delivery_score"] = delivery_score
+      dummy_hash["overall_score"] = report_card.best_in_class
+      @tables << dummy_hash
+    end
     @report_cards_array = @user.report_card_chart_arrays
     @tasks_grid = initialize_grid(ReportCard)
   end
