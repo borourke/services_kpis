@@ -9,6 +9,10 @@ class ProjectsController < ApplicationController
     	end
 	end
 
+  def show
+    @projects = Project.all
+  end
+
 	def create
 		@project = Project.new(user_params)
     	if @project.save
