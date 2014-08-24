@@ -1,0 +1,36 @@
+<div class="well center span10 offset1 top">
+  <h1>All Projects</h1> 
+</div>
+
+<div class="row-fluid">
+  <div class="span10 offset1 well bottom">
+    <table id="projects" class="display">
+      <thead>
+        <tr>
+          <th>Project name</th>
+          <th>Delivery Date</th>
+          <th>Total Hours</th>
+          <th>Spoilage</th>
+          <th>PN</th>
+          <th>SLA Accuracy</th>
+          <th>Actual Accuracy</th>
+          <th>Accuracy Score</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @projects.each do |project| %>
+        <tr>
+          <td><%= project.project_name %></td>
+          <td><%= project.delivery_date.inspect %></td>
+          <td><%= project.hours %></td>
+          <td><%= project.spoilage %></td>
+          <td><%= project.project_number %></td>
+          <td><%= project.sla_accuracy %></td>
+          <td><%= project.accuracy %></td>
+          <td><%= project.accuracy - project.sla_accuracy %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table> 
+ </div>
+</div>
