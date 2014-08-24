@@ -23,6 +23,5 @@ module ServicesKpis
     config.assets.paths << "#{Rails}/vendor/assets/fonts"
     config.assets.precompile += %w( .svg .eot .woff .ttf )
     config.assets.precompile += ["codemirror*", "codemirror/**/*"]
-    config.serve_static_assets = true
   end
 end
