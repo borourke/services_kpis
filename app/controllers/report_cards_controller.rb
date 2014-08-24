@@ -3,7 +3,17 @@ class ReportCardsController < ApplicationController
   autocomplete :user, :name
 
 	def new_report_card
-	   @report_card = ReportCard.new
+	 @report_card = ReportCard.new
+    users = User.all
+    @services_members = []
+    users.each do |user|
+      @services_members << user.name
+    end
+    projects = Project.all
+    @project_names = []
+    projects.each do |project|
+      @project_names << project.project_name
+    end
 	end
 
     def show
@@ -51,7 +61,13 @@ class ReportCardsController < ApplicationController
     private
 
 		def report_card_params
-      		params.require(:report_card).permit(:project_id, :type, :user_id, :cml_clean, :cml_commented, :instructions, :tags, :code_clean, :code_utilized, :code_advanced, :delivery_timely, :delivery_docs, :communication, :accuracy, :spoilage, :complex_solution, :best_in_class, :job_score, :delivery_score, :technical_score, :overall_score)
+      user = User.where(name: params[:report_card][:user_name])
+      project = Project.where(project_name: params[:report_card][:project_name])
+      params[:report_card][:project_id] = project.first.id
+      params[:report_card][:user_id] = user.first.id
+      @name = params[:report_card][:user_name]
+      @id = params[:report_card][:user_id]
+      		params.require(:report_card).permit(:project_id, :type, :user_id, :cml_clean, :cml_commented, :instructions, :tags, :code_clean, :code_utilized, :code_advanced, :delivery_timely, :delivery_docs, :communication, :accuracy, :spoilage, :complex_solution, :best_in_class, :job_score, :delivery_score, :technical_score, :overall_score, :user_name, :project_name)
     	end
 
 end

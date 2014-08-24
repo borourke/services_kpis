@@ -5,7 +5,7 @@ class ProjectsController < ApplicationController
     	if signed_in?
 		   @project = Project.new
     	else
-    	  render '/new_report_card'
+    	  render 'sign_up'
     	end
 	end
 
@@ -17,7 +17,7 @@ class ProjectsController < ApplicationController
 		@project = Project.new(user_params)
     	if @project.save
     	  flash.now[:success] = "New Report Card Created!"
-    	  redirect_to root_path
+    	  redirect_to new_report_card_path
     	else
     	  render 'sign_up'
     	end
