@@ -26,7 +26,7 @@ class UsersController < ApplicationController
   end
 
   def my_report_cards
-    @user = User.find(current_user.id)
+    @user = User.find(params[:id])
     report_cards = ReportCard.where(user_id: @user.id)
     @tables = []
     report_cards.each do |report_card|

@@ -1,8 +1,14 @@
 <div class="well well_background span10 offset1 center"><h4><u><strong>Name:</strong></u></h4>
-					<%= @user.name %>
-					<h4><u><strong>Email:</strong></u></h4><%= @user.email %>
-					<h4><u><strong>Team:</strong></u></h4><%= @user.team %>
-					<br>
-					<br>
-				<%= link_to "Edit Account Information", edit_user_path(@user), :class => "btn btn-primary btn-medium"%>
-				</div>
+ <%= @user.name %>
+ <h4><u><strong>Email:</strong></u></h4><%= @user.email %>
+ <h4><u><strong>Team:</strong></u></h4><%= @user.team %>
+ <br>
+ <br>
+ <% if current_user == @user %>
+  <%= link_to "Edit Account Information", edit_user_path(@user), :class => "btn btn-primary"%>
+ <% end %>
+ <% if (admin? && current_user != @user) %>
+  <%= link_to "Masquerade Report Cards", my_report_cards_path(@user.id), :class => "btn btn-primary"%>
+  <%= link_to "Masquerade Projects", my_report_cards_path(@user.id), :class => "btn btn-primary"%>
+ <% end %>
+</div>

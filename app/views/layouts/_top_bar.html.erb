@@ -25,7 +25,7 @@
             </a>
             <ul class="dropdown-menu">
               <li role="presentation" class="dropdown-header"><%= link_to "My Profile", current_user %></li>
-              <li role="presentation" class="dropdown-header"><%= link_to "My Report Cards", my_report_cards_path %></li>
+              <li role="presentation" class="dropdown-header"><%= link_to "My Report Cards", my_report_cards_path(current_user.id) %></li>
               <li role="presentation" class="dropdown-header"><%= link_to "My Projects", my_projects_path(current_user.id) %></li>
               <li role="presentation" class="dropdown-header"><%= link_to "Profile Settings", edit_user_path(current_user) %></li>
             </ul>
