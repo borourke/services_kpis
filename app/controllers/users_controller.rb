@@ -18,7 +18,7 @@ class UsersController < ApplicationController
     report_cards.each do |report_card|
       project_ids << report_card.project_id
     end
-    project_ids.unique!
+    project_ids.uniq!
     project_ids.each do |project_id|
       @projects << Project.find(project_id)
     end
