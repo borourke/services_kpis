@@ -3,30 +3,32 @@
 </div>
 
 <div class="row-fluid">
-<div class="span10 offset1 bottom well">
-<%= 
-    grid(@tasks_grid, show_filters: :always) do |g|
-       g.column name: 'Project ID', attribute: 'id' do |p|
-         p.project_id
-       end
-
-       g.column name: 'Project Name', model: 'Project', attribute: 'project_name' do |p|
-         p.project.project_name if p.project
-       end
-
-       g.column name: 'Type', attribute: 'type' do |p|
-         p.type
-       end
-
-       g.column name: 'Services Member', model: 'User', attribute: 'name' do |p|
-         p.user.name if p.user
-       end
-
-       g.column name: 'Report Card', attribute: 'report_card' do |p|
-         p.report_card
-       end
-
-    end
- %>
-</div>
+  <div class="span10 offset1 well">
+    <table id="projects" class="display">
+      <thead>
+        <tr>
+          <th>Project name</th>
+          <th>Services Member</th>
+          <th>Job Score</th>
+          <th>Technical Score</th>
+          <th>Delivery Score</th>
+          <th>Overall Score</th>
+          <th>Total Points</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @tables.each do |report_card| %>
+        <tr>
+          <td><%= report_card["project_name"] %></td>
+          <td><%= report_card["services_member"] %></td>
+          <td><%= report_card["job_score"] %></td>
+          <td><%= report_card["technical_score"] %></td>
+          <td><%= report_card["delivery_score"] %></td>
+          <td><%= report_card["overall_score"] %></td>
+          <td class="center"><%= report_card["points"] %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table> 
+ </div>
 </div>

@@ -26,7 +26,8 @@ class User < ActiveRecord::Base
       spoilage: create_spoilage_array(projects),
       sla_accuracy: create_sla_accuracy_array(projects),
       accuracy: create_accuracy_array(projects),
-      difference: create_difference_array(projects)
+      difference: create_difference_array(projects),
+      hours: create_hours_array(projects)
     }
   end
 
@@ -46,14 +47,30 @@ private
     count_array = []
     report_cards.each_with_object(count_array) do |report_card, memo|
       project_name = Project.find(report_card.project_id).project_name
-      count = 10
-      memo << [project_name, count]
+      report_card_array = [report_card.cml_clean, report_card.cml_commented, report_card.instructions, report_card.tags, report_card.code_clean, report_card.code_advanced, report_card.code_utilized, report_card.complex_solution, report_card.delivery_docs, report_card.delivery_timely, report_card.communication, report_card.accuracy, report_card.spoilage, report_card.best_in_class]
+      report_card_array.reject! { |x| x.include? "na"}
+      points_acheived = report_card_array.reject { |x| x.include? "no" }
+      memo << [project_name, ((points_acheived.length.to_f / report_card_array.length.to_f)*100).to_i ]
     end
   end
 
   def create_breakdown_report_card_hash(report_cards)
     breakdown_hash = Hash.new(0)
     report_cards.each_with_object(breakdown_hash) do |report_card, memo|
+      breakdown_hash["Clean CML"] += 1 if (report_card.cml_clean != "no" && report_card.cml_clean != "na")
+      breakdown_hash["Commented CML"] += 1 if (report_card.cml_commented != "no" && report_card.cml_commented != "na")
+      breakdown_hash["Instructions"] += 1 if (report_card.instructions != "no" && report_card.instructions != "na")
+      breakdown_hash["Tags"] += 1 if (report_card.tags != "no" && report_card.tags != "na")
+      breakdown_hash["Complex Problem Solving"] += 1 if (report_card.complex_solution != "no" && report_card.complex_solution != "na")
+      breakdown_hash["Clean Code"] += 1 if (report_card.code_clean != "no" && report_card.code_clean != "na")
+      breakdown_hash["Advanced Code"] += 1 if (report_card.code_advanced != "no" && report_card.code_advanced != "na")
+      breakdown_hash["Code Utilized"] += 1 if (report_card.code_utilized != "no" && report_card.code_utilized != "na")
+      breakdown_hash["Delivery Docs"] += 1 if (report_card.delivery_docs != "no" && report_card.delivery_docs != "na")
+      breakdown_hash["Timely Delivery"] += 1 if (report_card.delivery_timely != "no" && report_card.delivery_timely != "na")
+      breakdown_hash["Communication"] += 1 if (report_card.communication != "no" && report_card.communication != "na")
+      breakdown_hash["Accuracy"] += 1 if (report_card.accuracy != "no" && report_card.accuracy != "na")
+      breakdown_hash["Spoilage"] += 1 if (report_card.spoilage != "no" && report_card.spoilage != "na")
+      breakdown_hash["Best In Class"] += 1 if (report_card.best_in_class != "no" && report_card.best_in_class != "na")
     end
     breakdown_hash.sort_by {|category, count| count}
   end
@@ -82,7 +99,11 @@ private
     end
   end
 
-
+  def create_hours_array(projects)
+    projects.each_with_object([]) do |project, memo|
+      memo << [project.project_name, project.hours]
+    end
+  end
 
   def create_remember_token
     self.remember_token = User.digest(User.new_remember_token)

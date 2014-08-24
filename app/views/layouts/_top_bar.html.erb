@@ -1,6 +1,6 @@
 <div class="topbar navbar navbar-inverse navbar-static-top">
   <div class="navbar-inner">
-    <%= link_to "ServeTrac", "/home", class: "top-bar-name"%>
+    <%= link_to "CF Services", "/home", class: "top-bar-name"%>
     <div class="pull-right">
       <ul class="nav">
         <% if signed_in? %>
@@ -13,7 +13,6 @@
             <ul class="dropdown-menu">
               <li role="presentation" class="dropdown-header"><%= link_to "New Project", '/new_project'%></li>
               <li role="presentation" class="dropdown-header"><%= link_to "New Report Card", '/new_report_card' %></li>
-              <li role="presentation" class="dropdown-header"><%= link_to "Team Charts", team_charts_path(:id => current_user) %></li>
               <li role="presentation" class="dropdown-header"><%= link_to "All Report Cards", all_report_cards_path %></li>
               <li role="presentation" class="dropdown-header"><%= link_to "All Users", users_path %></li>
             </ul>

@@ -42,10 +42,15 @@ class UsersController < ApplicationController
       delivery_score = delivery_score.join(", ")
       dummy_hash["delivery_score"] = delivery_score
       dummy_hash["overall_score"] = report_card.best_in_class
+      if (report_card.best_in_class != "no") && (report_card.best_in_class != "na") 
+        best_in_class_points = 1 
+      else 
+        best_in_class_points = 0 
+      end
+      dummy_hash["points"] = job_score.split(", ").length + technical_score.split(", ").length + delivery_score.split(", ").length
       @tables << dummy_hash
     end
     @report_cards_array = @user.report_card_chart_arrays
-    @tasks_grid = initialize_grid(ReportCard)
   end
 
   def index

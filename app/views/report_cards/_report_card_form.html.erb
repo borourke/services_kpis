@@ -24,7 +24,7 @@
   <%= f.input :spoilage, label: "Spoilage - Low", as: :radio_buttons, collection:[["Yes", "Low Spoilage"], ["No", "no"], ["Not Applicable", "na"]], item_wrapper_class: 'inline' %>
 
    <legend class="center offset1">Overall Scoring</legend>
-  <%= f.input :best_in_class, label: "Best In Class", as: :radio_buttons, collection:[["Gold", "gold"], ["Silver", "silver"], ["Bronze", "bronze"], ["No", "no"], ["Not Applicable", "na"]], item_wrapper_class: 'inline' %>
+  <%= f.input :best_in_class, label: "Best In Class", as: :radio_buttons, collection:[["Gold", "Gold"], ["Silver", "Silver"], ["Bronze", "Bronze"], ["No", "no"], ["Not Applicable", "na"]], item_wrapper_class: 'inline' %>
   <%= f.button :submit, class: "btn-primary pull-right" %>
 <% end %>
 
