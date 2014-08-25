@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   has_many :report_cards, dependent: :destroy
   has_many :surveys
+  attr_accessible :name, :email, :password, :password_confirmation, :remember_token
   before_save { self.email = email.downcase }
   before_create :create_remember_token
   validates :name, presence: true, length: { maximum: 50 }
