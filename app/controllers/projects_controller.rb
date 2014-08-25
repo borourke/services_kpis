@@ -23,7 +23,7 @@ class ProjectsController < ApplicationController
 		@project = Project.new(user_params)
     	if @project.save
     	  flash.now[:success] = "New Report Card Created!"
-    	  redirect_to new_report_card_path
+    	  redirect_to '/new_report_card'
     	else
     	  render 'sign_up'
     	end
