@@ -3,11 +3,7 @@ ServicesKpis::Application.routes.draw do
   resources :sessions, only: [:sign_in, :create, :destroy, :edit]
   resources :projects
   resources :report_cards
-  resources :report_cards do
-    get :autocomplete_user_name, :on => :collection
-  end
   resources :surveys
-  resources :teams
   root  'services#home'
   match '/new_project',    to: 'projects#new_project',    via: 'get'
   match '/sign_in',    to: 'sessions#new',    via: 'get'
@@ -23,6 +19,7 @@ ServicesKpis::Application.routes.draw do
   match '/my_projects/:id', to: 'users#my_projects', via: 'get', as: 'my_projects'
   match '/team_charts', to: 'teams#team_charts', via: 'get'
   match '/new_survey_page_two', to: 'surveys#new_survey_page_two', via: 'get', as: :new_survey_page_two
+  match '/teams', to: 'projects#team_charts', via: 'get'
   get "surveys/new"
   get "surveys/create"
   get "surveys/update"

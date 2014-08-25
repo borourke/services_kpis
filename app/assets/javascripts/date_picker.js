@@ -3,4 +3,5 @@ $(document).on("ready page:change", function() {
   $('#projects').dataTable();
   $('#report_cards').dataTable();
   $(".tip").tooltip();
+  $('.myTab').tab('show');
 });

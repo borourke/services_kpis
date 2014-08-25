@@ -13,6 +13,12 @@ class ProjectsController < ApplicationController
     @projects = Project.all
   end
 
+  def team_charts
+    @user = current_user
+    @business_data_chart_arrays = Project.biz_data_project_chart_arrays
+    @content_gen_chart_arrays = Project.content_gen_project_chart_arrays
+  end
+
 	def create
 		@project = Project.new(user_params)
     	if @project.save
@@ -27,7 +33,7 @@ class ProjectsController < ApplicationController
 
 		def user_params
       		params.require(:project).permit(:project_name, :project_type, :delivery_date, :hours,
-                                   :spoilage, :project_number, :sla_accuracy, :accuracy, :user_id)
+                                   :spoilage, :project_number, :sla_accuracy, :accuracy, :user_id, :team)
     	end
 
 end
