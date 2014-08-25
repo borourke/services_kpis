@@ -41,7 +41,7 @@
   <%= f.input :tags, label: "Tags - Five", as: :radio_buttons, collection:[["Yes", "Five Tags"], ["No", "no"], ["Not Applicable", "na"]], item_wrapper_class: 'inline' %>
 
   <legend class="center offset1">Technical Scoring</legend>
-  <%= f.input :code_clean, label: "Code - Clean", as: :radio_buttons, collection:[["Yes", "Clean Code"], ["No", "no"], ["Not Applicable", "na"]], item_wrapper_class: 'inline', input_html: { class: "tip", data: { toggle: 'tooltip', trigger: 'hover', title: 'This is a tooltip!' }} %>
+  <%= f.input :code_clean, label: "Code - Clean", as: :radio_buttons, collection:[["Yes", "Clean Code"], ["No", "no"], ["Not Applicable", "na"]], item_wrapper_class: 'inline' %>
   <%= f.input :code_utilized, label: "Code - Utilized", as: :radio_buttons, collection:[["Yes", "Utilized Code"], ["No", "no"], ["Not Applicable", "na"]], item_wrapper_class: 'inline' %>
   <%= f.input :code_advanced, label: "Code - Advanced", as: :radio_buttons, collection:[["Yes", "Advanced Code"], ["No", "no"], ["Not Applicable", "na"]], item_wrapper_class: 'inline' %>
   <%= f.input :complex_solution, label: "Project - Complex Problem Solving", as: :radio_buttons, collection:[["Yes", "Complex Problem Solving"], ["No", "no"], ["Not Applicable", "na"]], item_wrapper_class: 'inline' %>
@@ -54,6 +54,7 @@
 
    <legend class="center offset1">Overall Scoring</legend>
   <%= f.input :best_in_class, label: "Best In Class", as: :radio_buttons, collection:[["Gold", "Gold"], ["Silver", "Silver"], ["Bronze", "Bronze"], ["No", "no"], ["Not Applicable", "na"]], item_wrapper_class: 'inline' %>
+  <%= f.input :comments, label: "Comments", as: :text, item_wrapper_class: 'inline', :input_html => { class: "text_area_type_2" } %>
   <%= f.button :submit, class: "btn-primary pull-right" %>
 <% end %>
 

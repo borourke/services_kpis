@@ -52,6 +52,7 @@ class UsersController < ApplicationController
         best_in_class_points = 0 
       end
       dummy_hash["points"] = job_score.split(", ").length + technical_score.split(", ").length + delivery_score.split(", ").length
+      dummy_hash["comments"] = report_card.comments
       @tables << dummy_hash
     end
     @report_cards_array = @user.report_card_chart_arrays
