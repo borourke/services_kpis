@@ -14,7 +14,7 @@ class Project < ActiveRecord::Base
   end
 
   def self.content_gen_project_chart_arrays
-    projects = Project.where(team: 'Content Gen')
+    projects = Project.where(team: 'Content Generation')
     {
       spoilage: create_spoilage_array(projects),
       sla_accuracy: create_sla_accuracy_array(projects),
