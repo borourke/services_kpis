@@ -1,0 +1,71 @@
+<div class="row-fluid">
+  <div class="well center span10 offset1 top">
+    <h1>Business Data</h1>
+  </div>
+</div>
+
+  <div class="row-fluid">
+
+    <div class="span10 offset1 well charts2">
+     <%= column_chart [
+      {name: "Actual Accuracy", data: @business_data_chart_arrays[:accuracy]},
+      {name: "SLA Accuracy", data: @business_data_chart_arrays[:sla_accuracy]},
+      {name: "Accuracy Score", data: @business_data_chart_arrays[:difference]}
+      ],
+      library: {title: "Accuracy by Project", titleTextStyle: {fontSize: 20}, vAxis: {title: "Accuracy (%)", textStyle: {fontSize: 20}}, height: 300, hAxis: {title: "Project"}}
+      %>
+    </div>
+  </div>
+
+  <div class="row-fluid">
+
+    <div class="span10 offset1 well charts2">
+      <%= column_chart @business_data_chart_arrays[:spoilage], library: {title: "Spoilage by Project", titleTextStyle: {fontSize: 20}, vAxis: {title: "Spoilage ($)", textStyle: {fontSize: 20}}, height: 300, hAxis: {title: "Project"}}, colors: ["#345768"]%>
+    </div>
+
+  </div>
+
+  <div class="row-fluid">
+
+    <div class="span10 offset1 well charts2 bottom">
+      <%= column_chart @business_data_chart_arrays[:hours], library: {title: "Hours Spent by Project", titleTextStyle: {fontSize: 20}, vAxis: {title: "Hours Spent", textStyle: {fontSize: 20}}, height: 300, hAxis: {title: "Project"}}, colors: ["#345768"]%>
+    </div>
+
+  </div>
+
+  <div class="row-fluid">
+  <div class="well center span10 offset1 top">
+    <h1>Content Gen</h1>
+  </div>
+</div>
+
+  <div class="row-fluid">
+
+    <div class="span10 offset1 well charts2">
+     <%= column_chart [
+      {name: "Actual Accuracy", data: @content_gen_chart_arrays[:accuracy]},
+      {name: "SLA Accuracy", data: @content_gen_chart_arrays[:sla_accuracy]},
+      {name: "Accuracy Score", data: @content_gen_chart_arrays[:difference]}
+      ],
+      library: {title: "Accuracy by Project", titleTextStyle: {fontSize: 20}, vAxis: {title: "Accuracy (%)", textStyle: {fontSize: 20}}, height: 300, hAxis: {title: "Project"}}
+      %>
+    </div>
+  </div>
+
+  <div class="row-fluid">
+
+    <div class="span10 offset1 well charts2">
+      <%= column_chart @content_gen_chart_arrays[:spoilage], library: {title: "Spoilage by Project", titleTextStyle: {fontSize: 20}, vAxis: {title: "Spoilage ($)", textStyle: {fontSize: 20}}, height: 300, hAxis: {title: "Project"}}, colors: ["#345768"]%>
+    </div>
+
+  </div>
+
+  <div class="row-fluid">
+
+    <div class="span10 offset1 well charts2 bottom">
+      <%= column_chart @content_gen_chart_arrays[:hours], library: {title: "Hours Spent by Project", titleTextStyle: {fontSize: 20}, vAxis: {title: "Hours Spent", textStyle: {fontSize: 20}}, height: 300, hAxis: {title: "Project"}}, colors: ["#345768"]%>
+    </div>
+
+  </div>
+
+

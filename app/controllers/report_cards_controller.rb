@@ -1,6 +1,5 @@
 class ReportCardsController < ApplicationController
 	before_action :signed_in_user
-  autocomplete :user, :name
 
 	def new_report_card
 	 @report_card = ReportCard.new
@@ -67,7 +66,7 @@ class ReportCardsController < ApplicationController
       params[:report_card][:user_id] = user.first.id
       @name = params[:report_card][:user_name]
       @id = params[:report_card][:user_id]
-      		params.require(:report_card).permit(:project_id, :type, :user_id, :cml_clean, :cml_commented, :instructions, :tags, :code_clean, :code_utilized, :code_advanced, :delivery_timely, :delivery_docs, :communication, :accuracy, :spoilage, :complex_solution, :best_in_class, :job_score, :delivery_score, :technical_score, :overall_score, :user_name, :project_name)
+      params.require(:report_card).permit(:project_id, :type, :user_id, :cml_clean, :cml_commented, :instructions, :tags, :code_clean, :code_utilized, :code_advanced, :delivery_timely, :delivery_docs, :communication, :accuracy, :spoilage, :complex_solution, :best_in_class, :job_score, :delivery_score, :technical_score, :overall_score, :user_name, :project_name)
     	end
 
 end
