@@ -4,6 +4,7 @@
   <%= f.input :project_name %>
   <%= f.input :team, collection: ["Business Data", "Content Generation", "SEO"], default: "Business Data" %>
   <%= f.input :delivery_date, as: :string, :input_html => { :class => 'date_picker' } %>
+  <%= f.input :complexity, collection: ["Low", "Medium", "High"], default: "Low" %>
   <%= f.input :hours %>
   <%= f.input :spoilage %>
   <%= f.input :project_number %>

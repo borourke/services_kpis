@@ -33,7 +33,7 @@ class ProjectsController < ApplicationController
 
 		def user_params
       		params.require(:project).permit(:project_name, :project_type, :delivery_date, :hours,
-                                   :spoilage, :project_number, :sla_accuracy, :accuracy, :user_id, :team)
+                                   :spoilage, :project_number, :sla_accuracy, :accuracy, :user_id, :team, :complexity)
     	end
 
 end
