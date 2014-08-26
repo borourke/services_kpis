@@ -5,6 +5,7 @@ ServicesKpis::Application.routes.draw do
   resources :report_cards
   resources :surveys
   root  'services#home'
+  match '/surveys/new/:id', to: 'surveys#new', via: 'get', as: 'surveys/new'
   match '/new_project',    to: 'projects#new_project',    via: 'get'
   match '/sign_in',    to: 'sessions#new',    via: 'get'
   match '/sign_out', to: 'sessions#destroy', via: 'delete'
