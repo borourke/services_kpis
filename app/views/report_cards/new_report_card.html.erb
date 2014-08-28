@@ -3,7 +3,9 @@
   <h1>New Report Card</h1> 
 </div>
 </div>
-
+<% flash.each do |key, value| %>
+        <div class="alert alert-<%= key %>"><%= value %></div>
+<% end %>
 <div class="row-fluid">
 <div class="well span10 offset1 bottom">
   <%= render '/report_cards/report_card_form' %>

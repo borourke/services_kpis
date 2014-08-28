@@ -13,6 +13,20 @@ class ProjectsController < ApplicationController
     @projects = Project.all
   end
 
+  def edit
+    @project = Project.find(params[:id])
+  end
+
+  def update
+    @project = Project.find(params[:id])
+    if @project.update_attributes(project_params)
+      flash[:success] = "Project Updated!"
+      redirect_to root_path
+    else
+      flash[:failure] = "Oooops! Something Went Wrong."
+    end
+  end
+
   def team_charts
     @user = current_user
     @business_data_chart_arrays = Project.biz_data_project_chart_arrays
@@ -20,18 +34,18 @@ class ProjectsController < ApplicationController
   end
 
 	def create
-		@project = Project.new(user_params)
+		@project = Project.new(project_params)
     	if @project.save
     	  flash.now[:success] = "New Report Card Created!"
     	  redirect_to '/new_report_card'
     	else
-    	  render 'sign_up'
+    	  flash.now[:failure] = "Oooops! Something Went Wrong."
     	end
 	end
 
 	private
 
-		def user_params
+		def project_params
       		params.require(:project).permit(:project_name, :project_type, :delivery_date, :hours,
                                    :spoilage, :project_number, :sla_accuracy, :accuracy, :user_id, :team, :complexity)
     	end

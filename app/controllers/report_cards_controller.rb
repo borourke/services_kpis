@@ -1,6 +1,30 @@
 class ReportCardsController < ApplicationController
 	before_action :signed_in_user
 
+  def edit
+    @report_card = ReportCard.find(params[:id])
+    users = User.all
+    @services_members = []
+    users.each do |user|
+      @services_members << user.name
+    end
+    projects = Project.all
+    @project_names = []
+    projects.each do |project|
+      @project_names << project.project_name
+    end
+  end
+
+  def update
+    @report_card = ReportCard.find(params[:id])
+    if @report_card.update_attributes(report_card_params)
+      flash[:success] = "Report Card Updated"
+      redirect_to root_path
+    else
+      flash[:failure] = "Oooops! Something Went Wrong."
+    end
+  end
+
 	def new_report_card
 	 @report_card = ReportCard.new
     users = User.all
@@ -37,6 +61,8 @@ class ReportCardsController < ApplicationController
         dummy_hash["overall_score"] = report_card.best_in_class
         user = User.find(report_card.user_id)
         dummy_hash["services_member"] = user.name
+        dummy_hash["report_card_id"] = report_card.id
+        dummy_hash["comments"] = report_card.comments
         if (report_card.best_in_class != "no") && (report_card.best_in_class != "na") 
           best_in_class_points = 1 
         else 

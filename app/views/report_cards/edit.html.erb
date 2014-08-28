@@ -1,0 +1,75 @@
+<div class="row-fluid">
+<div class="well center span10 offset1 top">
+  <h1>Edit | <%= @report_card.user_name %>'s Report Card for <%= @report_card.project_name %></h1> 
+</div>
+</div>
+
+<div class="row-fluid">
+<div class="well span10 offset1 bottom" bottom>
+<h1 class="center">Edit Report Card</h1>
+
+<div class="row-fluid">
+  <%= javascript_tag do %>
+  var services_members = "<%= @services_members %>";
+  services_members = services_members.replace(/&quot;/g, "");
+  services_members = services_members.replace(/\[/g, "");
+  services_members = services_members.replace(/\]/g, "");
+  services_members = services_members.replace(/&#39;/g, "'");
+  var names = services_members.split(", ");
+
+  var projects = "<%= @project_names %>";
+  projects = projects.replace(/&quot;/g, "");
+  projects = projects.replace(/\[/g, "");
+  projects = projects.replace(/\]/g, "");
+  projects = projects.replace(/&#39;/g, "'");
+  projects = projects.split(", ");
+<% end %>
+
+<script>
+  $(function() {
+    console.log(services_members)
+    console.log(names)
+    $( "#report_card_user_name" ).autocomplete({
+      source: names
+    });
+    $( "#report_card_project_name" ).autocomplete({
+      source: projects
+    });
+  });
+  </script>
+
+<fieldset>
+<%= simple_form_for(@report_card, html: {class: 'form-horizontal span6 offset2' }) do |f| %>
+<legend class="center offset1">Report Card Info</legend>
+  <%= f.input :project_name, as: :string, placeholder: "Type project name here...", label: "Project Name" %>
+  <%= f.input :type, collection: ["New Project", "Repeat Project"], default: "New Project", label: "Project Type" %>
+  <%= f.input :user_name, as: :string, placeholder: "Type services member's name here...", label: "Services Member", id: "services_members_autocomplete" %>
+
+  <legend class="center offset1">Job Scoring</legend>
+  <%= f.input :cml_clean, label: "CML - Clean", as: :radio_buttons, collection:[["Yes", "Clean CML"], ["No", "no"], ["Not Applicable", "na"]], item_wrapper_class: 'inline' %>
+  <%= f.input :cml_commented, label: "CML - Commented", as: :radio_buttons, collection:[["Yes", "Commented CML"], ["No", "no"], ["Not Applicable", "na"]], item_wrapper_class: 'inline' %>
+  <%= f.input :instructions, label: "Instructions - Excellent", as: :radio_buttons, collection:[["Yes", "Excellent Instructions"], ["No", "no"], ["Not Applicable", "na"]], item_wrapper_class: 'inline' %>
+  <%= f.input :tags, label: "Tags - Five", as: :radio_buttons, collection:[["Yes", "Five Tags"], ["No", "no"], ["Not Applicable", "na"]], item_wrapper_class: 'inline' %>
+
+  <legend class="center offset1">Technical Scoring</legend>
+  <%= f.input :code_clean, label: "Code - Clean", as: :radio_buttons, collection:[["Yes", "Clean Code"], ["No", "no"], ["Not Applicable", "na"]], item_wrapper_class: 'inline' %>
+  <%= f.input :code_utilized, label: "Code - Utilized", as: :radio_buttons, collection:[["Yes", "Utilized Code"], ["No", "no"], ["Not Applicable", "na"]], item_wrapper_class: 'inline' %>
+  <%= f.input :code_advanced, label: "Code - Advanced", as: :radio_buttons, collection:[["Yes", "Advanced Code"], ["No", "no"], ["Not Applicable", "na"]], item_wrapper_class: 'inline' %>
+  <%= f.input :complex_solution, label: "Project - Complex Problem Solving", as: :radio_buttons, collection:[["Yes", "Complex Problem Solving"], ["No", "no"], ["Not Applicable", "na"]], item_wrapper_class: 'inline' %>
+  <legend class="center offset1">Delivery Scoring</legend>
+  <%= f.input :delivery_timely, label: "Delivery - Timely", as: :radio_buttons, collection:[["Yes", "Timely Delivery"], ["No", "no"], ["Not Applicable", "na"]], item_wrapper_class: 'inline' %>
+  <%= f.input :delivery_docs, label: "Delivery - Documents", as: :radio_buttons, collection:[["Yes", "All Documents Delivered"], ["No", "no"], ["Not Applicable", "na"]], item_wrapper_class: 'inline' %>
+  <%= f.input :communication, label: "Communication - Excellent", as: :radio_buttons, collection:[["Yes", "Excellent Communication"], ["No", "no"], ["Not Applicable", "na"]], item_wrapper_class: 'inline' %>
+  <%= f.input :accuracy, label: "Accuracy - High", as: :radio_buttons, collection:[["Yes", "High Accuracy"], ["No", "no"], ["Not Applicable", "na"]], item_wrapper_class: 'inline' %>
+  <%= f.input :spoilage, label: "Spoilage - Low", as: :radio_buttons, collection:[["Yes", "Low Spoilage"], ["No", "no"], ["Not Applicable", "na"]], item_wrapper_class: 'inline' %>
+
+   <legend class="center offset1">Overall Scoring</legend>
+  <%= f.input :best_in_class, label: "Best In Class", as: :radio_buttons, collection:[["Gold", "Gold"], ["Silver", "Silver"], ["Bronze", "Bronze"], ["No", "no"], ["Not Applicable", "na"]], item_wrapper_class: 'inline' %>
+  <%= f.input :comments, label: "Comments", as: :text, item_wrapper_class: 'inline', :input_html => { class: "text_area_type_2" } %>
+  <%= f.button :submit, class: "btn-primary pull-right" %>
+<% end %>
+
+</fieldset>
+</div>
+</div>
+</div>

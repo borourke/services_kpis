@@ -1,6 +1,6 @@
 AUTH_KEY = "af574018a6b7360b924c210c41d1f263e264cf83"
 DOMAIN_BASE = "https://api.crowdflower.com"
-TEMPLATE_JOB = "surveytemplateforapp"
+TEMPLATE_JOB = "surveytemplate"
 CrowdFlower::Job.connect! AUTH_KEY, DOMAIN_BASE
 
 class CfApi
