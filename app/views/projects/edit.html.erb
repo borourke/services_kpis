@@ -1,0 +1,31 @@
+<div class="row-fluid">
+<div class="well center span10 offset1 top">
+  <h1>Edit | <%= @project.project_name %></h1> 
+</div>
+</div>
+
+<div class="row-fluid">
+<div class="well span10 offset1 bottom" bottom>
+<h1 class="center">Edit Project</h1>
+
+<div class="row-fluid">
+
+<fieldset>
+<legend class="center">Project Information</legend>
+<%= simple_form_for(@project, html: {class: 'form-horizontal span6 offset2 center' }) do |f| %>
+  <%= f.input :project_name %>
+  <%= f.input :team, collection: ["Business Data", "Content Generation", "SEO"], default: "Business Data" %>
+  <%= f.input :delivery_date, as: :string, :input_html => { :class => 'date_picker' } %>
+  <%= f.input :complexity, collection: ["Low", "Medium", "High"], default: "Low" %>
+  <%= f.input :hours %>
+  <%= f.input :spoilage %>
+  <%= f.input :project_number %>
+  <%= f.input :sla_accuracy, label: "SLA Accuracy" %>
+  <%= f.input :accuracy %>
+  <%= f.input :report_card, :as => :hidden, :input_html => { :value => 1 } %>
+  <%= f.button :submit, class: "btn-success pull-right" %>
+<% end %>
+</fieldset>
+</div>
+</div>
+</div>
