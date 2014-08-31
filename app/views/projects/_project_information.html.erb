@@ -1,6 +1,7 @@
 <fieldset>
 <legend class="center">Project Information</legend>
-<%= simple_form_for(@project, html: {class: 'form-horizontal span6 offset2 center' }) do |f| %>
+<%= simple_form_for(@project, html: {class: 'span6 offset3 pull-left' }) do |f| %>
+<%= render 'shared/project_error_messages' %>
   <%= f.input :project_name %>
   <%= f.input :team, collection: ["Business Data", "Content Generation", "SEO"], default: "Business Data" %>
   <%= f.input :delivery_date, as: :string, :input_html => { :class => 'date_picker' } %>

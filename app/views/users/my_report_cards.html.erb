@@ -40,7 +40,7 @@
 </div>
 <div class="row-fluid">
   <div class="well span10 offset1 charts bottom">
-    <%= bar_chart @report_cards_array[:breakdown], library: {tooltip: {textStyle: {color: "#345768"}} ,title: "Report Card Breakdown by Category", titleTextStyle: {fontSize: 20}, vAxis: {title: "  Category", textStyle: {fontSize: 13}}, height: 700, hAxis: {title: "Count of Occurrences"}},  colors: ["#345768"]%>
+    <%= column_chart @report_cards_array[:breakdown], library: {tooltip: {textStyle: {color: "#345768"}} ,title: "Report Card Breakdown by Category", titleTextStyle: {fontSize: 20}, hAxis: {title: "Category", textStyle: {fontSize: 13}}, height: 700, vAxis: {title: "Percent of Possible Opportunities"}},  colors: ["#345768"]%>
   </div>
 </div>
 </div>

@@ -36,10 +36,10 @@ class ProjectsController < ApplicationController
 	def create
 		@project = Project.new(project_params)
     	if @project.save
-    	  flash.now[:success] = "New Report Card Created!"
+    	  flash.keep[:success] = "New Project Created!"
     	  redirect_to '/new_report_card'
     	else
-    	  flash.now[:failure] = "Oooops! Something Went Wrong."
+    	  render 'new_project'
     	end
 	end
 

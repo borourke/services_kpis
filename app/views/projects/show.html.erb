@@ -15,6 +15,7 @@
           <th>SLA Accuracy</th>
           <th>Actual Accuracy</th>
           <th>Accuracy Score</th>
+          <th>Edit</th>
         </tr>
       </thead>
       <tbody>
@@ -22,12 +23,13 @@
         <tr>
           <td><%= project.project_name %></td>
           <td><%= project.delivery_date.inspect %></td>
-          <td><%= project.hours %></td>
-          <td><%= project.spoilage %></td>
-          <td><%= project.project_number %></td>
-          <td><%= project.sla_accuracy %></td>
-          <td><%= project.accuracy %></td>
-          <td><%= project.accuracy - project.sla_accuracy %></td>
+          <td class="center"><%= project.hours %></td>
+          <td class="center"><%= project.spoilage %></td>
+          <td class="center"><%= project.project_number %></td>
+          <td class="center"><%= project.sla_accuracy %></td>
+          <td class="center"><%= project.accuracy %></td>
+          <td class="center"><%= project.accuracy - project.sla_accuracy %></td>
+          <td class="center"><%= button_to "Edit", edit_project_path(id: project.id), class: "btn btn-small", method: "get" %></td>
         </tr>
         <% end %>
       </tbody>

@@ -2,6 +2,14 @@ class Project < ActiveRecord::Base
 	belongs_to :clients
 	has_many :report_cards
   validates :project_name, uniqueness: { case_sensitive: false }
+  validates :project_name, presence: true
+  validates :hours, presence: true
+  validates :team, presence: true
+  validates :delivery_date, presence: true
+  validates :spoilage, presence: true
+  validates :accuracy, presence: true
+  validates :complexity, presence: true
+  validates :project_number, :presence => true
 
   def self.biz_data_project_chart_arrays
     projects = Project.where(team: 'Business Data')

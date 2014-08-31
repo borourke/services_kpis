@@ -20,15 +20,14 @@ class CfApi
     job = CrowdFlower::Job.new(new_job["id"])
 
     #Update CML and title
-    cml = '{% if prescreen = "yes" %}' + prescreen_cml.to_s + '{% else %}' + survey_cml.to_s + '{% endif %}'
+    cml = '{% if prescreen = "yes" %} {{type}}' + prescreen_cml.to_s + '{% endif %}' + '{% if prescreen == "no" %}' + survey_cml.to_s + '{% endif %}' + '{% if prescreen == "dummy" %} {{type}} <cml:checkbox label="Check this box when you have completed this task" name="dummy" validates="required" gold="true"></cml:checkbox> {% endif %}'
+    sleep 60
     job.update({:title => "#{title}"})
     job.update({:problem => cml})
 
     #First set the job settings
     job.update({:project_number => "#{project_number}"})
-    job.update({:minimum_requirements => {:priority => 1, :skill_scores => {:level_1_contributors => 1}, :min_score => 1, :priority => 1}.to_json}) if respondants.to_i > 1000 #Open to level 1 contributors if there are more than 1000 respondants desired
-    job.update({:minimum_requirements => {:priority => 1, :skill_scores => {:level_2_contributors => 1}, :min_score => 1, :priority => 1}.to_json}) if respondants.to_i <= 1000 #Open to level 2 contributors if there are less than or exactly 1000 respondants desired
-    job.update({:judgments_per_unit => respondants})
+    job.update({:judgments_per_unit => (respondants.to_i)/100})
     job.update({:payment_cents => payment_cents})
     job_id = job.id
     `curl -X PUT --data-urlencode 'job[owner_email]=#{job_owner}' 'https://make.crowdflower.com/jobs/#{job_id}/settings/general.json?key=#{AUTH_KEY}'`
