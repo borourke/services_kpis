@@ -56,7 +56,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       sign_in @user      
-      flash.keep[:success] = "Welcome to the Sample App!"
+      flash.keep[:success] = "Welcome to CF Services!"
       redirect_to @user
     else
       render 'sign_up'
