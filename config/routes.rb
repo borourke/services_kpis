@@ -18,16 +18,8 @@ ServicesKpis::Application.routes.draw do
   match '/all_projects', to: 'projects#show', via: 'get'
   match '/my_report_cards/:id', to: 'users#my_report_cards', via: 'get', as: 'my_report_cards'
   match '/my_projects/:id', to: 'users#my_projects', via: 'get', as: 'my_projects'
-  match '/team_charts', to: 'teams#team_charts', via: 'get'
   match '/new_survey_page_two', to: 'surveys#new_survey_page_two', via: 'get', as: :new_survey_page_two
   match '/teams', to: 'projects#team_charts', via: 'get'
-  get "surveys/new"
-  get "surveys/create"
-  get "surveys/update"
-  get "surveys/edit"
-  get "surveys/destroy"
-  get "surveys/index"
-  get "surveys/show"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -27,7 +27,8 @@ class User < ActiveRecord::Base
       sla_accuracy: create_sla_accuracy_array(projects),
       accuracy: create_accuracy_array(projects),
       difference: create_difference_array(projects),
-      hours: create_hours_array(projects)
+      hours: create_hours_array(projects),
+      complexity: create_complexity_hash(projects)
     }
   end
 
@@ -35,86 +36,115 @@ class User < ActiveRecord::Base
     report_cards = ReportCard.where(user_id: self.id)
 
     {
-      count: create_counting_report_card_array(report_cards),
-      breakdown: create_breakdown_report_card_hash(report_cards)
+      tables: create_report_card_tables_array(report_cards),
+      overall: create_overall_medal_count_hash(report_cards),
+      job: create_job_medal_count_hash(report_cards),
+      technical: create_technical_medal_count_hash(report_cards),
+      project: create_project_medal_count_hash(report_cards),
+      efficiency: create_efficiency_medal_count_hash(report_cards)
     }
   end
     
 
 private
 
-  def create_counting_report_card_array(report_cards)
-    count_array = []
-    report_cards.each_with_object(count_array) do |report_card, memo|
-      project_name = Project.find(report_card.project_id).project_name
-      report_card_array = [report_card.cml_clean, report_card.cml_commented, report_card.instructions, report_card.tags, report_card.code_clean, report_card.code_advanced, report_card.code_utilized, report_card.complex_solution, report_card.delivery_docs, report_card.delivery_timely, report_card.communication, report_card.accuracy, report_card.spoilage, report_card.best_in_class]
-      report_card_array.reject! { |x| x.include? "na"}
-      points_acheived = report_card_array.reject { |x| x.include? "no" }
-      memo << [project_name, ((points_acheived.length.to_f / report_card_array.length.to_f)*100).to_i ]
+  def create_report_card_tables_array(report_cards)
+    report_cards.each_with_object([]) do |report_card, array|
+      hash = {}
+      hash["project_name"] = report_card.project_name
+      hash["services_member"] = report_card.user_name
+      hash["job_score"] = report_card.job_score
+      hash["technical_score"] = report_card.technical_score
+      hash["project_score"] = report_card.project_score
+      hash["efficiency_score"] = report_card.efficiency_score
+      all = report_card.job_array + report_card.project_array + report_card.technical_array
+      all.reject! { |x| x.empty? }
+      hash["points"] = all.length
+      hash["comments"] = report_card.comments
+      hash["report_card_id"] = report_card.id
+      job_array = report_card.job_array.reject { |x| x.empty? }
+      hash["job_array"] = job_array.join(", ")
+      technical_array = report_card.technical_array.reject { |x| x.empty? }
+      hash["technical_array"] = technical_array.join(", ")
+      project_array = report_card.project_array.reject { |x| x.empty? }
+      hash["project_array"] = project_array.join(", ")
+      array << hash
     end
   end
 
-  def create_breakdown_report_card_hash(report_cards)
-    breakdown_hash = Hash.new(0)
-    counting_hash = Hash.new(0)
-    report_cards.each_with_object(breakdown_hash) do |report_card, memo|
-      counting_hash["Clean CML Total"] += 1 if (report_card.cml_clean != "no" && report_card.cml_clean != "na")
-      counting_hash["Clean CML Out Of"] += 1 if (report_card.cml_clean != "na")
-      breakdown_hash["Clean CML"] = ((counting_hash["Clean CML Total"].to_f / counting_hash["Clean CML Out Of"].to_f)*100).to_i
-
-      counting_hash["Commented CML Total"] += 1 if (report_card.cml_commented != "no" && report_card.cml_commented != "na")
-      counting_hash["Commented CML Out Of"] += 1 if (report_card.cml_commented != "na")
-      breakdown_hash["Commented CML"] = ((counting_hash["Commented CML Total"].to_f / counting_hash["Commented CML Out Of"].to_f)*100).to_i
-
-      counting_hash["Instructions Total"] += 1 if (report_card.instructions != "no" && report_card.instructions != "na")
-      counting_hash["Instructions Out Of"] += 1 if (report_card.instructions != "na")
-      breakdown_hash["Instructions"] = ((counting_hash["Instructions Total"].to_f / counting_hash["Instructions Out Of"].to_f)*100).to_i
-
-      counting_hash["Tags Total"] += 1 if (report_card.tags != "no" && report_card.tags != "na")
-      counting_hash["Tags Out Of"] += 1 if (report_card.tags != "na")
-      breakdown_hash["Tags"] = ((counting_hash["Tags Total"].to_f / counting_hash["Tags Out Of"].to_f)*100).to_i
-
-      counting_hash["Complex Problem Solving Total"] += 1 if (report_card.complex_solution != "no" && report_card.complex_solution != "na")
-      counting_hash["Complex Problem Solving Out Of"] += 1 if (report_card.complex_solution != "na")
-      breakdown_hash["Complex Problem Solving"] = ((counting_hash["Complex Problem Solving Total"].to_f / counting_hash["Complex Problem Solving Out Of"].to_f)*100).to_i
-
-      counting_hash["Clean Code Total"] += 1 if (report_card.code_clean != "no" && report_card.code_clean != "na")
-      counting_hash["Clean Code Out Of"] += 1 if (report_card.code_clean != "na")
-      breakdown_hash["Clean Code"] = ((counting_hash["Clean Code Total"].to_f / counting_hash["Clean Code Out Of"].to_f)*100).to_i
-
-      counting_hash["Advanced Code Total"] += 1 if (report_card.code_advanced != "no" && report_card.code_advanced != "na")
-      counting_hash["Advanced Code Out Of"] += 1 if (report_card.code_advanced != "na")
-      breakdown_hash["Advanced Code"] = ((counting_hash["Advanced Code Total"].to_f / counting_hash["Advanced Code Out Of"].to_f)*100).to_i
-
-      counting_hash["Code Utilized Total"] += 1 if (report_card.code_utilized != "no" && report_card.code_utilized != "na")
-      counting_hash["Code Utilized Out Of"] += 1 if (report_card.code_utilized != "na")
-      breakdown_hash["Code Utilized"] = ((counting_hash["Code Utilized Total"].to_f / counting_hash["Code Utilized Out Of"].to_f)*100).to_i
-
-      counting_hash["Delivery Docs Total"] += 1 if (report_card.delivery_docs != "no" && report_card.delivery_docs != "na")
-      counting_hash["Delivery Docs Out Of"] += 1 if (report_card.delivery_docs != "na")
-      breakdown_hash["Delivery Docs"] = ((counting_hash["Delivery Docs Total"].to_f / counting_hash["Delivery Docs Out Of"].to_f)*100).to_i
-
-      counting_hash["Timely Delivery Total"] += 1 if (report_card.delivery_timely != "no" && report_card.delivery_timely != "na")
-      counting_hash["Timely Delivery Out Of"] += 1 if (report_card.delivery_timely != "na")
-      breakdown_hash["Timely Delivery"] = ((counting_hash["Timely Delivery Total"].to_f / counting_hash["Timely Delivery Out Of"].to_f)*100).to_i
-
-      counting_hash["Communication Total"] += 1 if (report_card.communication != "no" && report_card.communication != "na")
-      counting_hash["Communication Out Of"] += 1 if (report_card.communication != "na")
-      breakdown_hash["Communication"] = ((counting_hash["Communication Total"].to_f / counting_hash["Communication Out Of"].to_f)*100).to_i
-
-      counting_hash["Accuracy Total"] += 1 if (report_card.accuracy != "no" && report_card.accuracy != "na")
-      counting_hash["Accuracy Out Of"] += 1 if (report_card.accuracy != "na")
-      breakdown_hash["Accuracy"] = ((counting_hash["Accuracy Total"].to_f / counting_hash["Accuracy Out Of"].to_f)*100).to_i
-
-      counting_hash["Spoilage Total"] += 1 if (report_card.spoilage != "no" && report_card.spoilage != "na")
-      counting_hash["Spoilage Out Of"] += 1 if (report_card.spoilage != "na")
-      breakdown_hash["Spoilage"] = ((counting_hash["Spoilage Total"].to_f / counting_hash["Spoilage Out Of"].to_f)*100).to_i
-
-      counting_hash["Best In Class Total"] += 1 if (report_card.best_in_class != "no" && report_card.best_in_class != "na")
-      counting_hash["Best In Class Out Of"] += 1 if (report_card.best_in_class != "na")
-      breakdown_hash["Best In Class"] = ((counting_hash["Best In Class Total"].to_f / counting_hash["Best In Class Out Of"].to_f)*100).to_i
+  def create_overall_medal_count_hash(report_cards)
+    hash = Hash.new(0)
+    report_cards.each do |report_card|
+      hash["Gold"] += 1 if report_card.job_score == "Gold"
+      hash["Gold"] += 1 if report_card.technical_score == "Gold"
+      hash["Gold"] += 1 if report_card.project_score == "Gold"
+      hash["Gold"] += 1 if report_card.efficiency_score == "Gold"
+      hash["Silver"] += 1 if report_card.technical_score == "Silver"
+      hash["Silver"] += 1 if report_card.job_score == "Silver"
+      hash["Silver"] += 1 if report_card.project_score == "Silver"
+      hash["Silver"] += 1 if report_card.efficiency_score == "Silver"
+      hash["Bronze"] += 1 if report_card.project_score == "Bronze"
+      hash["Bronze"] += 1 if report_card.job_score == "Bronze"
+      hash["Bronze"] += 1 if report_card.technical_score == "Bronze"
+      hash["Bronze"] += 1 if report_card.efficiency_score == "Bronze"
+      hash["None"] += 1 if report_card.job_score == "None"
+      hash["None"] += 1 if report_card.technical_score == "None"
+      hash["None"] += 1 if report_card.project_score == "None"
+      hash["None"] += 1 if report_card.efficiency_score == "None"
+      hash["Not Applicable"] += 1 if report_card.job_score == "N/A"
+      hash["Not Applicable"] += 1 if report_card.technical_score == "N/A"
+      hash["Not Applicable"] += 1 if report_card.project_score == "N/A"
+      hash["Not Applicable"] += 1 if report_card.efficiency_score == "N/A"
     end
-    breakdown_hash.sort_by {|category, count| -count}
+    return hash
+  end
+
+  def create_job_medal_count_hash(report_cards)
+    hash = Hash.new(0)
+    report_cards.each do |report_card|
+      hash["Gold"] += 1 if report_card.job_score == "Gold"
+      hash["Silver"] += 1 if report_card.job_score == "Silver"
+      hash["Bronze"] += 1 if report_card.job_score == "Bronze"
+      hash["None"] += 1 if report_card.job_score == "None"
+      hash["Not Applicable"] += 1 if report_card.job_score == "N/A"
+    end
+    array = [["Gold", hash["Gold"]], ["Silver", hash["Silver"]], ["Bronze", hash["Bronze"]], ["None", hash["None"]], ["Not Applicable", hash["Not Applicable"]]] 
+  end
+
+  def create_technical_medal_count_hash(report_cards)
+    hash = Hash.new(0)
+    report_cards.each do |report_card|
+      hash["Gold"] += 1 if report_card.technical_score == "Gold"
+      hash["Silver"] += 1 if report_card.technical_score == "Silver"
+      hash["Bronze"] += 1 if report_card.technical_score == "Bronze"
+      hash["None"] += 1 if report_card.technical_score == "None"
+      hash["Not Applicable"] += 1 if report_card.technical_score == "N/A"
+    end
+    array = [["Gold", hash["Gold"]], ["Silver", hash["Silver"]], ["Bronze", hash["Bronze"]], ["None", hash["None"]], ["Not Applicable", hash["Not Applicable"]]] 
+  end
+
+  def create_project_medal_count_hash(report_cards)
+    hash = Hash.new(0)
+    report_cards.each do |report_card|
+      hash["Gold"] += 1 if report_card.project_score == "Gold"
+      hash["Silver"] += 1 if report_card.project_score == "Silver"
+      hash["Bronze"] += 1 if report_card.project_score == "Bronze"
+      hash["None"] += 1 if report_card.project_score == "None"
+      hash["Not Applicable"] += 1 if report_card.project_score == "N/A"
+    end
+    array = [["Gold", hash["Gold"]], ["Silver", hash["Silver"]], ["Bronze", hash["Bronze"]], ["None", hash["None"]], ["Not Applicable", hash["Not Applicable"]]] 
+  end
+
+  def create_efficiency_medal_count_hash(report_cards)
+    hash = Hash.new(0)
+    report_cards.each do |report_card|
+      hash["Gold"] += 1 if report_card.efficiency_score == "Gold"
+      hash["Silver"] += 1 if report_card.efficiency_score == "Silver"
+      hash["Bronze"] += 1 if report_card.efficiency_score == "Bronze"
+      hash["None"] += 1 if report_card.efficiency_score == "None"
+      hash["Not Applicable"] += 1 if report_card.efficiency_score == "N/A"
+    end
+    array = [["Gold", hash["Gold"]], ["Silver", hash["Silver"]], ["Bronze", hash["Bronze"]], ["None", hash["None"]], ["Not Applicable", hash["Not Applicable"]]] 
   end
 
   def create_spoilage_array(projects)
@@ -145,6 +175,16 @@ private
     projects.each_with_object([]) do |project, memo|
       memo << [project.project_name, project.hours]
     end
+  end
+
+  def create_complexity_hash(projects)
+    hash = Hash.new(0)
+    projects.each do |project|
+      hash["Low"] += 1 if project.complexity == "Low"
+      hash["Medium"] += 1 if project.complexity == "Medium"
+      hash["High"] += 1 if project.complexity == "High"
+    end
+    array = [["High", hash["High"]], ["Medium", hash["Medium"]], ["Low", hash["Low"]]]
   end
 
   def create_remember_token

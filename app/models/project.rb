@@ -18,7 +18,8 @@ class Project < ActiveRecord::Base
       sla_accuracy: create_sla_accuracy_array(projects),
       accuracy: create_accuracy_array(projects),
       difference: create_difference_array(projects),
-      hours: create_hours_array(projects)
+      hours: create_hours_array(projects),
+      complexity: create_complexity_array(projects)
     }
   end
 
@@ -29,7 +30,8 @@ class Project < ActiveRecord::Base
       sla_accuracy: create_sla_accuracy_array(projects),
       accuracy: create_accuracy_array(projects),
       difference: create_difference_array(projects),
-      hours: create_hours_array(projects)
+      hours: create_hours_array(projects),
+      complexity: create_complexity_array(projects)
     }
   end
 
@@ -63,6 +65,16 @@ class Project < ActiveRecord::Base
     projects.each_with_object([]) do |project, memo|
       memo << [project.project_name, project.hours]
     end
+  end
+
+  def self.create_complexity_array(projects)
+    hash = Hash.new(0)
+    projects.each do |project|
+      hash["Low"] += 1 if project.complexity == "Low"
+      hash["Medium"] += 1 if project.complexity == "Medium"
+      hash["High"] += 1 if project.complexity == "High"
+    end
+    array = [["High", hash["High"]], ["Medium", hash["Medium"]], ["Low", hash["Low"]]]
   end
 
 
