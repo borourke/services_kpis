@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140825193830) do
+ActiveRecord::Schema.define(version: 20140901041131) do
 
   create_table "clients", force: true do |t|
     t.string   "name"
@@ -40,29 +40,18 @@ ActiveRecord::Schema.define(version: 20140825193830) do
     t.string   "job_score"
     t.string   "technical_score"
     t.string   "delivery_score"
-    t.string   "best_in_class"
     t.integer  "project_id"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "cml_clean"
-    t.string   "cml_commented"
-    t.string   "instructions"
-    t.string   "tags"
-    t.string   "code_clean"
-    t.string   "code_utilized"
-    t.string   "code_advanced"
-    t.string   "complex_solution"
-    t.string   "deliver_docs"
-    t.string   "communication"
-    t.string   "accuracy"
-    t.string   "spoilage"
-    t.string   "delivery_timely"
-    t.string   "type"
-    t.string   "delivery_docs"
     t.string   "user_name"
     t.string   "project_name"
     t.string   "comments"
+    t.string   "project_score"
+    t.string   "efficiency_score"
+    t.string   "job_array"
+    t.string   "technical_array"
+    t.string   "project_array"
   end
 
   create_table "surveys", force: true do |t|

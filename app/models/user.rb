@@ -56,62 +56,63 @@ private
 
   def create_breakdown_report_card_hash(report_cards)
     breakdown_hash = Hash.new(0)
+    counting_hash = Hash.new(0)
     report_cards.each_with_object(breakdown_hash) do |report_card, memo|
-      breakdown_hash["Clean CML Total"] += 1 if (report_card.cml_clean != "no" && report_card.cml_clean != "na")
-      breakdown_hash["Clean CML Out Of"] += 1 if (report_card.cml_clean != "na")
-      breakdown_hash["Clean CML"] = ((breakdown_hash["Clean CML Total"].to_f / breakdown_hash["Clean CML Out Of"].to_f)*100).to_i
+      counting_hash["Clean CML Total"] += 1 if (report_card.cml_clean != "no" && report_card.cml_clean != "na")
+      counting_hash["Clean CML Out Of"] += 1 if (report_card.cml_clean != "na")
+      breakdown_hash["Clean CML"] = ((counting_hash["Clean CML Total"].to_f / counting_hash["Clean CML Out Of"].to_f)*100).to_i
 
-      breakdown_hash["Commented CML Total"] += 1 if (report_card.cml_commented != "no" && report_card.cml_commented != "na")
-      breakdown_hash["Commented CML Out Of"] += 1 if (report_card.cml_commented != "na")
-      breakdown_hash["Commented CML"] = ((breakdown_hash["Commented CML Total"].to_f / breakdown_hash["Commented CML Out Of"].to_f)*100).to_i
+      counting_hash["Commented CML Total"] += 1 if (report_card.cml_commented != "no" && report_card.cml_commented != "na")
+      counting_hash["Commented CML Out Of"] += 1 if (report_card.cml_commented != "na")
+      breakdown_hash["Commented CML"] = ((counting_hash["Commented CML Total"].to_f / counting_hash["Commented CML Out Of"].to_f)*100).to_i
 
-      breakdown_hash["Instructions Total"] += 1 if (report_card.instructions != "no" && report_card.instructions != "na")
-      breakdown_hash["Instructions Out Of"] += 1 if (report_card.instructions != "na")
-      breakdown_hash["Instructions"] = ((breakdown_hash["Instructions Total"].to_f / breakdown_hash["Instructions Out Of"].to_f)*100).to_i
+      counting_hash["Instructions Total"] += 1 if (report_card.instructions != "no" && report_card.instructions != "na")
+      counting_hash["Instructions Out Of"] += 1 if (report_card.instructions != "na")
+      breakdown_hash["Instructions"] = ((counting_hash["Instructions Total"].to_f / counting_hash["Instructions Out Of"].to_f)*100).to_i
 
-      breakdown_hash["Tags Total"] += 1 if (report_card.tags != "no" && report_card.tags != "na")
-      breakdown_hash["Tags Out Of"] += 1 if (report_card.tags != "na")
-      breakdown_hash["Tags"] = ((breakdown_hash["Tags Total"].to_f / breakdown_hash["Tags Out Of"].to_f)*100).to_i
+      counting_hash["Tags Total"] += 1 if (report_card.tags != "no" && report_card.tags != "na")
+      counting_hash["Tags Out Of"] += 1 if (report_card.tags != "na")
+      breakdown_hash["Tags"] = ((counting_hash["Tags Total"].to_f / counting_hash["Tags Out Of"].to_f)*100).to_i
 
-      breakdown_hash["Complex Problem Solving Total"] += 1 if (report_card.complex_solution != "no" && report_card.complex_solution != "na")
-      breakdown_hash["Complex Problem Solving Out Of"] += 1 if (report_card.complex_solution != "na")
-      breakdown_hash["Complex Problem Solving"] = ((breakdown_hash["Complex Problem Solving Total"].to_f / breakdown_hash["Complex Problem Solving Out Of"].to_f)*100).to_i
+      counting_hash["Complex Problem Solving Total"] += 1 if (report_card.complex_solution != "no" && report_card.complex_solution != "na")
+      counting_hash["Complex Problem Solving Out Of"] += 1 if (report_card.complex_solution != "na")
+      breakdown_hash["Complex Problem Solving"] = ((counting_hash["Complex Problem Solving Total"].to_f / counting_hash["Complex Problem Solving Out Of"].to_f)*100).to_i
 
-      breakdown_hash["Clean Code Total"] += 1 if (report_card.code_clean != "no" && report_card.code_clean != "na")
-      breakdown_hash["Clean Code Out Of"] += 1 if (report_card.code_clean != "na")
-      breakdown_hash["Clean Code"] = ((breakdown_hash["Clean Code Total"].to_f / breakdown_hash["Clean Code Out Of"].to_f)*100).to_i
+      counting_hash["Clean Code Total"] += 1 if (report_card.code_clean != "no" && report_card.code_clean != "na")
+      counting_hash["Clean Code Out Of"] += 1 if (report_card.code_clean != "na")
+      breakdown_hash["Clean Code"] = ((counting_hash["Clean Code Total"].to_f / counting_hash["Clean Code Out Of"].to_f)*100).to_i
 
-      breakdown_hash["Advanced Code Total"] += 1 if (report_card.code_advanced != "no" && report_card.code_advanced != "na")
-      breakdown_hash["Advanced Code Out Of"] += 1 if (report_card.code_advanced != "na")
-      breakdown_hash["Advanced Code"] = ((breakdown_hash["Advanced Code Total"].to_f / breakdown_hash["Advanced Code Out Of"].to_f)*100).to_i
+      counting_hash["Advanced Code Total"] += 1 if (report_card.code_advanced != "no" && report_card.code_advanced != "na")
+      counting_hash["Advanced Code Out Of"] += 1 if (report_card.code_advanced != "na")
+      breakdown_hash["Advanced Code"] = ((counting_hash["Advanced Code Total"].to_f / counting_hash["Advanced Code Out Of"].to_f)*100).to_i
 
-      breakdown_hash["Code Utilized Total"] += 1 if (report_card.code_utilized != "no" && report_card.code_utilized != "na")
-      breakdown_hash["Code Utilized Out Of"] += 1 if (report_card.code_utilized != "na")
-      breakdown_hash["Code Utilized"] = ((breakdown_hash["Code Utilized Total"].to_f / breakdown_hash["Code Utilized Out Of"].to_f)*100).to_i
+      counting_hash["Code Utilized Total"] += 1 if (report_card.code_utilized != "no" && report_card.code_utilized != "na")
+      counting_hash["Code Utilized Out Of"] += 1 if (report_card.code_utilized != "na")
+      breakdown_hash["Code Utilized"] = ((counting_hash["Code Utilized Total"].to_f / counting_hash["Code Utilized Out Of"].to_f)*100).to_i
 
-      breakdown_hash["Delivery Docs Total"] += 1 if (report_card.delivery_docs != "no" && report_card.delivery_docs != "na")
-      breakdown_hash["Delivery Docs Out Of"] += 1 if (report_card.delivery_docs != "na")
-      breakdown_hash["Delivery Docs"] = ((breakdown_hash["Delivery Docs Total"].to_f / breakdown_hash["Delivery Docs Out Of"].to_f)*100).to_i
+      counting_hash["Delivery Docs Total"] += 1 if (report_card.delivery_docs != "no" && report_card.delivery_docs != "na")
+      counting_hash["Delivery Docs Out Of"] += 1 if (report_card.delivery_docs != "na")
+      breakdown_hash["Delivery Docs"] = ((counting_hash["Delivery Docs Total"].to_f / counting_hash["Delivery Docs Out Of"].to_f)*100).to_i
 
-      breakdown_hash["Timely Delivery Total"] += 1 if (report_card.delivery_timely != "no" && report_card.delivery_timely != "na")
-      breakdown_hash["Timely Delivery Out Of"] += 1 if (report_card.delivery_timely != "na")
-      breakdown_hash["Timely Delivery"] = ((breakdown_hash["Timely Delivery Total"].to_f / breakdown_hash["Timely Delivery Out Of"].to_f)*100).to_i
+      counting_hash["Timely Delivery Total"] += 1 if (report_card.delivery_timely != "no" && report_card.delivery_timely != "na")
+      counting_hash["Timely Delivery Out Of"] += 1 if (report_card.delivery_timely != "na")
+      breakdown_hash["Timely Delivery"] = ((counting_hash["Timely Delivery Total"].to_f / counting_hash["Timely Delivery Out Of"].to_f)*100).to_i
 
-      breakdown_hash["Communication Total"] += 1 if (report_card.communication != "no" && report_card.communication != "na")
-      breakdown_hash["Communication Out Of"] += 1 if (report_card.communication != "na")
-      breakdown_hash["Communication"] = ((breakdown_hash["Communication Total"].to_f / breakdown_hash["Communication Out Of"].to_f)*100).to_i
+      counting_hash["Communication Total"] += 1 if (report_card.communication != "no" && report_card.communication != "na")
+      counting_hash["Communication Out Of"] += 1 if (report_card.communication != "na")
+      breakdown_hash["Communication"] = ((counting_hash["Communication Total"].to_f / counting_hash["Communication Out Of"].to_f)*100).to_i
 
-      breakdown_hash["Accuracy Total"] += 1 if (report_card.accuracy != "no" && report_card.accuracy != "na")
-      breakdown_hash["Accuracy Out Of"] += 1 if (report_card.accuracy != "na")
-      breakdown_hash["Accuracy"] = ((breakdown_hash["Accuracy Total"].to_f / breakdown_hash["Accuracy Out Of"].to_f)*100).to_i
+      counting_hash["Accuracy Total"] += 1 if (report_card.accuracy != "no" && report_card.accuracy != "na")
+      counting_hash["Accuracy Out Of"] += 1 if (report_card.accuracy != "na")
+      breakdown_hash["Accuracy"] = ((counting_hash["Accuracy Total"].to_f / counting_hash["Accuracy Out Of"].to_f)*100).to_i
 
-      breakdown_hash["Spoilage Total"] += 1 if (report_card.spoilage != "no" && report_card.spoilage != "na")
-      breakdown_hash["Spoilage Out Of"] += 1 if (report_card.spoilage != "na")
-      breakdown_hash["Spoilage"] = ((breakdown_hash["Spoilage Total"].to_f / breakdown_hash["Spoilage Out Of"].to_f)*100).to_i
+      counting_hash["Spoilage Total"] += 1 if (report_card.spoilage != "no" && report_card.spoilage != "na")
+      counting_hash["Spoilage Out Of"] += 1 if (report_card.spoilage != "na")
+      breakdown_hash["Spoilage"] = ((counting_hash["Spoilage Total"].to_f / counting_hash["Spoilage Out Of"].to_f)*100).to_i
 
-      breakdown_hash["Best In Class Total"] += 1 if (report_card.best_in_class != "no" && report_card.best_in_class != "na")
-      breakdown_hash["Best In Class Out Of"] += 1 if (report_card.best_in_class != "na")
-      breakdown_hash["Best In Class"] = ((breakdown_hash["Best In Class Total"].to_f / breakdown_hash["Best In Class Out Of"].to_f)*100).to_i
+      counting_hash["Best In Class Total"] += 1 if (report_card.best_in_class != "no" && report_card.best_in_class != "na")
+      counting_hash["Best In Class Out Of"] += 1 if (report_card.best_in_class != "na")
+      breakdown_hash["Best In Class"] = ((counting_hash["Best In Class Total"].to_f / counting_hash["Best In Class Out Of"].to_f)*100).to_i
     end
     breakdown_hash.sort_by {|category, count| -count}
   end

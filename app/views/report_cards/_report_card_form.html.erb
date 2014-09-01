@@ -1,70 +1,55 @@
 <%= javascript_tag do %>
-  var services_members = "<%= @services_members %>";
-  services_members = services_members.replace(/&quot;/g, "");
-  services_members = services_members.replace(/\[/g, "");
-  services_members = services_members.replace(/\]/g, "");
-  services_members = services_members.replace(/&#39;/g, "'");
-  var names = services_members.split(", ");
+var services_members = "<%= @services_members %>";
+services_members = services_members.replace(/&quot;/g, "");
+services_members = services_members.replace(/\[/g, "");
+services_members = services_members.replace(/\]/g, "");
+services_members = services_members.replace(/&#39;/g, "'");
+var names = services_members.split(", ");
 
-  var projects = "<%= @project_names %>";
-  projects = projects.replace(/&quot;/g, "");
-  projects = projects.replace(/\[/g, "");
-  projects = projects.replace(/\]/g, "");
-  projects = projects.replace(/&#39;/g, "'");
-  projects = projects.split(", ");
+var projects = "<%= @project_names %>";
+projects = projects.replace(/&quot;/g, "");
+projects = projects.replace(/\[/g, "");
+projects = projects.replace(/\]/g, "");
+projects = projects.replace(/&#39;/g, "'");
+projects = projects.split(", ");
 <% end %>
 
 <script>
-  $(function() {
-    console.log(services_members)
-    console.log(names)
-    $( "#report_card_user_name" ).autocomplete({
-      source: names
-    });
-    $( "#report_card_project_name" ).autocomplete({
-      source: projects
-    });
+$(function() {
+  console.log(services_members)
+  console.log(names)
+  $( "#report_card_user_name" ).autocomplete({
+    source: names
   });
-
-  $('input.job_score').click(function() {
-    radio = $(this).val();
-    if (radio == 'N/A') {
-      $('.job_field').hide();
-    };
+  $( "#report_card_project_name" ).autocomplete({
+    source: projects
   });
-  </script>
+});
+</script>
 
 <fieldset>
-<%= simple_form_for(@report_card, html: {class: 'form-horizontal span7 offset2' }) do |f| %>
-<%= render 'shared/report_card_error_messages' %>
-<legend class="center offset1">Report Card Info</legend>
+  <%= simple_form_for(@report_card, html: {class: 'form-horizontal span7 offset2' }) do |f| %>
+  <%= render 'shared/report_card_error_messages' %>
+  <legend class="center offset1">Report Card Info</legend>
   <%= f.input :project_name, as: :string, placeholder: "Type project name here...", label: "Project Name" %>
-  <%= f.input :type, collection: ["New Project", "Repeat Project"], default: "New Project", label: "Project Type" %>
   <%= f.input :user_name, as: :string, placeholder: "Type services member's name here...", label: "Services Member", id: "services_members_autocomplete" %>
 
   <legend class="center offset1">Job Scoring</legend>
   <%= f.input :job_score, label: "Overall Job Score", as: :radio_buttons, collection:[["Gold", "Gold"], ["Silver", "Silver"], ["Bronze", "Bronze"], ["None", "None"], ["Not Applicable", "N/A"]], item_wrapper_class: 'inline' %>
-  <%= f.input :cml_clean, label: "CML - Clean", as: :radio_buttons, collection:[["Gold", "Gold"], ["Silver", "Silver"], ["Bronze", "Bronze"], ["None", "no"], ["Not Applicable", "na"]], item_wrapper_class: 'inline job_field' %>
-  <%= f.input :cml_commented, label: "CML - Commented", as: :radio_buttons, collection:[["Gold", "Gold"], ["Silver", "Silver"], ["Bronze", "Bronze"], ["None", "no"], ["Not Applicable", "na"]], item_wrapper_class: 'inline job_field' %>
-  <%= f.input :instructions, label: "Instructions - Excellent", as: :radio_buttons, collection:[["Gold", "Gold"], ["Silver", "Silver"], ["Bronze", "Bronze"], ["None", "no"], ["Not Applicable", "na"]], item_wrapper_class: 'inline job_field' %>
-  <%= f.input :tags, label: "Tags - Five", as: :radio_buttons, collection:[["Gold", "Gold"], ["Silver", "Silver"], ["Bronze", "Bronze"], ["None", "no"], ["Not Applicable", "na"]], item_wrapper_class: 'inline job_field' %>
+  <%= f.input :job_array, label: "Job Points", as: :check_boxes, collection:[["CML - Clean", "Clean CML"], ["CML - Commented", "Commented CML"], ["Instructions", "Instructions"], ["Tags", "Tags"]] %>
 
   <legend class="center offset1">Technical Scoring</legend>
-  <%= f.input :code_clean, label: "Code - Clean", as: :radio_buttons, collection:[["Gold", "Gold"], ["Silver", "Silver"], ["Bronze", "Bronze"], ["None", "no"], ["Not Applicable", "na"]], item_wrapper_class: 'inline' %>
-  <%= f.input :code_utilized, label: "Code - Utilized", as: :radio_buttons, collection:[["Gold", "Gold"], ["Silver", "Silver"], ["Bronze", "Bronze"], ["None", "no"], ["Not Applicable", "na"]], item_wrapper_class: 'inline' %>
-  <%= f.input :code_advanced, label: "Code - Advanced", as: :radio_buttons, collection:[["Gold", "Gold"], ["Silver", "Silver"], ["Bronze", "Bronze"], ["None", "no"], ["Not Applicable", "na"]], item_wrapper_class: 'inline' %>
-  <%= f.input :complex_solution, label: "Project - Complex Problem Solving", as: :radio_buttons, collection:[["Gold", "Gold"], ["Silver", "Silver"], ["Bronze", "Bronze"], ["None", "no"], ["Not Applicable", "na"]], item_wrapper_class: 'inline' %>
-  <legend class="center offset1">Delivery Scoring</legend>
-  <%= f.input :delivery_timely, label: "Delivery - Timely", as: :radio_buttons, collection:[["Gold", "Gold"], ["Silver", "Silver"], ["Bronze", "Bronze"], ["None", "no"], ["Not Applicable", "na"]], item_wrapper_class: 'inline' %>
-  <%= f.input :delivery_docs, label: "Delivery - Documents", as: :radio_buttons, collection:[["Gold", "Gold"], ["Silver", "Silver"], ["Bronze", "Bronze"], ["None", "no"], ["Not Applicable", "na"]], item_wrapper_class: 'inline' %>
-  <%= f.input :communication, label: "Communication - Excellent", as: :radio_buttons, collection:[["Gold", "Gold"], ["Silver", "Silver"], ["Bronze", "Bronze"], ["None", "no"], ["Not Applicable", "na"]], item_wrapper_class: 'inline' %>
-  <%= f.input :accuracy, label: "Accuracy - High", as: :radio_buttons, collection:[["Gold", "Gold"], ["Silver", "Silver"], ["Bronze", "Bronze"], ["None", "no"], ["Not Applicable", "na"]], item_wrapper_class: 'inline' %>
-  <%= f.input :spoilage, label: "Spoilage - Low", as: :radio_buttons, collection:[["Gold", "Gold"], ["Silver", "Silver"], ["Bronze", "Bronze"], ["None", "no"], ["Not Applicable", "na"]], item_wrapper_class: 'inline' %>
+  <%= f.input :technical_score, label: "Overall Technical Score", as: :radio_buttons, collection:[["Gold", "Gold"], ["Silver", "Silver"], ["Bronze", "Bronze"], ["None", "None"], ["Not Applicable", "N/A"]], item_wrapper_class: 'inline' %>
+  <%= f.input :technical_array, label: "Technical Points", as: :check_boxes, collection:[["Code - Clean", "Clean Code"], ["Code - Utilized", "Utilized Code"], ["Code - Advanced", "Advanced Code"], ["Project - Complex Problem Solving", "Complex Problem Solving"]] %>
 
-   <legend class="center offset1">Efficiency Scoring</legend>
-  <%= f.input :best_in_class, label: "Best In Class", as: :radio_buttons, collection:[["Gold", "Gold"], ["Silver", "Silver"], ["Bronze", "Bronze"], ["None", "no"], ["Not Applicable", "na"]], item_wrapper_class: 'inline' %>
+  <legend class="center offset1">Project Scoring</legend>
+  <%= f.input :project_score, label: " Overall Project Score", as: :radio_buttons, collection:[["Gold", "Gold"], ["Silver", "Silver"], ["Bronze", "Bronze"], ["None", "None"], ["Not Applicable", "N/A"]], item_wrapper_class: 'inline' %>
+  <%= f.input :project_array, label: "Project Points", as: :check_boxes, collection:[["Delivery - Timely", "Timely Delivery"], ["Delivery - Documents", "Documents Delivered"], ["Communication - Excellent", "Excellent Communication"], ["Accuracy - High", "High Accuracy"], ["Spoilage - Low", "Low Spoilage"]] %>
+
+  <legend class="center offset1">Efficiency Scoring</legend>
+  <%= f.input :efficiency_score, label: "Best In Class", as: :radio_buttons, collection:[["Gold", "Gold"], ["Silver", "Silver"], ["Bronze", "Bronze"], ["None", "no"], ["Not Applicable", "na"]], item_wrapper_class: 'inline' %>
   <%= f.input :comments, label: "Comments", as: :text, item_wrapper_class: 'inline', :input_html => { class: "text_area_type_2" } %>
   <%= f.button :submit, class: "btn-primary pull-right" %>
-<% end %>
+  <% end %>
 
 </fieldset>
