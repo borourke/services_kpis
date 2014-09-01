@@ -3,15 +3,16 @@
 </div>
 
 <div class="row-fluid">
-  <div class="span10 offset1 well bottom">
-    <table id="projects" class="display">
+  <div class="span10 offset1 well">
+    <h3 class="center">Overall Report Card Table</h3>
+    <table id="report_cards_overall" class="display">
       <thead>
         <tr>
           <th>Project name</th>
           <th>Services Member</th>
           <th>Job Score</th>
           <th>Technical Score</th>
-          <th>Delivery Score</th>
+          <th>Project Score</th>
           <th>Efficiency Score</th>
           <th>Total Points</th>
           <th>Comments</th>
@@ -19,14 +20,50 @@
         </tr>
       </thead>
       <tbody>
-        <% @tables.each do |report_card| %>
+        <% @report_card_tables.each do |report_card| %>
         <tr>
           <td><%= report_card["project_name"] %></td>
           <td><%= report_card["services_member"] %></td>
           <td><%= report_card["job_score"] %></td>
           <td><%= report_card["technical_score"] %></td>
-          <td><%= report_card["delivery_score"] %></td>
-          <td><%= report_card["overall_score"] %></td>
+          <td><%= report_card["project_score"] %></td>
+          <td><%= report_card["efficiency_score"] %></td>
+          <td class="center"><%= report_card["points"] %></td>
+          <td><%= report_card["comments"] %></td>
+          <td class="center"><%= button_to "Edit", edit_report_card_path(id: report_card["report_card_id"]), class: "btn btn-small", method: "get" %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table> 
+ </div>
+</div>
+
+<div class="row-fluid">
+  <div class="span10 offset1 well bottom">
+    <h3 class="center">Detailed Report Card Table</h3>
+    <table id="report_cards_detailed" class="display">
+      <thead>
+        <tr>
+          <th>Project name</th>
+          <th>Services Member</th>
+          <th>Job Points</th>
+          <th>Technical Points</th>
+          <th>Project Points</th>
+          <th>Efficiency Points</th>
+          <th>Total Points</th>
+          <th>Comments</th>
+          <th>Edit</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @report_card_tables.each do |report_card| %>
+        <tr>
+          <td><%= report_card["project_name"] %></td>
+          <td><%= report_card["services_member"] %></td>
+          <td><%= report_card["job_array"] %></td>
+          <td><%= report_card["technical_array"] %></td>
+          <td><%= report_card["project_array"] %></td>
+          <td><%= report_card["efficiency_score"] %></td>
           <td class="center"><%= report_card["points"] %></td>
           <td><%= report_card["comments"] %></td>
           <td class="center"><%= button_to "Edit", edit_report_card_path(id: report_card["report_card_id"]), class: "btn btn-small", method: "get" %></td>

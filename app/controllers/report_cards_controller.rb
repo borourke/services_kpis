@@ -40,7 +40,7 @@ class ReportCardsController < ApplicationController
   end
 
   def show
-    @tables = generate_report_card_tables
+    @report_card_tables = ReportCard.generate_report_card_admin_tables
   end
 
   def create

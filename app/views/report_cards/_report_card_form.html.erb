@@ -47,7 +47,7 @@ $(function() {
   <%= f.input :project_array, label: "Project Points", as: :check_boxes, collection:[["Delivery - Timely", "Timely Delivery"], ["Delivery - Documents", "Documents Delivered"], ["Communication - Excellent", "Excellent Communication"], ["Accuracy - High", "High Accuracy"], ["Spoilage - Low", "Low Spoilage"]] %>
 
   <legend class="center offset1">Efficiency Scoring</legend>
-  <%= f.input :efficiency_score, label: "Best In Class", as: :radio_buttons, collection:[["Gold", "Gold"], ["Silver", "Silver"], ["Bronze", "Bronze"], ["None", "no"], ["Not Applicable", "na"]], item_wrapper_class: 'inline' %>
+  <%= f.input :efficiency_score, label: "Best In Class", as: :radio_buttons, collection:[["Gold", "Gold"], ["Silver", "Silver"], ["Bronze", "Bronze"], ["None", "None"], ["Not Applicable", "N/A"]], item_wrapper_class: 'inline' %>
   <%= f.input :comments, label: "Comments", as: :text, item_wrapper_class: 'inline', :input_html => { class: "text_area_type_2" } %>
   <%= f.button :submit, class: "btn-primary pull-right" %>
   <% end %>
