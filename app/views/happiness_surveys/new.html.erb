@@ -1,0 +1,26 @@
+<div class="well center span10 offset1 top">
+  <h1>Take Your Happiness Survey :)</h1> 
+</div>
+
+<div class="row-fluid">
+  <div class="well span10 offset1 bottom">
+    <fieldset>
+      <%= render 'shared/happiness_survey_error_messages' %>
+      <legend class="center">Please fill out the questions below.  Your answers will be entirely anonymous.</legend>
+      <%= simple_form_for(@happiness_survey, html: {class: 'form-horizontal span7 offset2 pull-left' }) do |f| %>
+      <%= f.input :meaning, as: :radio_buttons, collection: [["1 - Poor", 1], ["2", 2], ["3 - Medium", 3], ["4", 4], ["5 - Excellent", 5]], label: "Meaning Question Here", item_wrapper_class: 'inline' %>
+      <%= f.input :enthusiasm, as: :radio_buttons, collection: [["1 - Poor", 1], ["2", 2], ["3 - Medium", 3], ["4", 4], ["5 - Excellent", 5]], label: "Enthusiasm Question Here", item_wrapper_class: 'inline' %>
+      <%= f.input :pride, as: :radio_buttons, collection: [["1 - Poor", 1], ["2", 2], ["3 - Medium", 3], ["4", 4], ["5 - Excellent", 5]], label: "Pride Question Here", item_wrapper_class: 'inline' %>
+      <%= f.input :energy, as: :radio_buttons, collection: [["1 - Poor", 1], ["2", 2], ["3 - Medium", 3], ["4", 4], ["5 - Excellent", 5]], label: "Energy Question Here", item_wrapper_class: 'inline' %>
+      <%= f.input :recognition, as: :radio_buttons, collection: [["1 - Poor", 1], ["2", 2], ["3 - Medium", 3], ["4", 4], ["5 - Excellent", 5]], label: "Recognition Question Here", item_wrapper_class: 'inline' %>
+      <%= f.input :support, as: :radio_buttons, collection: [["1 - Poor", 1], ["2", 2], ["3 - Medium", 3], ["4", 4], ["5 - Excellent", 5]], label: "Support Question Here", item_wrapper_class: 'inline' %>
+      <%= f.input :stamina, as: :radio_buttons, collection: [["1 - Poor", 1], ["2", 2], ["3 - Medium", 3], ["4", 4], ["5 - Excellent", 5]], label: "Stamina Question Here", item_wrapper_class: 'inline' %>
+      <%= f.input :growth, as: :radio_buttons, collection: [["1 - Poor", 1], ["2", 2], ["3 - Medium", 3], ["4", 4], ["5 - Excellent", 5]], label: "Growth Question Here", item_wrapper_class: 'inline' %>
+      <%= f.input :development, as: :radio_buttons, collection: [["1 - Poor", 1], ["2", 2], ["3 - Medium", 3], ["4", 4], ["5 - Excellent", 5]], label: "Development Question Here", item_wrapper_class: 'inline' %>
+      <%= f.input :comments, as: :text, label: "Any comments you would like to share?", placeholder: "I love...or hate..." %>
+      <%= f.input :user_id, as: :hidden, :input_html => { :value => @user.id } %>
+      <%= f.button :submit, class: "btn-primary pull-right" %>
+      <% end %>
+    </fieldset>
+  </div>
+</div>

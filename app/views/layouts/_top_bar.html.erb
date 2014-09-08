@@ -12,7 +12,7 @@
             </a>
             <ul class="dropdown-menu">
               <li role="presentation" class="dropdown-header"><%= link_to "New Project", '/new_project'%></li>
-              <li role="presentation" class="dropdown-header"><%= link_to "New Report Card", '/new_report_card' %></li>
+              <li role="presentation" class="dropdown-header"><%= link_to "New Report Card", new_report_card_path %></li>
               <li role="presentation" class="dropdown-header"><%= link_to "Teams", '/teams' %></li>
               <li role="presentation" class="dropdown-header"><%= link_to "All Report Cards", all_report_cards_path %></li>
               <li role="presentation" class="dropdown-header"><%= link_to "All Projects", all_projects_path %></li>
@@ -20,7 +20,26 @@
             </ul>
           </li>
           <% end %>
-          
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              Surveys
+              <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+              <li role="presentation" class="dropdown-header"><%= link_to "New Survey", new_survey_path(id: current_user.id)%></li>
+              <li role="presentation" class="dropdown-header"><%= link_to "My Surveys", 'surveys/show' %></li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              My Happiness Surveys
+              <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+              <li role="presentation" class="dropdown-header"><%= link_to "Take A New Survey", 'happiness_surveys/new' %></li>
+              <li role="presentation" class="dropdown-header"><%= link_to "My Happiness", 'my_happiness' %></li>
+            </ul>
+          </li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               My KPIs

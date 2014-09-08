@@ -1,0 +1,12 @@
+<% if @happiness_survey.errors.any? %>
+  <div id="error_explanation">
+    <div class="alert alert-error">
+      The form contains <%= pluralize(@happiness_survey.errors.count, "error") %>.
+    </div>
+    <ul>
+    <% @happiness_survey.errors.full_messages.each do |msg| %>
+      <li>* <%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>

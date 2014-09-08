@@ -3,12 +3,9 @@ class ReportCardsController < ApplicationController
 
   def edit
     @report_card = ReportCard.find(params[:id])
-    users = User.all
-    @services_members = []
-    users.each do |user|
-      @services_members << user.name
-    end
-    projects = Project.all
+    @services_members = ReportCard.get_all_services_members
+    
+    
     @project_names = []
     projects.each do |project|
       @project_names << project.project_name
@@ -25,8 +22,9 @@ class ReportCardsController < ApplicationController
     end
   end
 
-  def new_report_card
+  def new
     @report_card = ReportCard.new
+    @project_name = params[:project_name]
     users = User.all
     @services_members = []
     users.each do |user|
@@ -49,7 +47,7 @@ class ReportCardsController < ApplicationController
       flash.keep[:success] = "New Report Card Created!"
       redirect_to root_path
     else
-      render 'new_report_card'
+      render 'new'
     end
   end
 

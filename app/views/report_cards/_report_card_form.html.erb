@@ -32,7 +32,7 @@ $(function() {
   <%= simple_form_for(@report_card, html: {class: 'form-horizontal span7 offset2' }) do |f| %>
   <%= render 'shared/report_card_error_messages' %>
   <legend class="center offset1">Report Card Info</legend>
-  <%= f.input :project_name, as: :string, placeholder: "Type project name here...", label: "Project Name" %>
+  <%= f.input :project_name, as: :string,  :input_html => { :value => @project_name }, label: "Project Name" %>
   <%= f.input :user_name, as: :string, placeholder: "Type services member's name here...", label: "Services Member", id: "services_members_autocomplete" %>
 
   <legend class="center offset1">Job Scoring</legend>

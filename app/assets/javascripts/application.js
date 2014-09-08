@@ -13,12 +13,10 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery-ui
-//= require autocomplete-rails
 //= require bootstrap.min
 //= require turbolinks
 //= require_self
 //= require bootstrap-datepicker
-//= require wice_grid.js
 //= require dataTables/jquery.dataTables
 //= require dataTables/bootstrap/2/jquery.dataTables.bootstrap
 //= require_tree .

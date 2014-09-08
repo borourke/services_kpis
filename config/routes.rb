@@ -4,7 +4,9 @@ ServicesKpis::Application.routes.draw do
   resources :projects
   resources :report_cards
   resources :surveys
+  resources :happiness_surveys
   root  'services#home'
+  match '/my_happiness', to: 'happiness_surveys#show', via: 'get'
   match '/surveys/new/:id', to: 'surveys#new', via: 'get', as: 'surveys/new'
   match '/new_project',    to: 'projects#new_project',    via: 'get'
   match '/sign_in',    to: 'sessions#new',    via: 'get'
@@ -12,7 +14,7 @@ ServicesKpis::Application.routes.draw do
   match '/sign_up',    to: 'users#sign_up',    via: 'get'
   match '/home',    to: 'services#home',    via: 'get'
   match '/users', to: 'users#users', via: 'get'
-  match '/new_report_card',    to: 'report_cards#new_report_card',    via: 'get'
+  match '/report_cards/new/:project_name', to: 'report_cards#new', via: 'get', as: 'report_cards/new'
   match '/report_cards', to: 'report_cards#show', via: 'get'
   match '/all_report_cards', to: 'report_cards#show', via: 'get'
   match '/all_projects', to: 'projects#show', via: 'get'
