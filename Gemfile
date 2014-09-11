@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '2.0.0'
+ruby '2.1.2'
 #ruby-gemset=railstutorial_rails_4_0
 gem 'twitter-bootstrap-rails-cdn'
 gem 'bootstrap-sass', '2.3.2.0'
@@ -13,7 +13,7 @@ gem 'chartkick', '~> 1.3.2'
 gem 'pg'
 gem 'crowdflower'
 gem 'jquery-ui-rails'
-gem 'jquery-datatables-rails', '~> 2.2.1'
+gem 'jquery-datatables-rails', '~> 2.2.3'
 gem 'unicorn'
 
 group :development, :test do

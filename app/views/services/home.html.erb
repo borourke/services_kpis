@@ -1,12 +1,101 @@
-<div class="banner hero-unit">
-  
-  <span class="words"><h1>// KPItracker</h1>
-    <ul>
-     <div class="indent">
-      <li>track your KPIs</li>
-      <li>enter performance reviews</li>
-      <li>take a happiness survey</li>
-    </div>
-  </ul>
-</span>
+<%= javascript_tag do %>
+var medals_array = <%= @medals_array %>;
+<% end %>
+
+<script>
+console.log(medals_array)
+$(function () {
+	$('#container').highcharts({
+		chart: {
+			type: 'column'
+		},
+		title: {
+			text: 'Your Medal Count'
+		},
+		xAxis: {
+			type: 'category',
+			categories: [
+			'Gold', 
+			'Silver', 
+			'Bronze', 
+			'None', 
+			'N/A'
+			]
+		},
+		yAxis: {
+			min: 0,
+			title: {
+				text: 'Medal Count'
+			}
+		},
+		tooltip: {
+			headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+			pointFormat: '<tr><td padding:0">{series.name}: </td>' +
+			'<td style="padding:0"><b>{point.y}</b></td></tr>',
+			footerFormat: '</table>',
+			shared: true,
+			useHTML: true
+		},
+		plotOptions: {
+			column: {
+				pointPadding: 0.2,
+				borderWidth: 0
+			}
+		},
+		series: [{
+			name: 'Medals',
+			data: [{y: medals_array[0], color: '#FFCC00'}, {y: medals_array[1], color: 'silver'}, {y: medals_array[2], color: '#CC6633'},
+			{y: medals_array[3], color: 'red'}, {y: medals_array[4], color: 'black'}],
+			color: 'white',
+			dataLabels: {
+				enabled: true,
+				format: '{point.y}'
+			}
+		}],
+		legend: {
+			enabled: false
+		},
+	});
+
+$('#container2').highcharts({
+	chart: {
+		type: 'bar'
+	},
+	title: {
+		text: 'Fruit Consumption'
+	},
+	xAxis: {
+		categories: ['Apples', 'Bananas', 'Oranges']
+	},
+	yAxis: {
+		title: {
+			text: 'Fruit eaten'
+		}
+	},
+	series: [{
+		name: 'Jane',
+		data: [1, 0, 4]
+	}, {
+		name: 'John',
+		data: [5, 7, 3]
+	}]
+});
+});
+</script>\
+<div class="row-fluid">
+	<div class="well center span10 offset1 top">
+		<h1>Welcome Home, <%= current_user.name %>!</h1> 
+	</div>
+</div>
+
+<div class="row-fluid">
+	<div class="well span10 offset1"> 
+		<div id="container" style="width:100%; height:400px;"></div>
+	</div>
+</div>
+
+<div class="row-fluid">
+	<div class="well span10 offset1 bottom"> 
+		<div id="container2" style="width:100%; height:400px;"></div>
+	</div>
 </div>
