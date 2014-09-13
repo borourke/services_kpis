@@ -22,15 +22,15 @@
       <tbody>
         <% @report_card_tables.each do |report_card| %>
         <tr>
-          <td><%= report_card["project_name"] %></td>
-          <td><%= report_card["services_member"] %></td>
-          <td><%= report_card["job_score"] %></td>
-          <td><%= report_card["technical_score"] %></td>
-          <td><%= report_card["project_score"] %></td>
-          <td><%= report_card["efficiency_score"] %></td>
-          <td class="center"><%= report_card["points"] %></td>
-          <td><%= report_card["comments"] %></td>
-          <td class="center"><%= button_to "Edit", edit_report_card_path(id: report_card["report_card_id"]), class: "btn btn-small", method: "get" %></td>
+          <td><%= report_card[:project_name] %></td>
+          <td><%= report_card[:services_member] %></td>
+          <td><%= report_card[:job_score] %></td>
+          <td><%= report_card[:technical_score] %></td>
+          <td><%= report_card[:project_score] %></td>
+          <td><%= report_card[:efficiency_score] %></td>
+          <td class="center"><%= report_card[:points] %></td>
+          <td><%= report_card[:comments] %></td>
+          <td class="center"><%= button_to "Edit", edit_report_card_path(id: report_card[:report_card_id]), class: "btn btn-small", method: "get" %></td>
         </tr>
         <% end %>
       </tbody>
@@ -58,15 +58,15 @@
       <tbody>
         <% @report_card_tables.each do |report_card| %>
         <tr>
-          <td><%= report_card["project_name"] %></td>
-          <td><%= report_card["services_member"] %></td>
-          <td><%= report_card["job_array"] %></td>
-          <td><%= report_card["technical_array"] %></td>
-          <td><%= report_card["project_array"] %></td>
-          <td><%= report_card["efficiency_score"] %></td>
-          <td class="center"><%= report_card["points"] %></td>
-          <td><%= report_card["comments"] %></td>
-          <td class="center"><%= button_to "Edit", edit_report_card_path(id: report_card["report_card_id"]), class: "btn btn-small", method: "get" %></td>
+          <td><%= report_card[:project_name] %></td>
+          <td><%= report_card[:services_member] %></td>
+          <td><%= report_card[:job_array] %></td>
+          <td><%= report_card[:technical_array] %></td>
+          <td><%= report_card[:project_array] %></td>
+          <td><%= report_card[:efficiency_score] %></td>
+          <td class="center"><%= report_card[:points] %></td>
+          <td><%= report_card[:comments] %></td>
+          <td class="center"><%= button_to "Edit", edit_report_card_path(id: report_card[:report_card_id]), class: "btn btn-small", method: "get" %></td>
         </tr>
         <% end %>
       </tbody>

@@ -15,6 +15,7 @@ gem 'crowdflower'
 gem 'jquery-ui-rails'
 gem 'jquery-datatables-rails', '~> 2.2.3'
 gem 'unicorn'
+gem 'chronic'
 
 group :development, :test do
   gem 'sqlite3', '1.3.8'

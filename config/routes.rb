@@ -15,6 +15,7 @@ ServicesKpis::Application.routes.draw do
   match '/home',    to: 'services#home',    via: 'get'
   match '/users', to: 'users#users', via: 'get'
   match '/report_cards/new/:project_name', to: 'report_cards#new', via: 'get', as: 'report_cards/new'
+  match '/report_cards/:id/edit', to: 'report_cards#edit', via: 'get', as: 'report_cards/edit'  
   match '/report_cards', to: 'report_cards#show', via: 'get'
   match '/all_report_cards', to: 'report_cards#show', via: 'get'
   match '/all_projects', to: 'projects#show', via: 'get'
