@@ -1,6 +1,6 @@
 <fieldset>
 <legend class="center">Project Information</legend>
-<%= simple_form_for(@project, html: {class: 'span6 offset3 pull-left' }) do |f| %>
+<%= simple_form_for(@project, html: {class: 'form-horizontal' }) do |f| %>
 <%= render 'shared/project_error_messages' %>
   <%= f.input :project_name, placeholder: "eBay Human Judgment Rd 18" %>
   <%= f.input :team, collection: ["Business Data", "Content Generation", "SEO"], default: "Business Data" %>
