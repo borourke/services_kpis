@@ -30,8 +30,7 @@ class Service < ActiveRecord::Base
 		{
 			months: parse_time_to_months(times).uniq,
 			medals_count: get_medal_count_by_month(report_cards, parse_time_to_months(times).uniq)
-		}
-		
+		}	
 	end
 
 	private

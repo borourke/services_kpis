@@ -26,7 +26,8 @@ class UsersController < ApplicationController
 
   def my_report_cards
     @user = User.find(params[:id])
-    @report_cards_array = @user.report_card_chart_arrays
+    @report_cards_array = @user.report_card_tables_arrays
+    @report_cards_charts = User.report_card_charts(current_user.id)
   end
 
   def index

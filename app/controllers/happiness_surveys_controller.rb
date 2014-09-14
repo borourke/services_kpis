@@ -7,6 +7,8 @@ class HappinessSurveysController < ApplicationController
   end
 
   def show
+    @happiness_by_month_hash = HappinessSurvey.user_happiness_through_time(current_user.id)
+    @happiness_by_category = HappinessSurvey.user_happiness_by_category(current_user.id)
   end
 
   def index
