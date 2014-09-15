@@ -4,7 +4,6 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @tasks_grid = initialize_grid(ReportCard, conditions: {:user_id => params[:id]}, :include => [:project])
     @report_cards = ReportCard.where user_id: params[:id]
     @project_ids = @report_cards.collect { |x| x.project_id }
     @projects = Project.find(@project_ids)
@@ -27,7 +26,10 @@ class UsersController < ApplicationController
 
   def my_report_cards
     @user = User.find(params[:id])
-    @report_cards_array = @user.report_card_chart_arrays
+    @report_cards_array = @user.report_card_tables_arrays
+    @report_cards_charts = User.report_card_charts(current_user.id)
+    @medals_array = Service.get_medal_count(current_user)
+    @my_medals_month_hash = Service.get_medals_by_month(@user.id)
   end
 
   def index
@@ -75,7 +77,7 @@ class UsersController < ApplicationController
     def signed_in_user
       unless signed_in?
         store_location
-        redirect_to sign_in_url, notice: "Please sign in."
+        redirect_to sign_in_url, notice: "Please sign in, or create a new account."
       end
     end
 

@@ -1,2 +1,37 @@
-<h1>Surveys#show</h1>
-<p>Find me in app/views/surveys/show.html.erb</p>
+<div class="row-fluid">
+<div class="well center span10 offset1 top">
+  <h1>My Surveys | <%= @user.name %></h1>
+</div>
+</div>
+
+<div class="row-fluid">
+  <div class="span10 offset1 well bottom">
+    <h3 class="center">Surveys Table</h3>
+    <table id="my_surveys" class="display">
+      <thead>
+        <tr>
+          <th>Survey Name</th>
+          <th>Job Owner</th>
+          <th>PN</th>
+          <th>Respondants</th>
+          <th>Pay</th>
+          <th>Created At</th>
+          <th>Edit</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @surveys.each do |survey| %>
+        <tr>
+          <td><%= survey["name"] %></td>
+          <td><%= survey["owner"] %></td>
+          <td><%= survey["pn"] %></td>
+          <td class="center"><%= survey["respondants"] %></td>
+          <td class="center"><%= survey["pay"] %></td>
+          <td><%= survey["created_at"] %></td>
+          <td class="center"><%= button_to "Edit", edit_survey_path(id: survey["id"]), class: "btn btn-small", method: "get" %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table> 
+ </div>
+</div>

@@ -29,25 +29,25 @@ $(function() {
 
 <fieldset>
   
-  <%= simple_form_for(@report_card, html: {class: 'form-horizontal span7 offset2' }) do |f| %>
+  <%= simple_form_for(@report_card, html: {class: 'form-horizontal span12' }) do |f| %>
   <%= render 'shared/report_card_error_messages' %>
-  <legend class="center offset1">Report Card Info</legend>
-  <%= f.input :project_name, as: :string, placeholder: "Type project name here...", label: "Project Name" %>
+  <legend class="center">Report Card Info</legend>
+  <%= f.input :project_name, as: :string,  :input_html => { :value => @project_name }, label: "Project Name" %>
   <%= f.input :user_name, as: :string, placeholder: "Type services member's name here...", label: "Services Member", id: "services_members_autocomplete" %>
 
-  <legend class="center offset1">Job Scoring</legend>
+  <legend class="center">Job Scoring</legend>
   <%= f.input :job_score, label: "Overall Job Score", as: :radio_buttons, collection:[["Gold", "Gold"], ["Silver", "Silver"], ["Bronze", "Bronze"], ["None", "None"], ["Not Applicable", "N/A"]], item_wrapper_class: 'inline' %>
   <%= f.input :job_array, label: "Job Points", as: :check_boxes, collection:[["CML - Clean", "Clean CML"], ["CML - Commented", "Commented CML"], ["Instructions", "Instructions"], ["Tags", "Tags"]] %>
 
-  <legend class="center offset1">Technical Scoring</legend>
+  <legend class="center">Technical Scoring</legend>
   <%= f.input :technical_score, label: "Overall Technical Score", as: :radio_buttons, collection:[["Gold", "Gold"], ["Silver", "Silver"], ["Bronze", "Bronze"], ["None", "None"], ["Not Applicable", "N/A"]], item_wrapper_class: 'inline' %>
   <%= f.input :technical_array, label: "Technical Points", as: :check_boxes, collection:[["Code - Clean", "Clean Code"], ["Code - Utilized", "Utilized Code"], ["Code - Advanced", "Advanced Code"], ["Project - Complex Problem Solving", "Complex Problem Solving"]] %>
 
-  <legend class="center offset1">Project Scoring</legend>
+  <legend class="center">Project Scoring</legend>
   <%= f.input :project_score, label: " Overall Project Score", as: :radio_buttons, collection:[["Gold", "Gold"], ["Silver", "Silver"], ["Bronze", "Bronze"], ["None", "None"], ["Not Applicable", "N/A"]], item_wrapper_class: 'inline' %>
   <%= f.input :project_array, label: "Project Points", as: :check_boxes, collection:[["Delivery - Timely", "Timely Delivery"], ["Delivery - Documents", "Documents Delivered"], ["Communication - Excellent", "Excellent Communication"], ["Accuracy - High", "High Accuracy"], ["Spoilage - Low", "Low Spoilage"]] %>
 
-  <legend class="center offset1">Efficiency Scoring</legend>
+  <legend class="center">Efficiency Scoring</legend>
   <%= f.input :efficiency_score, label: "Best In Class", as: :radio_buttons, collection:[["Gold", "Gold"], ["Silver", "Silver"], ["Bronze", "Bronze"], ["None", "None"], ["Not Applicable", "N/A"]], item_wrapper_class: 'inline' %>
   <%= f.input :comments, label: "Comments", as: :text, item_wrapper_class: 'inline', :input_html => { class: "text_area_type_2" } %>
   <%= f.button :submit, class: "btn-primary pull-right" %>

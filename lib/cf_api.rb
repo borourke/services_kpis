@@ -20,15 +20,10 @@ class CfApi
     job = CrowdFlower::Job.new(new_job["id"])
 
     #Update CML and title
-    cml = '{% if prescreen = "yes" %} {{type}}' + prescreen_cml.to_s + '{% endif %}' + '{% if prescreen == "no" %}' + survey_cml.to_s + '{% endif %}' + '{% if prescreen == "dummy" %} {{type}} <cml:checkbox label="Check this box when you have completed this task" name="dummy" validates="required" gold="true"></cml:checkbox> {% endif %}'
-    sleep 60
-    job.update({:title => "#{title}"})
-    job.update({:problem => cml})
-
-    #First set the job settings
-    job.update({:project_number => "#{project_number}"})
-    job.update({:judgments_per_unit => (respondants.to_i)/100})
-    job.update({:payment_cents => payment_cents})
+    cml = '{% if prescreen == "yes" %}' + prescreen_cml.to_s + '{% endif %}' + '{% if prescreen == "no" %}' + survey_cml.to_s + '{% endif %}' + '{% if prescreen == "dummy" %}<cml:checkbox label="Check this box when you have completed this task" name="dummy" validates="required" gold="true"></cml:checkbox> {% endif %}'
+    sleep 10
+    job.update({:title => "#{title}", :problem => cml, :mail_to => job_owner, :project_number => "#{project_number}", :judgments_per_unit => (respondants.to_i)/100, payment_cents => payment_cents})
+    
     job_id = job.id
     `curl -X PUT --data-urlencode 'job[owner_email]=#{job_owner}' 'https://make.crowdflower.com/jobs/#{job_id}/settings/general.json?key=#{AUTH_KEY}'`
     return job_id

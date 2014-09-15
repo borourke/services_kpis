@@ -37,7 +37,7 @@ class ProjectsController < ApplicationController
 		@project = Project.new(project_params)
     	if @project.save
     	  flash.keep[:success] = "New Project Created!"
-    	  redirect_to '/new_report_card'
+    	  redirect_to new_report_card_path(project_name: params[:project][:project_name])
     	else
     	  render 'new_project'
     	end

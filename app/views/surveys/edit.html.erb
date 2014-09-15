@@ -1,2 +1,37 @@
-<h1>Surveys#edit</h1>
-<p>Find me in app/views/surveys/edit.html.erb</p>
+<div class="row-fluid">
+<div class="well center span10 offset1 top">
+  <h1>CF Services | <%= @user.name %></h1>
+</div>
+</div>
+
+<div class="row-fluid">
+<div class="well span10 offset1 bottom" bottom>
+  <h1 class="center">Edit Your Survey</h1>
+  <div class="row-fluid">
+  <div class="span6 offset3">
+    <hr>
+    <%= simple_form_for(@survey) do |f| %>
+      <h4>1. Fill out project information</h4>
+      <%= f.input :title, label: "Job Title" %>
+      <%= f.input :job_owner, label: "Job Owner" %>
+      <%= f.input :project_number, label: "Project Number" %>
+      <%= f.input :respondants, label: "Respondants" %>
+      <%= f.input :payment_cents, label: "Payment In Cents" %>
+      <%= f.hidden_field :user_id, :value => params[:id] %>
+      <hr>
+
+      <h4>2. Fill out CML for prescreen survey</h4>
+
+      <%= f.input :prescreen, as: :text, label: "Prescreen CML", :input_html => { class: "text_area" }%>
+
+      <h4>3. Fill out CML for actual survey</h4>
+
+      <%= f.input :survey, as: :text, label: "Survey CML", :input_html => { class: "text_area" }%>
+
+      <%= f.button :submit, "Edit Your Survey", class: "btn-primary pull-right" %>
+    <% end %>
+
+  </div>
+</div>
+</div>
+</div>

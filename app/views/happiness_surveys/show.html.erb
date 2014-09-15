@@ -1,0 +1,73 @@
+<div id="happiness_by_month_hash" data-happiness="<%= @happiness_by_month_hash.to_json %>"></div>
+<div id="happiness_by_category" data-happiness2="<%= @happiness_by_category.to_json %>"></div>
+
+<script>
+
+$(function () {
+	var happiness_by_month_drilldown = $('#happiness_by_month_hash').data('happiness');
+	var happiness_by_category = $('#happiness_by_category').data('happiness2');
+
+            // Create the chart
+            $('#happiness_drilldown').highcharts({
+                chart: {
+                    type: 'column'
+                },
+                title: {
+                    text: 'My Happiness by Month'
+                },
+                subtitle: {
+                    text: 'Click the columns to view happiness by category for that month.'
+                },
+                xAxis: {
+                    type: 'category'
+                },
+                yAxis: {
+                    title: {
+                        text: 'Happiness Percent'
+                    },
+                    min: 0,
+                    max: 100
+                },
+                legend: {
+                    enabled: false
+                },
+                plotOptions: {
+                    series: {
+                        borderWidth: 0,
+                        dataLabels: {
+                            enabled: true,
+                            format: '{point.y}%'
+                        }
+                    }
+                },
+
+                tooltip: {
+                    headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                    pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y}</b><br/>'
+                },
+
+                series: [{
+                    name: 'Happiness',
+                    colorByPoint: true,
+                    data: happiness_by_month_drilldown
+                }],
+                drilldown: {
+                    series: happiness_by_category
+                }
+            });
+
+});
+
+</script>
+
+<div class="row-fluid">
+<div class="row-fluid">
+    <div class="well center span10 offset1 top">
+       <h1>Your Happiness, <%= current_user.name %></h1> 
+   </div>
+</div>
+<div class="row-fluid">
+    <div class="well span10 offset1 bottom"> 
+        <div id="happiness_drilldown" style="width:100%; height:400px;"></div>
+    </div>
+</div>

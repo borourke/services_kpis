@@ -5,6 +5,10 @@
                                            "data-turbolinks-track" => true %>
     <%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
     <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+    <%= javascript_include_tag "http://code.highcharts.com/highcharts.js", "data-turbolinks-track" => true %>
+     <%= javascript_include_tag "http://code.highcharts.com/modules/drilldown.js", "data-turbolinks-track" => true %>
+    <%= javascript_include_tag "http://code.highcharts.com/highcharts-more.js", "data-turbolinks-track" => true %>
+    <%= javascript_include_tag "http://code.highcharts.com/modules/solid-gauge.src.js", "data-turbolinks-track" => true %>
     <%= csrf_meta_tags %>
     <%= render 'layouts/shim' %>
   </head>
@@ -12,11 +16,10 @@
     <div class="row-fluid">
       <%= render 'layouts/top_bar' %>
       <% flash.each do |key, value| %>
-        <div class="alert alert-<%= key %>"><%= value %></div>
+        <div class="alert alert-<%= key %> center"><%= value %></div>
       <% end %>
     <div class="full">
     <%= yield %> 
-    <%= render 'layouts/bottom_bar' %>
     </div>
   </div>
   </body>

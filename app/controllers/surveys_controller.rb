@@ -1,6 +1,8 @@
 require 'cf_api'
 
 class SurveysController < ApplicationController
+  before_action :signed_in_user
+  
   def new
     @survey = Survey.new
     @user = User.find(params[:id])
@@ -26,6 +28,8 @@ class SurveysController < ApplicationController
   end
 
   def edit
+    @survey = Survey.find(params[:id])
+    @user = current_user
   end
 
   def destroy
@@ -35,6 +39,8 @@ class SurveysController < ApplicationController
   end
 
   def show
+    @user = current_user
+    @surveys = Survey.generate_surveys_table(@user)
   end
 
   private

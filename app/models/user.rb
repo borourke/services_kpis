@@ -11,6 +11,9 @@ class User < ActiveRecord::Base
   has_secure_password
   validates :password, length: { minimum: 6 }, on: :create
 
+  FIELD_OPTIONS = ["Gold", "Silver", "Bronze", "None", "N/A"]
+  SCORE_FIELDS = ['job', 'delivery', 'project', 'technical', 'efficiency']
+
   def User.new_remember_token
     SecureRandom.urlsafe_base64
   end
@@ -32,21 +35,35 @@ class User < ActiveRecord::Base
     }
   end
 
-  def report_card_chart_arrays
+  def report_card_tables_arrays
     report_cards = ReportCard.where(user_id: self.id)
 
     {
       tables: create_report_card_tables_array(report_cards),
-      overall: create_overall_medal_count_hash(report_cards),
-      job: create_job_medal_count_hash(report_cards),
-      technical: create_technical_medal_count_hash(report_cards),
-      project: create_project_medal_count_hash(report_cards),
-      efficiency: create_efficiency_medal_count_hash(report_cards)
+    }
+  end
+
+  def self.report_card_charts(user_id)
+    if user_id == "all"
+      report_cards = ReportCard.all
+    else
+      report_cards = ReportCard.where(user_id: user_id)
+    end
+    {
+      gold: create_medal_count_array(report_cards, "Gold"),
+      silver: create_medal_count_array(report_cards, "Silver"),
+      bronze: create_medal_count_array(report_cards, "Bronze"),
+      none: create_medal_count_array(report_cards, "None"),
+      na: create_medal_count_array(report_cards, "N/A")
     }
   end
     
 
 private
+
+  def self.get_project_names(user_id)
+    ReportCard.where(user_id: user_id).pluck(:project_name)
+  end
 
   def create_report_card_tables_array(report_cards)
     report_cards.each_with_object([]) do |report_card, array|
@@ -99,52 +116,15 @@ private
     return hash
   end
 
-  def create_job_medal_count_hash(report_cards)
+  def self.create_medal_count_array(report_cards, medal)
     hash = Hash.new(0)
     report_cards.each do |report_card|
-      hash["Gold"] += 1 if report_card.job_score == "Gold"
-      hash["Silver"] += 1 if report_card.job_score == "Silver"
-      hash["Bronze"] += 1 if report_card.job_score == "Bronze"
-      hash["None"] += 1 if report_card.job_score == "None"
-      hash["Not Applicable"] += 1 if report_card.job_score == "N/A"
+      hash["Job"] += 1 if report_card.job_score == medal
+      hash["Technical"] += 1 if report_card.technical_score == medal
+      hash["Project"] += 1 if report_card.project_score == medal
+      hash["Efficiency"] += 1 if report_card.efficiency_score == medal
     end
-    array = [["Gold", hash["Gold"]], ["Silver", hash["Silver"]], ["Bronze", hash["Bronze"]], ["None", hash["None"]], ["Not Applicable", hash["Not Applicable"]]] 
-  end
-
-  def create_technical_medal_count_hash(report_cards)
-    hash = Hash.new(0)
-    report_cards.each do |report_card|
-      hash["Gold"] += 1 if report_card.technical_score == "Gold"
-      hash["Silver"] += 1 if report_card.technical_score == "Silver"
-      hash["Bronze"] += 1 if report_card.technical_score == "Bronze"
-      hash["None"] += 1 if report_card.technical_score == "None"
-      hash["Not Applicable"] += 1 if report_card.technical_score == "N/A"
-    end
-    array = [["Gold", hash["Gold"]], ["Silver", hash["Silver"]], ["Bronze", hash["Bronze"]], ["None", hash["None"]], ["Not Applicable", hash["Not Applicable"]]] 
-  end
-
-  def create_project_medal_count_hash(report_cards)
-    hash = Hash.new(0)
-    report_cards.each do |report_card|
-      hash["Gold"] += 1 if report_card.project_score == "Gold"
-      hash["Silver"] += 1 if report_card.project_score == "Silver"
-      hash["Bronze"] += 1 if report_card.project_score == "Bronze"
-      hash["None"] += 1 if report_card.project_score == "None"
-      hash["Not Applicable"] += 1 if report_card.project_score == "N/A"
-    end
-    array = [["Gold", hash["Gold"]], ["Silver", hash["Silver"]], ["Bronze", hash["Bronze"]], ["None", hash["None"]], ["Not Applicable", hash["Not Applicable"]]] 
-  end
-
-  def create_efficiency_medal_count_hash(report_cards)
-    hash = Hash.new(0)
-    report_cards.each do |report_card|
-      hash["Gold"] += 1 if report_card.efficiency_score == "Gold"
-      hash["Silver"] += 1 if report_card.efficiency_score == "Silver"
-      hash["Bronze"] += 1 if report_card.efficiency_score == "Bronze"
-      hash["None"] += 1 if report_card.efficiency_score == "None"
-      hash["Not Applicable"] += 1 if report_card.efficiency_score == "N/A"
-    end
-    array = [["Gold", hash["Gold"]], ["Silver", hash["Silver"]], ["Bronze", hash["Bronze"]], ["None", hash["None"]], ["Not Applicable", hash["Not Applicable"]]] 
+    return [hash["Job"], hash["Technical"], hash["Project"], hash["Efficiency"]]
   end
 
   def create_spoilage_array(projects)
