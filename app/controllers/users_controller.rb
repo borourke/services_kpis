@@ -28,6 +28,8 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @report_cards_array = @user.report_card_tables_arrays
     @report_cards_charts = User.report_card_charts(current_user.id)
+    @medals_array = Service.get_medal_count(current_user)
+    @my_medals_month_hash = Service.get_medals_by_month(@user.id)
   end
 
   def index

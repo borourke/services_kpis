@@ -24,13 +24,20 @@ class Service < ActiveRecord::Base
 		end
 	end
 
-	def self.get_medals_by_month
-		report_cards = ReportCard.all
-		times = ReportCard.all.pluck(:created_at)
+	def self.get_medals_by_month(user)
+		if user == "all"
+			report_cards = ReportCard.all
+			times = ReportCard.all.pluck(:created_at)
+		else
+			report_cards = ReportCard.where(user_id: user)
+			times = ReportCard.where(user_id: user).pluck(:created_at)
+		end
+		
 		{
 			months: parse_time_to_months(times).uniq,
 			medals_count: get_medal_count_by_month(report_cards, parse_time_to_months(times).uniq)
 		}	
+
 	end
 
 	private
