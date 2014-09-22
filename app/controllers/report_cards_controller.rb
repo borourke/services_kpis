@@ -4,12 +4,8 @@ class ReportCardsController < ApplicationController
   def edit
     @report_card = ReportCard.find(params[:id])
     @services_members = ReportCard.get_all_services_members
-    
-    
-    @project_names = []
-    projects.each do |project|
-      @project_names << project.project_name
-    end
+    @project_names = ReportCard.get_all_project_names
+    @project_name = @report_card.project_name
   end
 
   def update

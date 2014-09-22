@@ -27,7 +27,7 @@
             </a>
             <ul class="dropdown-menu">
               <li role="presentation" class="dropdown-header"><%= link_to "New Survey", new_survey_path(id: current_user.id)%></li>
-              <li role="presentation" class="dropdown-header"><%= link_to "My Surveys", 'surveys/show' %></li>
+              <li role="presentation" class="dropdown-header"><%= link_to "My Surveys", survey_path(id: current_user.id) %></li>
             </ul>
           </li>
           <li class="dropdown">
@@ -36,8 +36,8 @@
               <b class="caret"></b>
             </a>
             <ul class="dropdown-menu">
-              <li role="presentation" class="dropdown-header"><%= link_to "Take A New Survey", 'happiness_surveys/new' %></li>
-              <li role="presentation" class="dropdown-header"><%= link_to "My Happiness", 'my_happiness' %></li>
+              <li role="presentation" class="dropdown-header"><%= link_to "Take A New Growth and Development Survey", new_happiness_survey_path %></li>
+              <li role="presentation" class="dropdown-header"><%= link_to "My Growth and Development", my_happiness_path %></li>
             </ul>
           </li>
           <li class="dropdown">

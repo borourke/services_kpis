@@ -35,15 +35,14 @@ class ReportCard < ActiveRecord::Base
     end
   end
 
-  def get_all_services_members
+  def self.get_all_services_members
     users = User.all
     users.each_with_object([]) do |user, array|
       array << user.name
     end
-    return array
   end
 
-  def get_all_project_names
+  def self.get_all_project_names
     projects = Project.all
   end
 end
