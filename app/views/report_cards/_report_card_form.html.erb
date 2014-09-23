@@ -19,10 +19,20 @@ $(function() {
   console.log(services_members)
   console.log(names)
   $( "#report_card_user_name" ).autocomplete({
-    source: names
+    source: names,
+    change: function( event, ui ){
+      if ( !ui.item ){
+        this.value = ''
+      }
+    }
   });
   $( "#report_card_project_name" ).autocomplete({
-    source: projects
+    source: projects,
+    change: function( event, ui ){
+      if ( !ui.item ){
+        this.value = ''
+      }
+    }
   });
 });
 </script>
