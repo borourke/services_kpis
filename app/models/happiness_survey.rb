@@ -4,9 +4,6 @@ class HappinessSurvey < ActiveRecord::Base
     :recognition, :support, :stamina, :growth, :development, 
     :comments, presence: true
 
-  FIELD_OPTIONS = ["Gold", "Silver", "Bronze", "None", "N/A"]
-  SCORE_FIELDS = ['job', 'delivery', 'project', 'technical', 'efficiency']
-
   def self.user_happiness_through_time(user_id)
     surveys = HappinessSurvey.where(user_id: user_id)
     surveys.each_with_object([]) do |survey, happiness_by_month|
