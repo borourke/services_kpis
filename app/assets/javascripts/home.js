@@ -1,14 +1,3 @@
-<div id="channing-is-fucking-awesome" data-medals="<%= @medals_count_all_time.to_json %>"></div>
-<div id="month_medals_hash" data-medals="<%= @medals_month_hash.to_json %>"></div>
-<div id="my_month_medals_hash" data-medals="<%= @my_medals_month_hash.to_json %>"></div>
-<div id="happiness_by_month_hash" data-happiness="<%= @happiness_by_month.to_json %>"></div>
-<div id="happiness_by_category" data-happiness2="<%= @happiness_by_category.to_json %>"></div>
-<div id="medals_array" data-medals="<%= @medals_array.to_json %>"></div>
-<div id="user_name" data-user="<%= @user.name %>"></div>
-<div id="report_cards" data-reports="<%= @report_cards_charts.to_json %>"></div>
-<div id="all_report_cards" data-reports="<%= @all_report_cards_charts.to_json %>"></div>
-
-<script>
 $(function () {
   var report_cards = $("#report_cards").data('reports')
   $('#my_report_cards').highcharts({
@@ -203,7 +192,7 @@ $(function () {
 
     // the value axis
     yAxis: {
-      stops: [
+    	stops: [
             [0.25, '#DF5353'], // red
             [0.50, '#DDDF0D'], // yellow
             [0.75, '#55BF3B'] // green
@@ -213,10 +202,10 @@ $(function () {
             tickPixelInterval: 400,
             tickWidth: 0,
             title: {
-              y: -160
+            	y: -160
             },
             labels: {
-              y: 16
+            	y: 16
             }
           },
 
@@ -233,28 +222,28 @@ $(function () {
 
 // The speed gauge
 $('#happiness_gauge').highcharts(Highcharts.merge(gaugeOptions, {
-  yAxis: {
-    min: 0,
-    max: 100,
-    title: {
-      text: '<span style="font-size:18px;color:black">Average Happiness This Month</span>'
-    }
-  },
+	yAxis: {
+		min: 0,
+		max: 100,
+		title: {
+			text: '<span style="font-size:18px;color:black">Average Happiness This Month</span>'
+		}
+	},
 
-  credits: {
-    enabled: false
-  },
+	credits: {
+		enabled: false
+	},
 
-  series: [{
-    name: 'Speed',
-    data: [<%= @this_months_happiness_average %>],
-    dataLabels: {
-      format: '<div style="text-align:center"><span style="font-size:25px;color:' +
-      ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">{y}</span><br/>' +
-      '<span style="font-size:18px;color:black">Services Happiness</span></div>'
-    },
-    tooltip: {
-      valueSuffix: 'Smiles :)'
+	series: [{
+		name: 'Speed',
+		data: [<%= @this_months_happiness_average %>],
+		dataLabels: {
+			format: '<div style="text-align:center"><span style="font-size:25px;color:' +
+			((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">{y}</span><br/>' +
+			'<span style="font-size:18px;color:black">Services Happiness</span></div>'
+		},
+		tooltip: {
+			valueSuffix: 'Smiles :)'
 }
 }]
 
@@ -267,54 +256,54 @@ $(function () {
 
 // Medal Counts
 $('#all_time_medals_chart').highcharts({
-  chart: {
-    type: 'column'
-  },
-  title: {
-    text: 'Services All Time Medal Count'
-  },
-  xAxis: {
-    type: 'category',
-    categories: [
-    'Gold', 
-    'Silver', 
-    'Bronze', 
-    'None', 
-    'N/A'
-    ]
-  },
-  yAxis: {
-    min: 0,
-    title: {
-      text: 'Medal Count'
-    }
-  },
-  tooltip: {
-    headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-    pointFormat: '<tr><td padding:0">{series.name}: </td>' +
-    '<td style="padding:0"><b>{point.y}</b></td></tr>',
-    footerFormat: '</table>',
-    shared: true,
-    useHTML: true
-  },
-  plotOptions: {
-    column: {
-      pointPadding: 0.2,
-      borderWidth: 0
-    }
-  },
-  series: [{
-    name: 'Medals',
-    data: [{y: medals_hash['Gold'], color: '#FFCC00'}, {y: medals_hash['Silver'], color: 'silver'}, {y: medals_hash['Bronze'], color: '#CC6633'}, {y: medals_hash['None'], color: 'red'}, {y: medals_hash['N/A'], color: 'black'}],
-    color: 'white',
-    dataLabels: {
-      enabled: true,
-      format: '{point.y}'
-    }
-  }],
-  legend: {
-    enabled: false
-  },
+	chart: {
+		type: 'column'
+	},
+	title: {
+		text: 'Services All Time Medal Count'
+	},
+	xAxis: {
+		type: 'category',
+		categories: [
+		'Gold', 
+		'Silver', 
+		'Bronze', 
+		'None', 
+		'N/A'
+		]
+	},
+	yAxis: {
+		min: 0,
+		title: {
+			text: 'Medal Count'
+		}
+	},
+	tooltip: {
+		headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+		pointFormat: '<tr><td padding:0">{series.name}: </td>' +
+		'<td style="padding:0"><b>{point.y}</b></td></tr>',
+		footerFormat: '</table>',
+		shared: true,
+		useHTML: true
+	},
+	plotOptions: {
+		column: {
+			pointPadding: 0.2,
+			borderWidth: 0
+		}
+	},
+	series: [{
+		name: 'Medals',
+		data: [{y: medals_hash['Gold'], color: '#FFCC00'}, {y: medals_hash['Silver'], color: 'silver'}, {y: medals_hash['Bronze'], color: '#CC6633'}, {y: medals_hash['None'], color: 'red'}, {y: medals_hash['N/A'], color: 'black'}],
+		color: 'white',
+		dataLabels: {
+			enabled: true,
+			format: '{point.y}'
+		}
+	}],
+	legend: {
+		enabled: false
+	},
 });
 
 });
@@ -583,64 +572,3 @@ $(function () {
             });
 
 });
-
-</script>
-<div class="row-fluid">
-  <div class="well center span10 offset1 top">
-   <h1>Welcome Home, <%= current_user.name %>!</h1> 
- </div>
-</div>
-<% if current_user.admin? %>
-<div class="row-fluid">
-  <div class="well span5 offset1"> 
-   <div id="happiness_gauge" style="width:100%; height:400px;"></div>
- </div>
-
- <div class="well span5"> 
-   <div id="all_time_medals_chart" style="width:100%; height:400px;"></div>
- </div>
-</div>
-
-<div class="row-fluid">
-  <div class="well span10 offset1"> 
-    <div id="month_medals_chart" style="width:100%; height:400px;"></div>
-  </div>
-</div>
-
-<div class="row-fluid">
-  <div class="well span10 offset1"> 
-    <div id="services_report_cards" style="width:100%; height:400px;"></div>
-  </div>
-</div>
-
-<div class="row-fluid">
-  <div class="well span10 offset1 bottom"> 
-    <div id="happiness_by_month" style="width:100%; height:400px;"></div>
-  </div>
-</div>
-
-<% elsif !(current_user.admin?) %>
-
-<div class="row-fluid">
-  <div class="well span5 offset1"> 
-   <div id="happiness_gauge" style="width:100%; height:400px;"></div>
- </div>
-
- <div class="well span5"> 
-   <div id="my_medals_chart" style="width:100%; height:400px;"></div>
- </div>
-</div>
-
-<div class="row-fluid">
-  <div class="well span10 offset1"> 
-    <div id="my_month_medals_chart" style="width:100%; height:400px;"></div>
-  </div>
-</div>
-
-<div class="row-fluid">
-  <div class="well span10 offset1"> 
-    <div id="my_report_cards" style="width:100%; height:400px;"></div>
-  </div>
-</div>
-
-<% end %>
