@@ -567,15 +567,14 @@ $(function () {
               },
 
               tooltip: {
-                
                 formatter: function() {
                   if(this.series.levelNumber){
                     category = happiness_distributions_by_category[round][this["key"].toLowerCase()]
-                    return '<span style="font-size:11px"><b>'+this["key"]+'</b></span><br>Terrible: '+category[0]+'<br>Bad: '+category[1]+'<br>Okay: '+category[2]+'<br>Pretty Good: '+category[3]+'<br>Excellent: '+category[4];
+                    return '<span style="font-size:11px"><b>'+this["key"]+'</b></span><br>Excellent: '+category[4]+'<br>Pretty Good: '+category[3]+'<br>Okay: '+category[2]+'<br>Bad: '+category[1]+'<br>Terrible: '+category[0];
                   } else {
                     round = this["key"];
                     console.log(round)
-                    return '<span style="font-size:11px">'+this["key"]+'</span><br><br>'+this["y"];
+                    return '<span style="font-size:11px">'+this["key"]+'</span><br><br>'+this["y"]+'%';
                   }
                 }
               },
