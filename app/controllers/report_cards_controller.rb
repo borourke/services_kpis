@@ -38,6 +38,17 @@ class ReportCardsController < ApplicationController
   end
 
   def create
+    @project_name = params[:project_name]
+    users = User.all
+    @services_members = []
+    users.each do |user|
+      @services_members << user.name
+    end
+    projects = Project.all
+    @project_names = []
+    projects.each do |project|
+      @project_names << project.project_name
+    end
     @report_card = ReportCard.new(report_card_params)
     if @report_card.save(report_card_params)
       flash.keep[:success] = "New Report Card Created!"
