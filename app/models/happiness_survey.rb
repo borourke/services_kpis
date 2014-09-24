@@ -88,6 +88,22 @@ class HappinessSurvey < ActiveRecord::Base
     end
   end
 
+  def self.happiness_distributions_by_month
+    categories = [:meaning, :enthusiasm, :pride, :energy, :recognition, :support, :stamina, :growth, :development]
+    rounds = HappinessSurvey.all.pluck(:round).uniq.flatten
+    rounds.each_with_object({}) do |round, happiness_distributions_by_month|
+      happiness_distributions_by_month[round] = {}
+      categories.each do |category|
+        scores = HappinessSurvey.where(round: round).pluck(category).flatten
+        count = {"1" => 0, "2" => 0, "3" => 0, "4" => 0, "5" => 0}
+        scores.each do |one|
+          count["#{one}"] += 1
+        end
+        happiness_distributions_by_month[round][category] = count.values
+      end
+    end
+  end
+
   def self.digest_current_round_submission
     formatted_time
   end

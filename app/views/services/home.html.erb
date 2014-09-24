@@ -7,93 +7,95 @@
 <div id="user_name" data-user="<%= @user.name %>"></div>
 <div id="report_cards" data-reports="<%= @report_cards_charts.to_json %>"></div>
 <div id="all_report_cards" data-reports="<%= @all_report_cards_charts.to_json %>"></div>
+<div id="happiness_distributions" data-happiness3="<%= @happiness_distributions_by_category.to_json %>"></div>
+
+
 
 <script>
-$(function () {
-  var report_cards = $("#report_cards").data('reports')
-  $('#my_report_cards').highcharts({
-    chart: {
-      type: 'column'
-    },
-    title: {
-      text: 'Medals Count by Report Card Category'
-    },
-    xAxis: {
-      categories: ['Job Medals', 'Project Medals', 
-      'Technical Medals', 'Efficiency Medals']
-    },
-    yAxis: {
-      min: 0,
+  $(function () {
+    var report_cards = $("#report_cards").data('reports')
+    $('#my_report_cards').highcharts({
+      chart: {
+        type: 'column'
+      },
       title: {
-        text: 'Medal Count'
-      }
-    },
-    tooltip: {
-      headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-      pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-      '<td style="padding:0"><b>{point.y}</b></td></tr>',
-      footerFormat: '</table>',
-      shared: true,
-      useHTML: true
-    },
-    plotOptions: {
-      column: {
-        pointPadding: 0.2,
-        borderWidth: 0
-      }
-    },
-    series: [{
-      name: 'Gold',
-      data: report_cards["gold"],
-      color: '#FFCC00',
-      dataLabels: {
-        enabled: true,
-        format: '{point.y}'
-      }
+        text: 'Medals Count by Report Card Category'
+      },
+      xAxis: {
+        categories: ['Job Medals', 'Project Medals', 
+        'Technical Medals', 'Efficiency Medals']
+      },
+      yAxis: {
+        min: 0,
+        title: {
+          text: 'Medal Count'
+        }
+      },
+      tooltip: {
+        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+        '<td style="padding:0"><b>{point.y}</b></td></tr>',
+        footerFormat: '</table>',
+        shared: true,
+        useHTML: true
+      },
+      plotOptions: {
+        column: {
+          pointPadding: 0.2,
+          borderWidth: 0
+        }
+      },
+      series: [{
+        name: 'Gold',
+        data: report_cards["gold"],
+        color: '#FFCC00',
+        dataLabels: {
+          enabled: true,
+          format: '{point.y}'
+        }
 
-    }, {
-      name: 'Silver',
-      data: report_cards["silver"],
-      color: 'silver',
-      dataLabels: {
-        enabled: true,
-        format: '{point.y}'
-      }
+      }, {
+        name: 'Silver',
+        data: report_cards["silver"],
+        color: 'silver',
+        dataLabels: {
+          enabled: true,
+          format: '{point.y}'
+        }
 
-    }, {
-      name: 'Bronze',
-      data: report_cards["bronze"],
-      color: '#CC6633',
-      dataLabels: {
-        enabled: true,
-        format: '{point.y}'
-      }
+      }, {
+        name: 'Bronze',
+        data: report_cards["bronze"],
+        color: '#CC6633',
+        dataLabels: {
+          enabled: true,
+          format: '{point.y}'
+        }
 
-    }, {
-      name: 'None',
-      data: report_cards["none"],
-      color: 'red',
-      dataLabels: {
-        enabled: true,
-        format: '{point.y}'
-      }
+      }, {
+        name: 'None',
+        data: report_cards["none"],
+        color: 'red',
+        dataLabels: {
+          enabled: true,
+          format: '{point.y}'
+        }
 
-    }, {
-      name: 'N/A',
-      data: report_cards["na"],
-      color: 'black',
-      dataLabels: {
-        enabled: true,
-        format: '{point.y}'
-      }
+      }, {
+        name: 'N/A',
+        data: report_cards["na"],
+        color: 'black',
+        dataLabels: {
+          enabled: true,
+          format: '{point.y}'
+        }
 
-    }]
-  });
+      }]
+    });
 });
 
 $(function () {
   var report_cards = $("#all_report_cards").data('reports')
-  console.log(report_cards)
   $('#services_report_cards').highcharts({
     chart: {
       type: 'column'
@@ -379,7 +381,6 @@ $('#my_medals_chart').highcharts({
 
 $(function () {
   var month_medals_hash = $("#month_medals_hash").data('medals');
-  console.log(month_medals_hash)
   $('#month_medals_chart').highcharts({
     chart: {
       type: 'column'
@@ -444,7 +445,6 @@ $(function () {
 
 $(function () {
   var month_medals_hash = $("#my_month_medals_hash").data('medals');
-  console.log(month_medals_hash)
   $('#my_month_medals_chart').highcharts({
     chart: {
       type: 'column'
@@ -530,8 +530,7 @@ $(function () {
 $(function () {
   var happiness_by_month_drilldown = $('#happiness_by_month_hash').data('happiness');
   var happiness_by_category = $('#happiness_by_category').data('happiness2');
-  console.log(happiness_by_month_drilldown);
-  console.log(happiness_by_category);
+  var happiness_distributions_by_category = $('#happiness_distributions').data('happiness3')
 
             // Create the chart
             $('#happiness_by_month').highcharts({
@@ -568,8 +567,17 @@ $(function () {
               },
 
               tooltip: {
-                headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
-                pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y}</b><br/>'
+                
+                formatter: function() {
+                  if(this.series.levelNumber){
+                    category = happiness_distributions_by_category[round][this["key"].toLowerCase()]
+                    return '<span style="font-size:11px"><b>'+this["key"]+'</b></span><br>Terrible: '+category[0]+'<br>Bad: '+category[1]+'<br>Okay: '+category[2]+'<br>Pretty Good: '+category[3]+'<br>Excellent: '+category[4];
+                  } else {
+                    round = this["key"];
+                    console.log(round)
+                    return '<span style="font-size:11px">'+this["key"]+'</span><br><br>'+this["y"];
+                  }
+                }
               },
 
               series: [{
@@ -591,6 +599,7 @@ $(function () {
  </div>
 </div>
 <% if current_user.admin? %>
+
 <div class="row-fluid">
   <div class="well span5 offset1"> 
    <div id="happiness_gauge" style="width:100%; height:400px;"></div>
