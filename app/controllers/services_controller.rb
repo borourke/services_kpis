@@ -9,6 +9,7 @@ class ServicesController < ApplicationController
 		@my_medals_month_hash = Service.get_medals_by_month(@user.id)
 		@happiness_by_month = HappinessSurvey.all_users_happiness_through_time
 		@happiness_by_category = HappinessSurvey.all_users_happiness_by_category_by_month
+		@happiness_distributions_by_category = HappinessSurvey.happiness_distributions_by_month
 		@medals_array = Service.get_medal_count(current_user)
 		@report_cards_charts = User.report_card_charts(current_user.id)
 		@all_report_cards_charts = User.report_card_charts("all")

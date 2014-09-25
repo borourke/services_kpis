@@ -4,9 +4,6 @@ class HappinessSurvey < ActiveRecord::Base
     :recognition, :support, :stamina, :growth, :development, 
     :comments, presence: true
 
-  FIELD_OPTIONS = ["Gold", "Silver", "Bronze", "None", "N/A"]
-  SCORE_FIELDS = ['job', 'delivery', 'project', 'technical', 'efficiency']
-
   def self.user_happiness_through_time(user_id)
     surveys = HappinessSurvey.where(user_id: user_id)
     surveys.each_with_object([]) do |survey, happiness_by_month|
@@ -92,6 +89,22 @@ class HappinessSurvey < ActiveRecord::Base
           ['Development', (development_avg.to_f / 5.0)*100.round]
         ]
       }
+    end
+  end
+
+  def self.happiness_distributions_by_month
+    categories = [:meaning, :enthusiasm, :pride, :energy, :recognition, :support, :stamina, :growth, :development]
+    rounds = HappinessSurvey.all.pluck(:round).uniq.flatten
+    rounds.each_with_object({}) do |round, happiness_distributions_by_month|
+      happiness_distributions_by_month[round] = {}
+      categories.each do |category|
+        scores = HappinessSurvey.where(round: round).pluck(category).flatten
+        count = {"1" => 0, "2" => 0, "3" => 0, "4" => 0, "5" => 0}
+        scores.each do |one|
+          count["#{one}"] += 1
+        end
+        happiness_distributions_by_month[round][category] = count.values
+      end
     end
   end
 

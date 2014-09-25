@@ -16,13 +16,23 @@ projects = projects.split(", ");
 
 <script>
 $(function() {
-  console.log(services_members)
-  console.log(names)
+  // console.log(services_members)
+  // console.log(names)
   $( "#report_card_user_name" ).autocomplete({
-    source: names
+    source: names,
+    change: function( event, ui ){
+      if ( !ui.item ){
+        this.value = ''
+      }
+    }
   });
   $( "#report_card_project_name" ).autocomplete({
-    source: projects
+    source: projects,
+    change: function( event, ui ){
+      if ( !ui.item ){
+        this.value = ''
+      }
+    }
   });
 });
 </script>
@@ -32,8 +42,8 @@ $(function() {
   <%= simple_form_for(@report_card, html: {class: 'form-horizontal span12' }) do |f| %>
   <%= render 'shared/report_card_error_messages' %>
   <legend class="center">Report Card Info</legend>
-  <%= f.input :project_name, as: :string,  :input_html => { :value => @project_name }, label: "Project Name" %>
-  <%= f.input :user_name, as: :string, placeholder: "Type services member's name here...", label: "Services Member", id: "services_members_autocomplete" %>
+  <%= f.input :project_name, as: :string,  :input_html => { :value => @project_name }, placeholder: "Begin typing and click to select project...", label: "Project Name" %>
+  <%= f.input :user_name, as: :string, placeholder: "Begin typing and click to select services member...", label: "Services Member", id: "services_members_autocomplete" %>
 
   <legend class="center">Job Scoring</legend>
   <%= f.input :job_score, label: "Overall Job Score", as: :radio_buttons, collection:[["Gold", "Gold"], ["Silver", "Silver"], ["Bronze", "Bronze"], ["None", "None"], ["Not Applicable", "N/A"]], item_wrapper_class: 'inline' %>
