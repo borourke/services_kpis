@@ -8,6 +8,7 @@
 <div id="report_cards" data-reports="<%= @report_cards_charts.to_json %>"></div>
 <div id="all_report_cards" data-reports="<%= @all_report_cards_charts.to_json %>"></div>
 <div id="happiness_distributions" data-happiness3="<%= @happiness_distributions_by_category.to_json %>"></div>
+<div id="happiness_guage" data-happ="<%= @this_months_happiness_average %>"></div>
 
 
 
@@ -177,7 +178,8 @@ $(function () {
 });
 
 $(function () {
-
+  var happiness_number = $("#happiness_guage").data('happ');
+  console.log(happiness_number);
   var gaugeOptions = {
 
    chart: {
@@ -249,7 +251,7 @@ $('#happiness_gauge').highcharts(Highcharts.merge(gaugeOptions, {
 
   series: [{
     name: 'Speed',
-    data: [25],
+    data: [happiness_number],
     dataLabels: {
       format: '<div style="text-align:center"><span style="font-size:25px;color:' +
       ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">{y}</span><br/>' +
@@ -599,7 +601,7 @@ $(function () {
 </div>
 
 <div class="well">
-  <p><%= @happiness_by_category %></p>
+  <p><%= @this_months_happiness_average %></p>
 </div>
 <% if current_user.admin? %>
 
