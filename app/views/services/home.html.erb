@@ -93,7 +93,6 @@ $(function () {
 
 $(function () {
   var report_cards = $("#all_report_cards").data('reports')
-  console.log(report_cards)
   $('#services_report_cards').highcharts({
     chart: {
       type: 'column'
@@ -247,7 +246,7 @@ $('#happiness_gauge').highcharts(Highcharts.merge(gaugeOptions, {
 
   series: [{
     name: 'Speed',
-    data: [<%= @this_months_happiness_average %>],
+    data: [25],
     dataLabels: {
       format: '<div style="text-align:center"><span style="font-size:25px;color:' +
       ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">{y}</span><br/>' +
@@ -379,7 +378,6 @@ $('#my_medals_chart').highcharts({
 
 $(function () {
   var month_medals_hash = $("#month_medals_hash").data('medals');
-  console.log(month_medals_hash)
   $('#month_medals_chart').highcharts({
     chart: {
       type: 'column'
@@ -444,7 +442,6 @@ $(function () {
 
 $(function () {
   var month_medals_hash = $("#my_month_medals_hash").data('medals');
-  console.log(month_medals_hash)
   $('#my_month_medals_chart').highcharts({
     chart: {
       type: 'column'
@@ -530,8 +527,6 @@ $(function () {
 $(function () {
   var happiness_by_month_drilldown = $('#happiness_by_month_hash').data('happiness');
   var happiness_by_category = $('#happiness_by_category').data('happiness2');
-  console.log(happiness_by_month_drilldown);
-  console.log(happiness_by_category);
 
             // Create the chart
             $('#happiness_by_month').highcharts({
@@ -568,8 +563,16 @@ $(function () {
               },
 
               tooltip: {
-                headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
-                pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y}</b><br/>'
+                formatter: function() {
+                  console.log(this.series);
+                  if(this.series.levelNumber == 1) {
+                    //headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                    //pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y}</b><br/>'
+                  } else {
+                    //headerFormat: '<span style="font-size:11px">HI BOB</span><br>',
+                    //pointFormat: '<span style="color:{point.color}">HI BILLY</span>: <b>{point.y}</b><br/>'
+                  }
+                }
               },
 
               series: [{
@@ -589,6 +592,10 @@ $(function () {
   <div class="well center span10 offset1 top">
    <h1>Welcome Home, <%= current_user.name %>!</h1> 
  </div>
+</div>
+
+<div class="well">
+  <p><%= @happiness_by_category %></p>
 </div>
 <% if current_user.admin? %>
 <div class="row-fluid">

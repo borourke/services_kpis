@@ -19,7 +19,11 @@ class HappinessSurvey < ActiveRecord::Base
   end
 
   def self.user_happiness_by_category(user_id)
-    surveys = HappinessSurvey.where(user_id: user_id)
+    if user_id == "all"
+      suverys = HappinessSurvey.all
+    else
+      surveys = HappinessSurvey.where(user_id: user_id)
+    end
     surveys.each_with_object([]) do |survey, happiness_by_category_by_month|
       happiness_by_category_by_month << {
         id: survey.round.gsub(" ", "").gsub("-", "").downcase,
