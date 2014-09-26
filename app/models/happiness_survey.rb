@@ -25,15 +25,15 @@ class HappinessSurvey < ActiveRecord::Base
       happiness_by_category_by_month << {
         id: survey.round.gsub(" ", "").gsub("-", "").downcase,
         data: [
-          ['Meaning', (survey.meaning.to_f / 5.0)*100.round],
-          ['Enthusiasm', (survey.enthusiasm.to_f / 5.0)*100.round],
-          ['Pride', (survey.pride.to_f / 5.0)*100.round],
-          ['Energy', (survey.energy.to_f / 5.0)*100.round],
-          ['Recognition', (survey.recognition.to_f / 5.0)*100.round],
-          ['Support', (survey.support.to_f / 5.0)*100.round],
-          ['Stamina', (survey.stamina.to_f / 5.0)*100.round],
-          ['Growth', (survey.growth.to_f / 5.0)*100.round],
-          ['Development', (survey.development.to_f / 5.0)*100.round]
+          ['Meaning', ((survey.meaning.to_f / 5.0)*100).round],
+          ['Enthusiasm', ((survey.enthusiasm.to_f / 5.0)*100).round],
+          ['Pride', ((survey.pride.to_f / 5.0)*100).round],
+          ['Energy', ((survey.energy.to_f / 5.0)*100).round],
+          ['Recognition', ((survey.recognition.to_f / 5.0)*100).round],
+          ['Support', ((survey.support.to_f / 5.0)*100).round],
+          ['Stamina', ((survey.stamina.to_f / 5.0)*100).round],
+          ['Growth', ((survey.growth.to_f / 5.0)*100).round],
+          ['Development', ((survey.development.to_f / 5.0)*100).round]
         ]
       }
     end
@@ -78,15 +78,15 @@ class HappinessSurvey < ActiveRecord::Base
       happiness_by_category_by_month << {
         id: round.gsub(" ", "").gsub("-", "").downcase,
         data: [
-          ['Meaning', (meaning_avg.to_f / 5.0)*100.round],
-          ['Enthusiasm', (enthusiasm_avg.to_f / 5.0)*100.round],
-          ['Pride', (pride_avg.to_f / 5.0)*100.round],
-          ['Energy', (energy_avg.to_f / 5.0)*100.round],
-          ['Recognition', (recognition_avg.to_f / 5.0)*100.round],
-          ['Support', (support_avg.to_f / 5.0)*100.round],
-          ['Stamina', (stamina_avg.to_f / 5.0)*100.round],
-          ['Growth', (growth_avg.to_f / 5.0)*100.round],
-          ['Development', (development_avg.to_f / 5.0)*100.round]
+          ['Meaning', ((meaning_avg.to_f / 5.0)*100).round],
+          ['Enthusiasm', ((enthusiasm_avg.to_f / 5.0)*100).round],
+          ['Pride', ((pride_avg.to_f / 5.0)*100).round],
+          ['Energy', ((energy_avg.to_f / 5.0)*100).round],
+          ['Recognition', ((recognition_avg.to_f / 5.0)*100).round],
+          ['Support', ((support_avg.to_f / 5.0)*100).round],
+          ['Stamina', ((stamina_avg.to_f / 5.0)*100).round],
+          ['Growth', ((growth_avg.to_f / 5.0)*100).round],
+          ['Development', ((development_avg.to_f / 5.0)*100).round]
         ]
       }
     end
