@@ -1,23 +1,10 @@
-<%= javascript_tag do %>
-var services_members = "<%= @services_members %>";
-services_members = services_members.replace(/&quot;/g, "");
-services_members = services_members.replace(/\[/g, "");
-services_members = services_members.replace(/\]/g, "");
-services_members = services_members.replace(/&#39;/g, "'");
-var names = services_members.split(", ");
-
-var projects = "<%= @project_names %>";
-projects = projects.replace(/&quot;/g, "");
-projects = projects.replace(/\[/g, "");
-projects = projects.replace(/\]/g, "");
-projects = projects.replace(/&#39;/g, "'");
-projects = projects.split(", ");
-<% end %>
+<div id="services_members" data-names="<%= @services_members.to_json %>"></div>
+<div id="project_names" data-projects="<%= @project_names.to_json %>"></div>
 
 <script>
 $(function() {
-  // console.log(services_members)
-  // console.log(names)
+  var names = $("#services_members").data("names")
+  var projects = $("#project_names").data("projects")
   $( "#report_card_user_name" ).autocomplete({
     source: names,
     change: function( event, ui ){
