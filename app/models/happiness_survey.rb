@@ -124,7 +124,8 @@ class HappinessSurvey < ActiveRecord::Base
                 :stamina, :growth, :development)
     surveys.flatten!
     avg = surveys.inject{ |sum, el| sum + el }.to_f / surveys.size
-    percent = (avg / 5.0 * 100)
+    avg ||= 0
+    percent = (avg / 5.0 * 100).round
   end
 
   private
