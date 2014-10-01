@@ -120,11 +120,11 @@ class HappinessSurvey < ActiveRecord::Base
   def self.this_months_avg_happiness
     round = formatted_time
     surveys = HappinessSurvey.where(round: round).pluck(:meaning, 
-                :enthusiasm, :pride, :energy, :recognition, :support,
-                :stamina, :growth, :development)
+      :enthusiasm, :pride, :energy, :recognition, :support,
+      :stamina, :growth, :development)
     surveys.flatten!
-    surveys ||= [0]
     avg = surveys.inject{ |sum, el| sum + el }.to_f / surveys.size
+    avg = 0 if avg == nan
     percent = (avg / 5.0 * 100).round
   end
 
