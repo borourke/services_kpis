@@ -53,8 +53,7 @@ class User < ActiveRecord::Base
       gold: create_medal_count_array(report_cards, "Gold"),
       silver: create_medal_count_array(report_cards, "Silver"),
       bronze: create_medal_count_array(report_cards, "Bronze"),
-      none: create_medal_count_array(report_cards, "None"),
-      na: create_medal_count_array(report_cards, "N/A")
+      none: create_medal_count_array(report_cards, "None")
     }
   end
     
