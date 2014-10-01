@@ -82,15 +82,6 @@
           format: '{point.y}'
         }
 
-      }, {
-        name: 'N/A',
-        data: report_cards["na"],
-        color: 'black',
-        dataLabels: {
-          enabled: true,
-          format: '{point.y}'
-        }
-
       }]
     });
 });
@@ -159,15 +150,6 @@ $(function () {
       name: 'None',
       data: report_cards["none"],
       color: 'red',
-      dataLabels: {
-        enabled: true,
-        format: '{point.y}'
-      }
-
-    }, {
-      name: 'N/A',
-      data: report_cards["na"],
-      color: 'black',
       dataLabels: {
         enabled: true,
         format: '{point.y}'
@@ -283,8 +265,7 @@ $('#all_time_medals_chart').highcharts({
     'Gold', 
     'Silver', 
     'Bronze', 
-    'None', 
-    'N/A'
+    'None'
     ]
   },
   yAxis: {
@@ -309,7 +290,7 @@ $('#all_time_medals_chart').highcharts({
   },
   series: [{
     name: 'Medals',
-    data: [{y: medals_hash['Gold'], color: '#FFCC00'}, {y: medals_hash['Silver'], color: 'silver'}, {y: medals_hash['Bronze'], color: '#CC6633'}, {y: medals_hash['None'], color: 'red'}, {y: medals_hash['N/A'], color: 'black'}],
+    data: [{y: medals_hash['Gold'], color: '#FFCC00'}, {y: medals_hash['Silver'], color: 'silver'}, {y: medals_hash['Bronze'], color: '#CC6633'}, {y: medals_hash['None'], color: 'red'}],
     color: 'white',
     dataLabels: {
       enabled: true,
@@ -341,8 +322,7 @@ $('#my_medals_chart').highcharts({
     'Gold', 
     'Silver', 
     'Bronze', 
-    'None', 
-    'N/A'
+    'None'
     ]
   },
   yAxis: {
@@ -367,7 +347,7 @@ $('#my_medals_chart').highcharts({
   },
   series: [{
     name: 'Medals',
-    data: [{y: medals_hash['Gold'], color: '#FFCC00'}, {y: medals_hash['Silver'], color: 'silver'}, {y: medals_hash['Bronze'], color: '#CC6633'}, {y: medals_hash['None'], color: 'red'}, {y: medals_hash['N/A'], color: 'black'}],
+    data: [{y: medals_hash['Gold'], color: '#FFCC00'}, {y: medals_hash['Silver'], color: 'silver'}, {y: medals_hash['Bronze'], color: '#CC6633'}, {y: medals_hash['None'], color: 'red'}],
     color: 'white',
     dataLabels: {
       enabled: true,
@@ -435,11 +415,6 @@ $(function () {
       name: 'None',
       data: month_medals_hash["medals_count"]["None"],
       color: 'red'
-
-    }, {
-      name: 'N/A',
-      data: month_medals_hash["medals_count"]["N/A"],
-      color: 'black'
 
     }]
   });
@@ -511,15 +486,6 @@ $(function () {
       name: 'None',
       data: month_medals_hash["medals_count"]["None"],
       color: 'red',
-      dataLabels: {
-        enabled: true,
-        format: '{point.y}'
-      }
-
-    }, {
-      name: 'N/A',
-      data: month_medals_hash["medals_count"]["N/A"],
-      color: 'black',
       dataLabels: {
         enabled: true,
         format: '{point.y}'
