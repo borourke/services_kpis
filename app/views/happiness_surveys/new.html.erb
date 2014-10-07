@@ -8,15 +8,15 @@
       <%= render 'shared/happiness_survey_error_messages' %>
       <legend class="center">Please fill out the questions below.  Your answers will be entirely anonymous.</legend>
       <%= simple_form_for(@happiness_survey, html: {class: 'form-horizontal pull-left' }) do |f| %>
-      <%= f.input :meaning, as: :radio_buttons, collection: [["Terrible", 1], ["Bad", 2], ["Okay", 3], ["Pretty Good", 4], ["Excellent", 5]], label: "Meaning Question Here", item_wrapper_class: 'inline' %>
-      <%= f.input :enthusiasm, as: :radio_buttons, collection: [["Terrible", 1], ["Bad", 2], ["Okay", 3], ["Pretty Good", 4], ["Excellent", 5]], label: "Enthusiasm Question Here", item_wrapper_class: 'inline' %>
-      <%= f.input :pride, as: :radio_buttons, collection: [["Terrible", 1], ["Bad", 2], ["Okay", 3], ["Pretty Good", 4], ["Excellent", 5]], label: "Pride Question Here", item_wrapper_class: 'inline' %>
-      <%= f.input :energy, as: :radio_buttons, collection: [["Terrible", 1], ["Bad", 2], ["Okay", 3], ["Pretty Good", 4], ["Excellent", 5]], label: "Energy Question Here", item_wrapper_class: 'inline' %>
-      <%= f.input :recognition, as: :radio_buttons, collection: [["Terrible", 1], ["Bad", 2], ["Okay", 3], ["Pretty Good", 4], ["Excellent", 5]], label: "Recognition Question Here", item_wrapper_class: 'inline' %>
-      <%= f.input :support, as: :radio_buttons, collection: [["Terrible", 1], ["Bad", 2], ["Okay", 3], ["Pretty Good", 4], ["Excellent", 5]], label: "Support Question Here", item_wrapper_class: 'inline' %>
-      <%= f.input :stamina, as: :radio_buttons, collection: [["Terrible", 1], ["Bad", 2], ["Okay", 3], ["Pretty Good", 4], ["Excellent", 5]], label: "Stamina Question Here", item_wrapper_class: 'inline' %>
-      <%= f.input :growth, as: :radio_buttons, collection: [["Terrible", 1], ["Bad", 2], ["Okay", 3], ["Pretty Good", 4], ["Excellent", 5]], label: "Growth Question Here", item_wrapper_class: 'inline' %>
-      <%= f.input :development, as: :radio_buttons, collection: [["Terrible", 1], ["Bad", 2], ["Okay", 3], ["Pretty Good", 4], ["Excellent", 5]], label: "Development Question Here", item_wrapper_class: 'inline' %>
+      <%= f.input :meaning, as: :radio_buttons, collection: [["Never", 1], ["Not often", 2], ["Sometimes", 3], ["Most of the time", 4], ["All the time", 5]], label: "I find the work that I do in my team full of meaning and purpose.", item_wrapper_class: 'inline' %>
+      <%= f.input :enthusiasm, as: :radio_buttons, collection: [["Never", 1], ["Not often", 2], ["Sometimes", 3], ["Most of the time", 4], ["All the time", 5]], label: "I’m enthusiastic about the work that I do in my team.", item_wrapper_class: 'inline' %>
+      <%= f.input :pride, as: :radio_buttons, collection: [["Never", 1], ["Not often", 2], ["Sometimes", 3], ["Most of the time", 4], ["All the time", 5]], label: "I’m proud of the work that I do in my team.", item_wrapper_class: 'inline' %>
+      <%= f.input :energy, as: :radio_buttons, collection: [["Never", 1], ["Not often", 2], ["Sometimes", 3], ["Most of the time", 4], ["All the time", 5]], label: "I’m bursting with energy.", item_wrapper_class: 'inline' %>
+      <%= f.input :recognition, as: :radio_buttons, collection: [["Never", 1], ["Not often", 2], ["Sometimes", 3], ["Most of the time", 4], ["All the time", 5]], label: "I feel like my work is being recognized.", item_wrapper_class: 'inline' %>
+      <%= f.input :support, as: :radio_buttons, collection: [["Never", 1], ["Not often", 2], ["Sometimes", 3], ["Most of the time", 4], ["All the time", 5]], label: "I’m supported by the team and quickly recover from setbacks.", item_wrapper_class: 'inline' %>
+      <%= f.input :stamina, as: :radio_buttons, collection: [["Never", 1], ["Not often", 2], ["Sometimes", 3], ["Most of the time", 4], ["All the time", 5]], label: "I can continue working for very long periods at a time.", item_wrapper_class: 'inline' %>
+      <%= f.input :growth, as: :radio_buttons, collection: [["Never", 1], ["Not often", 2], ["Sometimes", 3], ["Most of the time", 4], ["All the time", 5]], label: "I’m growing and learning.", item_wrapper_class: 'inline' %>
+      <%= f.input :development, as: :radio_buttons, collection: [["Never", 1], ["Not often", 2], ["Sometimes", 3], ["Most of the time", 4], ["All the time", 5]], label: "I am being given the tools and mentorship to meet my development goals.", item_wrapper_class: 'inline' %>
       <%= f.input :comments, as: :text, label: "Any comments you would like to share?", placeholder: "I love...or hate..." %>
       <%= f.input :user_id, as: :hidden, :input_html => { :value => @user.id } %>
       <%= f.button :submit, class: "btn-primary pull-right" %>
