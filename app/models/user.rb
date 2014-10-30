@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   has_many :report_cards, dependent: :destroy
   has_many :surveys
   before_save { self.email = email.downcase }
+  attr_accessible :email
   before_create :create_remember_token
   validates :name, presence: true, length: { maximum: 50 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
